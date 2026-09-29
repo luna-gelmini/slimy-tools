@@ -1,0 +1,362 @@
+diff --git a/board-defaults.json b/board-defaults.json
+index c560d7e..67ab03c 100644
+--- a/board-defaults.json
++++ b/board-defaults.json
+@@ -45,25 +45,27 @@
+ 			"values": {
+ 				"SENSORS": [
+ 					{
+-						"protocol": "SPI",
+-						"imu": "IMU_AUTO",
+-						"int": "2",
+-						"cs": "15",
+-						"rotation": "DEG_270"
++						"protocol": "I2C",
++						"imu": "IMU_LSM6DSV",
++						"address": 107,
++						"int": "16",
++						"rotation": "DEG_90",
++						"scl": "5",
++						"sda": "4"
+ 					},
+ 					{
+ 						"protocol": "I2C",
+ 						"imu": "IMU_AUTO",
+-						"int": "16",
+-						"rotation": "DEG_270",
++						"address": 106,
++						"rotation": "DEG_90",
+ 						"scl": "5",
+ 						"sda": "4"
+ 					}
+ 				],
+ 				"BATTERY": {
+ 					"type": "BAT_EXTERNAL",
+-					"r1": 10,
+-					"r2": 40.2,
++					"r1": 1,
++					"r2": 10,
+ 					"shieldR": 0,
+ 					"pin": "17"
+ 				},
+diff --git a/src/main.cpp b/src/main.cpp
+index 54aa5fd..7d38ad5 100644
+--- a/src/main.cpp
++++ b/src/main.cpp
+@@ -31,6 +31,7 @@
+ #include "globals.h"
+ #include "logging/Logger.h"
+ #include "ota.h"
++#include "rawudp.h"
+ #include "serial/serialcommands.h"
+ #include "status/TPSCounter.h"
+ 
+@@ -181,6 +182,8 @@ void loop() {
+ 	networkManager.update();
+ 	networkManagerBM.after();
+ 
++	SlimeVR::RawUdp::update();
++
+ 	sensorManagerBM.before();
+ 	sensorManager.update();
+ 	sensorManagerBM.after();
+diff --git a/src/rawstream.h b/src/rawstream.h
+new file mode 100644
+index 0000000..8469578
+--- /dev/null
++++ b/src/rawstream.h
+@@ -0,0 +1,25 @@
++/*
++	Raw IMU streaming, shared state.
++
++	Enabled over serial (`STREAM ON [ms]` / `STREAM OFF`) or over UDP
++	(see rawudp.h). Each line reports the mean of the raw samples taken
++	during the interval:
++
++	[RAW] <sensor> <millis> <gx> <gy> <gz> <ax> <ay> <az> <tempC> <samples>
++
++	Gyroscope and accelerometer values are raw sensor units, so the
++	gyroscope bias can be measured without the fusion correcting it.
++*/
++
++#pragma once
++
++#include <cstdint>
++
++namespace SlimeVR {
++namespace RawStream {
++
++inline bool enabled = false;
++inline uint32_t intervalMs = 100;
++
++}  // namespace RawStream
++}  // namespace SlimeVR
+diff --git a/src/rawudp.h b/src/rawudp.h
+new file mode 100644
+index 0000000..29be31a
+--- /dev/null
++++ b/src/rawudp.h
+@@ -0,0 +1,96 @@
++/*
++	Raw IMU streaming over Wi-Fi.
++
++	The tracker listens for commands on RAW_UDP_PORT and streams back to
++	whoever sent the command, so no address has to be configured:
++
++		RAW ON [ms]   start streaming (default interval 200 ms)
++		RAW OFF       stop
++		RAW PING      reply only, to locate the tracker
++
++	State is kept in RAM: unplugging USB keeps the stream running, a
++	reboot stops it.
++*/
++
++#pragma once
++
++#include <WiFiUdp.h>
++
++#include <cstdint>
++
++#include "rawstream.h"
++
++namespace SlimeVR {
++namespace RawUdp {
++
++constexpr uint16_t Port = 6971;
++
++inline WiFiUDP socket;
++inline bool listening = false;
++inline bool enabled = false;
++inline IPAddress target;
++inline uint16_t targetPort = 0;
++
++inline void send(const char* line) {
++	if (!enabled || targetPort == 0) {
++		return;
++	}
++	socket.beginPacket(target, targetPort);
++	socket.write(reinterpret_cast<const uint8_t*>(line), strlen(line));
++	socket.endPacket();
++}
++
++inline void update() {
++	if (!listening) {
++		if (WiFi.status() != WL_CONNECTED) {
++			return;
++		}
++		listening = socket.begin(Port);
++		if (!listening) {
++			return;
++		}
++	}
++
++	if (socket.parsePacket() <= 0) {
++		return;
++	}
++
++	char buf[64]{};
++	const int read = socket.read(buf, sizeof(buf) - 1);
++	if (read <= 0) {
++		return;
++	}
++	buf[read] = '\0';
++
++	const IPAddress sender = socket.remoteIP();
++	const uint16_t senderPort = socket.remotePort();
++	char reply[48]{};
++
++	if (strncmp(buf, "RAW ON", 6) == 0) {
++		int ms = atoi(buf + 6);
++		if (ms < 20 || ms > 60000) {
++			ms = 200;
++		}
++		RawStream::intervalMs = static_cast<uint32_t>(ms);
++		RawStream::enabled = true;
++		target = sender;
++		targetPort = senderPort;
++		enabled = true;
++		snprintf(reply, sizeof(reply), "OK ON %d", ms);
++	} else if (strncmp(buf, "RAW OFF", 7) == 0) {
++		enabled = false;
++		RawStream::enabled = false;
++		snprintf(reply, sizeof(reply), "OK OFF");
++	} else if (strncmp(buf, "RAW PING", 8) == 0) {
++		snprintf(reply, sizeof(reply), "OK PING");
++	} else {
++		return;
++	}
++
++	socket.beginPacket(sender, senderPort);
++	socket.write(reinterpret_cast<const uint8_t*>(reply), strlen(reply));
++	socket.endPacket();
++}
++
++}  // namespace RawUdp
++}  // namespace SlimeVR
+diff --git a/src/sensors/softfusion/softfusionsensor.h b/src/sensors/softfusion/softfusionsensor.h
+index f260c7b..1cd462e 100644
+--- a/src/sensors/softfusion/softfusionsensor.h
++++ b/src/sensors/softfusion/softfusionsensor.h
+@@ -29,6 +29,8 @@
+ #include <cstring>
+ 
+ #include "../../GlobalVars.h"
++#include "../../rawstream.h"
++#include "../../rawudp.h"
+ #include "../../sensorinterface/SensorInterface.h"
+ #include "../RestCalibrationDetector.h"
+ #include "../sensor.h"
+@@ -117,6 +119,14 @@ class SoftFusionSensor : public Sensor {
+ 		m_fusion.updateAcc(accelData, calibrator.getAccelTimestep());
+ 
+ 		calibrator.provideAccelSample(xyz);
++
++		// raw stream
++		if (SlimeVR::RawStream::enabled) {
++			for (size_t i = 0; i < 3; i++) {
++				m_streamAccelSum[i] += static_cast<double>(xyz[i]);
++			}
++			m_streamAccelCount++;
++		}
+ 	}
+ 
+ 	void processGyroSample(const RawSensorT xyz[3], const sensor_real_t timeDelta) {
+@@ -128,6 +138,14 @@ class SoftFusionSensor : public Sensor {
+ 		m_fusion.updateGyro(gyroData, calibrator.getGyroTimestep());
+ 
+ 		calibrator.provideGyroSample(xyz);
++
++		// raw stream
++		if (SlimeVR::RawStream::enabled) {
++			for (size_t i = 0; i < 3; i++) {
++				m_streamGyroSum[i] += static_cast<double>(xyz[i]);
++			}
++			m_streamGyroCount++;
++		}
+ 	}
+ 
+ 	void
+@@ -199,6 +217,63 @@ public:
+ 		);
+ 	}
+ 
++	// Raw stream accumulators, see rawstream.h
++	double m_streamGyroSum[3]{};
++	double m_streamAccelSum[3]{};
++	uint32_t m_streamGyroCount = 0;
++	uint32_t m_streamAccelCount = 0;
++	uint32_t m_streamLastMs = 0;
++
++	void streamTick() {
++		const uint32_t nowMs = millis();
++		if (nowMs - m_streamLastMs < SlimeVR::RawStream::intervalMs) {
++			return;
++		}
++		m_streamLastMs = nowMs;
++		if (m_streamGyroCount == 0) {
++			return;
++		}
++		const double gn = static_cast<double>(m_streamGyroCount);
++		const double an
++			= static_cast<double>(m_streamAccelCount ? m_streamAccelCount : 1);
++		char linha[160];
++		snprintf(
++			linha,
++			sizeof(linha),
++			"[RAW] %u %u %.4f %.4f %.4f %.3f %.3f %.3f %.3f %u",
++			static_cast<unsigned>(sensorId),
++			static_cast<unsigned>(nowMs),
++			m_streamGyroSum[0] / gn,
++			m_streamGyroSum[1] / gn,
++			m_streamGyroSum[2] / gn,
++			m_streamAccelSum[0] / an,
++			m_streamAccelSum[1] / an,
++			m_streamAccelSum[2] / an,
++			lastReadTemperature,
++			static_cast<unsigned>(m_streamGyroCount)
++		);
++		SlimeVR::RawUdp::send(linha);
++		Serial.printf(
++			"[RAW] %u %u %.4f %.4f %.4f %.3f %.3f %.3f %.3f %u\r\n",
++			static_cast<unsigned>(sensorId),
++			static_cast<unsigned>(nowMs),
++			m_streamGyroSum[0] / gn,
++			m_streamGyroSum[1] / gn,
++			m_streamGyroSum[2] / gn,
++			m_streamAccelSum[0] / an,
++			m_streamAccelSum[1] / an,
++			m_streamAccelSum[2] / an,
++			lastReadTemperature,
++			static_cast<unsigned>(m_streamGyroCount)
++		);
++		for (size_t i = 0; i < 3; i++) {
++			m_streamGyroSum[i] = 0;
++			m_streamAccelSum[i] = 0;
++		}
++		m_streamGyroCount = 0;
++		m_streamAccelCount = 0;
++	}
++
+ 	void motionLoop() final {
+ 		calibrator.tick();
+ 
+@@ -241,6 +316,10 @@ public:
+ 		constexpr uint32_t sendInterval = 1.0f / maxSendRateHz * 1e6f;
+ 		elapsed = now - m_lastRotationPacketSent;
+ 		if (elapsed >= sendInterval) {
++			if (SlimeVR::RawStream::enabled) {
++				streamTick();
++			}
++
+ 			auto overwhelmed = m_sensor.bulkRead({
+ 				[&](const auto sample[3], float AccTs) {
+ 					processAccelSample(sample, AccTs);
+diff --git a/src/serial/serialcommands.cpp b/src/serial/serialcommands.cpp
+index 43b8e2f..16fb55a 100644
+--- a/src/serial/serialcommands.cpp
++++ b/src/serial/serialcommands.cpp
+@@ -29,6 +29,7 @@
+ #include "base64.hpp"
+ #include "batterymonitor.h"
+ #include "logging/Logger.h"
++#include "rawstream.h"
+ #include "utils.h"
+ 
+ #ifdef ESP32
+@@ -372,6 +373,28 @@ void cmdGet(CmdParser* parser) {
+ 	}
+ }
+ 
++// STREAM ON [ms] / STREAM OFF, see rawstream.h
++void cmdStream(CmdParser* parser) {
++	if (parser->getParamCount() > 1 && parser->equalCmdParam(1, "OFF")) {
++		SlimeVR::RawStream::enabled = false;
++		logger.info("RAW stream OFF");
++		return;
++	}
++
++	uint32_t intervalMs = 100;
++	if (parser->getParamCount() > 2) {
++		const int requested = atoi(parser->getCmdParam(2));
++		if (requested >= 10 && requested <= 60000) {
++			intervalMs = static_cast<uint32_t>(requested);
++		}
++	}
++
++	SlimeVR::RawStream::intervalMs = intervalMs;
++	SlimeVR::RawStream::enabled = true;
++	logger.info("RAW stream ON every %u ms", intervalMs);
++	logger.info("[RAW] columns: sensor millis gx gy gz ax ay az tempC n");
++}
++
+ void cmdReboot(CmdParser* parser) {
+ 	logger.info("REBOOT");
+ 	ESP.restart();
+@@ -463,6 +486,7 @@ void setUp() {
+ 	cmdCallbacks.addCmd("GET", &cmdGet);
+ 	cmdCallbacks.addCmd("FRST", &cmdFactoryReset);
+ 	cmdCallbacks.addCmd("REBOOT", &cmdReboot);
++	cmdCallbacks.addCmd("STREAM", &cmdStream);
+ 	cmdCallbacks.addCmd("DELCAL", &cmdDeleteCalibration);
+ 	cmdCallbacks.addCmd("TCAL", &cmdTemperatureCalibration);
+ #if EXT_SERIAL_COMMANDS

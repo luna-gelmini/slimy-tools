@@ -1,0 +1,41 @@
+diff --git a/board-defaults.json b/board-defaults.json
+index c560d7e..67ab03c 100644
+--- a/board-defaults.json
++++ b/board-defaults.json
+@@ -45,25 +45,27 @@
+ 			"values": {
+ 				"SENSORS": [
+ 					{
+-						"protocol": "SPI",
+-						"imu": "IMU_AUTO",
+-						"int": "2",
+-						"cs": "15",
+-						"rotation": "DEG_270"
++						"protocol": "I2C",
++						"imu": "IMU_LSM6DSV",
++						"address": 107,
++						"int": "16",
++						"rotation": "DEG_90",
++						"scl": "5",
++						"sda": "4"
+ 					},
+ 					{
+ 						"protocol": "I2C",
+ 						"imu": "IMU_AUTO",
+-						"int": "16",
+-						"rotation": "DEG_270",
++						"address": 106,
++						"rotation": "DEG_90",
+ 						"scl": "5",
+ 						"sda": "4"
+ 					}
+ 				],
+ 				"BATTERY": {
+ 					"type": "BAT_EXTERNAL",
+-					"r1": 10,
+-					"r2": 40.2,
++					"r1": 1,
++					"r2": 10,
+ 					"shieldR": 0,
+ 					"pin": "17"
+ 				},

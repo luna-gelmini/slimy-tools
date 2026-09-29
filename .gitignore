@@ -1,0 +1,11 @@
+
+sessions/
+raw/
+firmware/fw-v0.7.3/
+firmware/*.bin
+firmware/backup_*
+firmware/serial_*
+firmware/bootlog_*
+
+__pycache__/
+*.pyc
