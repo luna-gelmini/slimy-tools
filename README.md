@@ -27,7 +27,6 @@ patches are optional.
 ## What's in here
 
 | | |
-|---|---|
 | `slimevr_client.py` | SolarXR client. Connects to `ws://localhost:21110`, yields tracker samples, reset events and connection events, and reconnects by itself. Can also send resets. |
 | `record.py` | Records a session (samples, battery, events) to `sessions/<timestamp>_<label>/`. Survives a power cut, and you can stop it with a `STOP` file. |
 | `analyze.py` | Turns one or more sessions into a drift report, or a comparison table. |
