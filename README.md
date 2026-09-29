@@ -35,7 +35,8 @@ patches are optional.
 | `quatmath.py` | Quaternion helpers and robust statistics. |
 | `tools/ota_update.py` | Flashes a firmware image to one tracker over Wi-Fi, the same way the SlimeVR server does. |
 | `tools/recalibrate.py` | Wipes and redoes a tracker's gyro calibration over serial, and shows what the old one was getting wrong. |
-| `tools/raw_stream_log.py` | Logs the raw IMU stream (needs the firmware patch below). |
+| `tools/raw_stream_log.py` | Logs the raw IMU stream over USB serial (needs the firmware patch below). |
+| `tools/raw_udp_log.py` | Same, over Wi-Fi, so a tracker can be measured while it's worn. Discovers trackers by broadcast. |
 | `tools/serial_boot_log.py` | Captures a tracker's boot log, optionally after running some commands. |
 | `tools/serial_via_server.py` | Sends serial console commands through the SlimeVR server, for when it's holding the COM port. |
 | `firmware/*.patch` | Patches against SlimeVR-Tracker-ESP v0.7.3, see [Firmware patches](#firmware-patches). |
@@ -121,7 +122,15 @@ which is why SolarXR's `raw_angular_velocity` field is always empty.
 
 Over the network, the tracker listens for `RAW ON [ms]` / `RAW OFF` /
 `RAW PING` on UDP port 6971 and streams back to whoever asked, so there's no
-address to configure and I can measure a tracker while it's being worn.
+address to configure and I can measure a tracker while it's being worn:
+
+```
+python tools/raw_udp_log.py --discover
+python tools/raw_udp_log.py --minutes 480 --label night
+```
+
+Note that 255.255.255.255 doesn't get through on Windows, so discovery uses
+the directed broadcast of your subnet (192.168.0.255 and the like).
 
 ## Findings
 
