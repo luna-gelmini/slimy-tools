@@ -19,25 +19,32 @@ patches are optional.
 
 - This is a personal project. Don't expect production-quality code or future updates.
 - Everything was measured on one set of six LSM6DSV trackers on early v1.2
-  boards, in one house. Your numbers will differ, but the methods should carry
-  over.
+boards, in one house. Your numbers will differ, but the methods should carry
+over.
 - The firmware patches aren't upstream and the SlimeVR project doesn't endorse
-  them. Flash at your own risk. Recovery is over USB.
+them. Flash at your own risk. Recovery is over USB.
+
+
 
 ## What's in here
 
-| | |
-| `slimevr_client.py` | SolarXR client. Connects to `ws://localhost:21110`, yields tracker samples, reset events and connection events, and reconnects by itself. Can also send resets. |
-| `record.py` | Records a session (samples, battery, events) to `sessions/<timestamp>_<label>/`. Survives a power cut, and you can stop it with a `STOP` file. |
-| `analyze.py` | Turns one or more sessions into a drift report, or a comparison table. |
-| `live.py` | Live table: drift rate per tracker, Stay Aligned state, temperature, battery. |
-| `quatmath.py` | Quaternion helpers and robust statistics. |
-| `tools/ota_update.py` | Flashes a firmware image to one tracker over Wi-Fi, the same way the SlimeVR server does. |
-| `tools/recalibrate.py` | Wipes and redoes a tracker's gyro calibration over serial, and shows what the old one was getting wrong. |
-| `tools/raw_stream_log.py` | Logs the raw IMU stream (needs the firmware patch below). |
-| `tools/serial_boot_log.py` | Captures a tracker's boot log, optionally after running some commands. |
-| `tools/serial_via_server.py` | Sends serial console commands through the SlimeVR server, for when it's holding the COM port. |
-| `firmware/*.patch` | Patches against SlimeVR-Tracker-ESP v0.7.3, see [Firmware patches](#firmware-patches). |
+
+| File                         | Description                                                                                                                                                     |
+| ---------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `slimevr_client.py`          | SolarXR client. Connects to `ws://localhost:21110`, yields tracker samples, reset events and connection events, and reconnects by itself. Can also send resets. |
+| `record.py`                  | Records a session (samples, battery, events) to `sessions/<timestamp>_<label>/`. Survives a power cut, and you can stop it with a `STOP` file.                  |
+| `analyze.py`                 | Turns one or more sessions into a drift report, or a comparison table.                                                                                          |
+| `live.py`                    | Live table: drift rate per tracker, Stay Aligned state, temperature, battery.                                                                                   |
+| `quatmath.py`                | Quaternion helpers and robust statistics.                                                                                                                       |
+| `tools/ota_update.py`        | Flashes a firmware image to one tracker over Wi-Fi, the same way the SlimeVR server does.                                                                       |
+| `tools/recalibrate.py`       | Wipes and redoes a tracker's gyro calibration over serial, and shows what the old one was getting wrong.                                                        |
+| `tools/raw_stream_log.py`    | Logs the raw IMU stream (needs the firmware patch below).                                                                                                       |
+| `tools/serial_boot_log.py`   | Captures a tracker's boot log, optionally after running some commands.                                                                                          |
+| `tools/serial_via_server.py` | Sends serial console commands through the SlimeVR server, for when it's holding the COM port.                                                                   |
+| `firmware/*.patch`           | Patches against SlimeVR-Tracker-ESP v0.7.3, see [Firmware patches](#firmware-patches).                                                                          |
+
+
+
 
 ## Requirements
 
@@ -73,12 +80,12 @@ windows.
 I ended up with this instead of something simpler for a few reasons:
 
 - It uses the raw rotation, before resets and before Stay Aligned, so the
-  server's corrections can't hide the drift I'm trying to measure.
+server's corrections can't hide the drift I'm trying to measure.
 - Yaw is the twist around the world vertical of the *delta* rotation, not
-  something read from Euler angles, so it stays valid with the tracker lying
-  down or on its side.
+something read from Euler angles, so it stays valid with the tracker lying
+down or on its side.
 - Breathing and small movements oscillate around zero and cancel out over two
-  minutes. A bias doesn't.
+minutes. A bias doesn't.
 
 Look at the sign of each window, not just the median. A tracker with a real
 bias puts almost every window on the same side of zero. Mixed signs around a
