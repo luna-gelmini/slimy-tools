@@ -33,6 +33,7 @@ patches are optional.
 | `analyze.py` | Turns one or more sessions into a drift report, or a comparison table. |
 | `live.py` | Live table: drift rate per tracker, Stay Aligned state, temperature, battery. |
 | `quatmath.py` | Quaternion helpers and robust statistics. |
+| `tools/mounting_check.py` | Compares the left and right legs in poses where they're physically parallel, to catch a rotated mounting calibration. |
 | `tools/ota_update.py` | Flashes a firmware image to one tracker over Wi-Fi, the same way the SlimeVR server does. |
 | `tools/recalibrate.py` | Wipes and redoes a tracker's gyro calibration over serial, and shows what the old one was getting wrong. |
 | `tools/raw_stream_log.py` | Logs the raw IMU stream over USB serial (needs the firmware patch below). |
@@ -183,10 +184,15 @@ vertical: sitting or lying down, one leg reads lower than the other. Redoing
 the calibration with feet parallel and close together took one shin from 23.2
 degrees of left-right asymmetry down to 3.2.
 
-To check for this: record 30 s standing, then 30 s lying on your back with legs
-straight and ankles touching, and compare the angle between the two shins' long
-axes (tracker local +Y from `rotation_reference_adjusted`, expressed in the hip
-frame). In that pose the shins are physically parallel, so anything above a few
+To check for this, `tools/mounting_check.py` walks you through both poses and
+compares the angle between the two limbs' long axes (tracker local +Y from
+`rotation_reference_adjusted`):
+
+```
+python tools/mounting_check.py
+```
+
+In those poses the legs are physically parallel, so anything above a few
 degrees is a mounting error, not your pose. I get about 2 degrees standing and
 3 lying.
 
