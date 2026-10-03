@@ -24,8 +24,6 @@ over.
 - The firmware patches aren't upstream and the SlimeVR project doesn't endorse
 them. Flash at your own risk. Recovery is over USB.
 
-
-
 ## What's in here
 
 | File                         | Description                                                                                                                                                     |
@@ -43,10 +41,12 @@ them. Flash at your own risk. Recovery is over USB.
 | `tools/serial_boot_log.py`   | Captures a tracker's boot log, optionally after running some commands.                                                                                          |
 | `tools/serial_via_server.py` | Sends serial console commands through the SlimeVR server, for when it's holding the COM port.                                                                   |
 | `firmware/*.patch`           | Patches against SlimeVR-Tracker-ESP v0.7.3, see [Firmware patches](#firmware-patches).                                                                          |
-
-
+| `solarxr_fb.py`              | Generated SolarXR FlatBuffers bindings (see Requirements). Don't edit by hand.                                                                                  |
 
 ## Requirements
+
+Python 3.7 or newer (the scripts use dataclasses, asyncio and
+`sys.stdout.reconfigure`), plus:
 
 ```
 pip install websockets flatbuffers pyserial
@@ -72,6 +72,18 @@ python record.py --label night --note "hip 03389, chest C3A86"
 python analyze.py sessions/20260911-004843_night
 ```
 
+`record.py` takes `--label` (required), `--note` and `--minutes`; without
+`--minutes` it runs until Ctrl+C or until a file named `STOP` appears in the
+session folder. `analyze.py` prints a full report for one session, or a
+comparison table when given several (`python analyze.py sessions/*chest*`).
+
+For a quick look without recording:
+
+```
+python live.py               # redraws every 2 s, Ctrl+C to exit
+python live.py --seconds 60  # measures for 60 s and prints a final table
+```
+
 The main metric is what I call quiet drift. I take the raw fused yaw, look at
 2-minute windows where the tracker never moved more than 8 degrees from its
 starting orientation, fit the trend in each one, and report the median across
@@ -92,6 +104,19 @@ bias puts almost every window on the same side of zero. Mixed signs around a
 small median are just noise, even if some individual windows are large. I used
 this several times to tell a broken tracker from normal variation.
 
+### Output files
+
+Everything the tools write is git-ignored:
+
+| Path                                  | Written by                                      | Contents                                                                                   |
+| ------------------------------------- | ----------------------------------------------- | ------------------------------------------------------------------------------------------ |
+| `sessions/<timestamp>_<label>/`       | `record.py`                                     | `meta.json`, `samples.csv.gz` (flushed every 10 s), `devices.csv` (every 30 s), `events.jsonl` |
+| `raw/<date>_<port>[_<label>].csv`     | `tools/raw_stream_log.py`                       | Raw gyro/accel/temperature lines over serial                                               |
+| `raw/<date>_udp_<label>.csv`          | `tools/raw_udp_log.py`                          | Same, over Wi-Fi                                                                           |
+| `raw/mounting/`                       | `tools/mounting_check.py`                       | Captured poses for the mounting check                                                      |
+| `firmware/calibrations.jsonl`         | `tools/recalibrate.py`                          | One summary line per recalibration                                                         |
+| `firmware/serial_<port>_<time>.txt`   | `tools/serial_via_server.py`                    | Serial console output                                                                      |
+
 ## Firmware patches
 
 The patches apply on top of
@@ -106,6 +131,9 @@ FIRMWARE_VERSION="0.7.3+i2cbat" pio run -e BOARD_SLIMEVR_V1_2
 ```
 
 Flash with `tools/ota_update.py --tracker "Tracker XXXXX" --bin <image>`.
+The OTA tool reproduces the server's "Update now" flow (UDP invite on port
+8266, then a TCP upload in 2 KB chunks), refuses to start below 50 % battery,
+and has a `--dry-run` flag that only reports what it would do.
 
 ### i2cbat.patch
 
