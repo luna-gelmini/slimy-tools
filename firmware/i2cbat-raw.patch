@@ -93,10 +93,10 @@ index 0000000..8469578
 +}  // namespace SlimeVR
 diff --git a/src/rawudp.h b/src/rawudp.h
 new file mode 100644
-index 0000000..29be31a
+index 0000000..f6194f2
 --- /dev/null
 +++ b/src/rawudp.h
-@@ -0,0 +1,96 @@
+@@ -0,0 +1,103 @@
 +/*
 +	Raw IMU streaming over Wi-Fi.
 +
@@ -117,6 +117,7 @@ index 0000000..29be31a
 +
 +#include <cstdint>
 +
++#include "GlobalVars.h"
 +#include "rawstream.h"
 +
 +namespace SlimeVR {
@@ -180,8 +181,14 @@ index 0000000..29be31a
 +		enabled = false;
 +		RawStream::enabled = false;
 +		snprintf(reply, sizeof(reply), "OK OFF");
-+	} else if (strncmp(buf, "RAW PING", 8) == 0) {
-+		snprintf(reply, sizeof(reply), "OK PING");
++	} else if (strncmp(buf, "RAW PING", 8) == 0 || strncmp(buf, "RAW BATT", 8) == 0) {
++		snprintf(
++			reply,
++			sizeof(reply),
++			"OK PING %.3f %.3f",
++			battery.getVoltage(),
++			battery.getLevel()
++		);
 +	} else {
 +		return;
 +	}

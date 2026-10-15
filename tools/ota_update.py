@@ -137,7 +137,8 @@ def upload(server, fw):
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("--tracker", required=True, help='tracker name in SlimeVR, e.g. "Tracker 02D00"')
+    ap.add_argument("--tracker", help='tracker name in SlimeVR, e.g. "Tracker 02D00"')
+    ap.add_argument("--ip", help="flash this address directly, when the SlimeVR server is not running")
     ap.add_argument("--bin", required=True, type=Path)
     ap.add_argument("--dry-run", action="store_true")
     args = ap.parse_args()
@@ -147,15 +148,20 @@ def main():
     if fw[:1] != b"\xe9":
         sys.exit("file does not look like an ESP firmware image (magic byte != 0xE9)")
 
-    dev = asyncio.run(find_tracker(args.tracker))
-    if dev is None:
-        sys.exit(f"{args.tracker!r} not found on the SlimeVR server (is it powered and connected?)")
+    if args.ip:
+        dev = {"ip": args.ip, "fw": "?", "board": None, "battery_pct": None, "battery_v": float("nan")}
+    else:
+        if not args.tracker:
+            sys.exit("give --tracker (via the SlimeVR server) or --ip")
+        dev = asyncio.run(find_tracker(args.tracker))
+        if dev is None:
+            sys.exit(f"{args.tracker!r} not found on the SlimeVR server (is it powered and connected?)")
     board = C._enum_names(fb.BoardType).get(dev["board"], dev["board"]) if hasattr(fb, "BoardType") else dev["board"]
-    print(f"{args.tracker}: ip={dev['ip']} firmware={dev['fw']} board={board} "
+    print(f"{args.tracker or args.ip}: ip={dev['ip']} firmware={dev['fw']} board={board} "
           f"battery={dev['battery_pct']}% ({dev['battery_v']:.2f} V)")
     print(f"image: {args.bin.name} ({len(fw)} bytes, md5 {md5(fw)})")
 
-    if board != "SLIMEVR_V1_2" or "V1_2" not in args.bin.name:
+    if dev["board"] is not None and (board != "SLIMEVR_V1_2" or "V1_2" not in args.bin.name):
         sys.exit("board and file do not match SlimeVR v1.2, aborting")
     if dev["battery_pct"] is not None and dev["battery_pct"] < MIN_BATTERY_PCT:
         sys.exit(f"battery below {MIN_BATTERY_PCT}%, charge first (the app blocks this too)")

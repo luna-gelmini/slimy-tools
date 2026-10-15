@@ -43,6 +43,14 @@ them. Flash at your own risk. Recovery is over USB.
 | `firmware/*.patch`           | Patches against SlimeVR-Tracker-ESP v0.7.3, see [Firmware patches](#firmware-patches).                                                                          |
 | `solarxr_fb.py`              | Generated SolarXR FlatBuffers bindings (see Requirements). Don't edit by hand.                                                                                  |
 
+## Server version
+
+The tools target the **SlimeVR v22** SolarXR protocol. v21 and older used a
+different schema (`TrackerData` carried a `TrackerId` table and `TrackerInfo`
+had a different field order), so they will not parse data from those servers.
+Regenerate `solarxr_fb.py` from the protocol submodule pinned by your server
+version if you need an older one.
+
 ## Requirements
 
 Python 3.7 or newer (the scripts use dataclasses, asyncio and

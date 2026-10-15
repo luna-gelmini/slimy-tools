@@ -4,6 +4,10 @@ The server speaks SolarXR on ws://localhost:21110: binary FlatBuffers
 messages, each one a `MessageBundle` holding data feed and RPC messages.
 The Python bindings live in solarxr_fb.py (generated, see NOTICE.md).
 
+Targets the SlimeVR v22 protocol. v21 and earlier used a different schema
+(TrackerData carried a TrackerId table, TrackerInfo had a different field
+order), so this will not parse data from those servers.
+
 Usage:
     client = SlimeVRClient()
     async for msg in client.messages():   # reconnects on its own
@@ -34,8 +38,7 @@ BODY_PART_IDS = {v: k for k, v in BODY_PART_NAMES.items()}
 IMU_NAMES = _enum_names(fb.ImuType)
 STATUS_NAMES = _enum_names(fb.TrackerStatus)
 RESET_TYPE_NAMES = _enum_names(fb.ResetType)
-RESET_STATUS_NAMES = _enum_names(fb.ResetStatus)
-
+RESET_LIFECYCLE_NAMES = _enum_names(fb.ResetLifecycle)
 
 
 @dataclass
@@ -53,9 +56,9 @@ class TrackerSample:
     tps: int | None
     sa_corr: float | None
     sa_locked: bool | None
-    sa_locked_err: float | None
-    sa_center_err: float | None
-    sa_neighbor_err: float | None
+    sa_locked_err: float | None = None
+    sa_center_err: float | None = None
+    sa_neighbor_err: float | None = None
     battery_v: float | None = None
     battery_pct: int | None = None
     rssi: int | None = None
@@ -79,8 +82,8 @@ class ResetEvent:
     reset_type: str
     status: str
     body_parts: list
-    progress: int
-    duration: int
+    progress: int = 0
+    duration: int = 0
 
 
 @dataclass
@@ -88,7 +91,6 @@ class ConnectionEvent:
     t: float
     connected: bool
     detail: str = ""
-
 
 
 def _finish_bundle(b, data_feed_hdr=None, rpc_hdr=None):
@@ -174,7 +176,6 @@ def build_reset_request(reset_type, body_parts=None, delay=None):
     return _finish_bundle(b, rpc_hdr=fb.RpcMessageHeaderEnd(b))
 
 
-
 def _quat(q):
     return None if q is None else (q.W(), q.X(), q.Y(), q.Z())
 
@@ -189,13 +190,11 @@ def _vec(v):
 def _parse_tracker(dev_id, hw, tr):
     info = tr.Info()
     sa = tr.StayAligned()
-    tid = tr.TrackerId()
-    temp = tr.Temp()
     name = b""
     if info is not None:
         name = info.CustomName() or info.DisplayName() or b""
     return TrackerSample(
-        key=f"dev{dev_id}/{tid.TrackerNum() if tid else 0}",
+        key=f"dev{dev_id}/{tr.TrackerId()}",
         body_part=BODY_PART_NAMES.get(info.BodyPart(), "?") if info else "?",
         name=name.decode(errors="replace"),
         imu=IMU_NAMES.get(info.ImuType(), "?") if info else "?",
@@ -204,13 +203,10 @@ def _parse_tracker(dev_id, hw, tr):
         quat=_quat(tr.Rotation()),
         quat_adj=_quat(tr.RotationReferenceAdjusted()),
         lin_acc=_vec(tr.LinearAcceleration()),
-        temp=temp.Temp() if temp is not None else None,
+        temp=tr.Temp(),
         tps=tr.Tps(),
         sa_corr=sa.YawCorrectionInDeg() if sa else None,
         sa_locked=sa.Locked() if sa else None,
-        sa_locked_err=sa.LockedErrorInDeg() if sa else None,
-        sa_center_err=sa.CenterErrorInDeg() if sa else None,
-        sa_neighbor_err=sa.NeighborErrorInDeg() if sa else None,
         battery_v=hw.BatteryVoltage() if hw else None,
         battery_pct=hw.BatteryPctEstimate() if hw else None,
         rssi=hw.Rssi() if hw else None,
@@ -229,30 +225,29 @@ def parse_bundle(raw, t):
         upd.Init(hdr.Message().Bytes, hdr.Message().Pos)
         trackers = []
         for d in range(upd.DevicesLength()):
-            dev = upd.Devices(d)
-            dev_id = dev.Id().Id() if dev.Id() else -1
-            hw = dev.HardwareStatus()
-            for j in range(dev.TrackersLength()):
-                trackers.append(_parse_tracker(dev_id, hw, dev.Trackers(j)))
+            try:
+                dev = upd.Devices(d)
+                hw = dev.HardwareStatus()
+                for j in range(dev.TrackersLength()):
+                    trackers.append(_parse_tracker(dev.Id(), hw, dev.Trackers(j)))
+            except Exception:
+                continue
         out.append(FeedUpdate(t=t, trackers=trackers))
 
     for i in range(bundle.RpcMsgsLength()):
         hdr = bundle.RpcMsgs(i)
-        if hdr.MessageType() != fb.RpcMessage.ResetResponse:
+        if hdr.MessageType() != fb.RpcMessage.ResetStatusResponse:
             continue
-        resp = fb.ResetResponse()
+        resp = fb.ResetStatusResponse()
         resp.Init(hdr.Message().Bytes, hdr.Message().Pos)
         out.append(ResetEvent(
             t=t,
             reset_type=RESET_TYPE_NAMES.get(resp.ResetType(), "?"),
-            status=RESET_STATUS_NAMES.get(resp.Status(), "?"),
+            status=RESET_LIFECYCLE_NAMES.get(resp.Lifecycle(), "?"),
             body_parts=[BODY_PART_NAMES.get(resp.BodyParts(j), "?") for j in range(resp.BodyPartsLength())],
-            progress=resp.Progress(),
-            duration=resp.Duration(),
         ))
 
     return out
-
 
 
 class SlimeVRClient:

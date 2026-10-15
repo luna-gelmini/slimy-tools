@@ -14,98 +14,71 @@ class FirmwareErrorCode(object):
     ImuError = 3
 
 
-# Used for filtering tracker rotations in software
-class FilteringType(object):
-    NONE = 0
-    SMOOTHING = 1
-    PREDICTION = 2
-
-
-# Possible tracker roles
-# They're not perfect match for SteamVR tracker roles,
-# because we support more possible roles. Host can
-# chose how to map it to their supported role.
-class TrackerRole(object):
-    NONE = 0
-    WAIST = 1
-    LEFT_FOOT = 2
-    RIGHT_FOOT = 3
-    CHEST = 4
-    LEFT_KNEE = 5
-    RIGHT_KNEE = 6
-    LEFT_ELBOW = 7
-    RIGHT_ELBOW = 8
-    LEFT_SHOULDER = 9
-    RIGHT_SHOULDER = 10
-    LEFT_HAND = 11
-    RIGHT_HAND = 12
-    LEFT_CONTROLLER = 13
-    RIGHT_CONTROLLER = 14
-    HEAD = 15
-    NECK = 16
-    CAMERA = 17
-    KEYBOARD = 18
-    HMD = 19
-    BEACON = 20
-    GENERIC_CONTROLLER = 21
-
-
-# Different parts of the body. Maps to each possible non-tracker bone in the skeleton.
+# Different parts of the body. Maps to each possible bone in the skeleton.
 # These are *NOT* the trackers.
 class BodyPart(object):
     NONE = 0
     HEAD = 1
     NECK = 2
-    CHEST = 3
-    WAIST = 4
-    HIP = 5
-    LEFT_UPPER_LEG = 6
-    RIGHT_UPPER_LEG = 7
-    LEFT_LOWER_LEG = 8
-    RIGHT_LOWER_LEG = 9
-    LEFT_FOOT = 10
-    RIGHT_FOOT = 11
-    LEFT_LOWER_ARM = 14
-    RIGHT_LOWER_ARM = 15
-    LEFT_UPPER_ARM = 16
-    RIGHT_UPPER_ARM = 17
+    UPPER_CHEST = 3
+    LOWER_CHEST = 4
+    UPPER_WAIST = 5
+    LOWER_WAIST = 6
+    HIP = 7
+    LEFT_UPPER_LEG = 8
+    RIGHT_UPPER_LEG = 9
+    LEFT_LOWER_LEG = 10
+    RIGHT_LOWER_LEG = 11
+    LEFT_FOOT = 12
+    RIGHT_FOOT = 13
+    LEFT_UPPER_ARM = 14
+    RIGHT_UPPER_ARM = 15
+    LEFT_LOWER_ARM = 16
+    RIGHT_LOWER_ARM = 17
     LEFT_HAND = 18
     RIGHT_HAND = 19
     LEFT_SHOULDER = 20
     RIGHT_SHOULDER = 21
-    UPPER_CHEST = 22
-    LEFT_HIP = 23
-    RIGHT_HIP = 24
-    LEFT_THUMB_METACARPAL = 25
-    LEFT_THUMB_PROXIMAL = 26
-    LEFT_THUMB_DISTAL = 27
-    LEFT_INDEX_PROXIMAL = 28
-    LEFT_INDEX_INTERMEDIATE = 29
-    LEFT_INDEX_DISTAL = 30
-    LEFT_MIDDLE_PROXIMAL = 31
-    LEFT_MIDDLE_INTERMEDIATE = 32
-    LEFT_MIDDLE_DISTAL = 33
-    LEFT_RING_PROXIMAL = 34
-    LEFT_RING_INTERMEDIATE = 35
-    LEFT_RING_DISTAL = 36
-    LEFT_LITTLE_PROXIMAL = 37
-    LEFT_LITTLE_INTERMEDIATE = 38
-    LEFT_LITTLE_DISTAL = 39
-    RIGHT_THUMB_METACARPAL = 40
-    RIGHT_THUMB_PROXIMAL = 41
-    RIGHT_THUMB_DISTAL = 42
-    RIGHT_INDEX_PROXIMAL = 43
-    RIGHT_INDEX_INTERMEDIATE = 44
-    RIGHT_INDEX_DISTAL = 45
-    RIGHT_MIDDLE_PROXIMAL = 46
-    RIGHT_MIDDLE_INTERMEDIATE = 47
-    RIGHT_MIDDLE_DISTAL = 48
-    RIGHT_RING_PROXIMAL = 49
-    RIGHT_RING_INTERMEDIATE = 50
-    RIGHT_RING_DISTAL = 51
-    RIGHT_LITTLE_PROXIMAL = 52
-    RIGHT_LITTLE_INTERMEDIATE = 53
-    RIGHT_LITTLE_DISTAL = 54
+    LEFT_THUMB_METACARPAL = 22
+    LEFT_THUMB_PROXIMAL = 23
+    LEFT_THUMB_DISTAL = 24
+    LEFT_INDEX_PROXIMAL = 25
+    LEFT_INDEX_INTERMEDIATE = 26
+    LEFT_INDEX_DISTAL = 27
+    LEFT_MIDDLE_PROXIMAL = 28
+    LEFT_MIDDLE_INTERMEDIATE = 29
+    LEFT_MIDDLE_DISTAL = 30
+    LEFT_RING_PROXIMAL = 31
+    LEFT_RING_INTERMEDIATE = 32
+    LEFT_RING_DISTAL = 33
+    LEFT_LITTLE_PROXIMAL = 34
+    LEFT_LITTLE_INTERMEDIATE = 35
+    LEFT_LITTLE_DISTAL = 36
+    RIGHT_THUMB_METACARPAL = 37
+    RIGHT_THUMB_PROXIMAL = 38
+    RIGHT_THUMB_DISTAL = 39
+    RIGHT_INDEX_PROXIMAL = 40
+    RIGHT_INDEX_INTERMEDIATE = 41
+    RIGHT_INDEX_DISTAL = 42
+    RIGHT_MIDDLE_PROXIMAL = 43
+    RIGHT_MIDDLE_INTERMEDIATE = 44
+    RIGHT_MIDDLE_DISTAL = 45
+    RIGHT_RING_PROXIMAL = 46
+    RIGHT_RING_INTERMEDIATE = 47
+    RIGHT_RING_DISTAL = 48
+    RIGHT_LITTLE_PROXIMAL = 49
+    RIGHT_LITTLE_INTERMEDIATE = 50
+    RIGHT_LITTLE_DISTAL = 51
+    LEFT_BIG_TOE = 52
+    LEFT_INDEX_TOE = 53
+    LEFT_MIDDLE_TOE = 54
+    LEFT_RING_TOE = 55
+    LEFT_LITTLE_TOE = 56
+    RIGHT_BIG_TOE = 57
+    RIGHT_INDEX_TOE = 58
+    RIGHT_MIDDLE_TOE = 59
+    RIGHT_RING_TOE = 60
+    RIGHT_LITTLE_TOE = 61
 
 
 class TrackerStatus(object):
@@ -116,6 +89,7 @@ class TrackerStatus(object):
     ERROR = 4
     OCCLUDED = 5
     TIMED_OUT = 6
+    SLEEPING = 7
 
 
 class MagnetometerStatus(object):
@@ -124,8 +98,24 @@ class MagnetometerStatus(object):
     ENABLED = 2
 
 
+class MountingMethod(object):
+    UNKNOWN = 0
+    MANUAL = 1
+    POSE = 2
+    STEP = 3
+
+
+class DeviceOrigin(object):
+    NONE = 0
+    DRIVER = 1
+    UDP = 2
+    HID = 3
+    VRC = 4
+    VMC = 5
+
+
 class McuType(object):
-    Other = 0
+    UNKNOWN = 0
     ESP8266 = 1
     ESP32 = 2
     OWOTRACK_ANDROID = 3
@@ -140,7 +130,7 @@ class McuType(object):
 
 
 class ImuType(object):
-    Other = 0
+    UNKNOWN = 0
     MPU9250 = 1
     MPU6500 = 2
     BNO080 = 3
@@ -194,7 +184,7 @@ class BoardType(object):
     DEV_RESERVED = 250
 
 
-# What kind of data the tracker supports.The received data gets computed into a Quaternion rotation in any case.
+# What kind of data the tracker supports. The received data gets transformed into a Quaternion rotation in any case.
 class TrackerDataType(object):
     # Rotation (e.g: IMUs or computed rotations in firmware)
     ROTATION = 0
@@ -202,6 +192,21 @@ class TrackerDataType(object):
     FLEX_RESISTANCE = 1
     # Flex angle (e.g: computed angle from flex sensors or angle on a single axis)
     FLEX_ANGLE = 2
+
+
+# A dongle stays known to the server once it has been seen, so that the devices
+# linked to it keep their association while it is unplugged.
+class DongleStatus(object):
+    NONE = 0
+    DISCONNECTED = 1
+    CONNECTED = 2
+
+
+class ResetAvailability(object):
+    AVAILABLE = 0
+    NEEDS_FULL_RESET = 1
+    NEEDS_POSITIONAL_HEAD = 2
+    NO_TRACKERS = 3
 
 
 class DataFeedMessage(object):
@@ -212,194 +217,46 @@ class DataFeedMessage(object):
     DataFeedConfig = 4
 
 
-class RpcMessage(object):
-    NONE = 0
-    HeartbeatRequest = 1
-    HeartbeatResponse = 2
-    ResetRequest = 3
-    ResetResponse = 4
-    AssignTrackerRequest = 5
-    SettingsRequest = 6
-    SettingsResponse = 7
-    ChangeSettingsRequest = 8
-    ClearDriftCompensationRequest = 9
-    RecordBVHRequest = 10
-    RecordBVHStatus = 11
-    SkeletonConfigRequest = 12
-    ChangeSkeletonConfigRequest = 13
-    SkeletonResetAllRequest = 14
-    SkeletonConfigResponse = 15
-    OpenSerialRequest = 16
-    CloseSerialRequest = 17
-    SetWifiRequest = 18
-    SerialUpdateResponse = 19
-    AutoBoneProcessRequest = 20
-    AutoBoneProcessStatusResponse = 21
-    AutoBoneEpochResponse = 22
-    OverlayDisplayModeRequest = 23
-    OverlayDisplayModeChangeRequest = 24
-    OverlayDisplayModeResponse = 25
-    SerialTrackerRebootRequest = 26
-    SerialTrackerGetInfoRequest = 27
-    SerialTrackerFactoryResetRequest = 28
-    SerialDevicesRequest = 29
-    SerialDevicesResponse = 30
-    NewSerialDeviceResponse = 31
-    StartWifiProvisioningRequest = 32
-    StopWifiProvisioningRequest = 33
-    WifiProvisioningStatusResponse = 34
-    ServerInfosRequest = 35
-    ServerInfosResponse = 36
-    LegTweaksTmpChange = 37
-    LegTweaksTmpClear = 38
-    TapDetectionSetupNotification = 39
-    SetPauseTrackingRequest = 40
-    StatusSystemRequest = 41
-    StatusSystemResponse = 42
-    StatusSystemUpdate = 43
-    StatusSystemFixed = 44
-    ClearMountingResetRequest = 45
-    HeightRequest = 46
-    HeightResponse = 47
-    AutoBoneApplyRequest = 48
-    AutoBoneStopRecordingRequest = 49
-    AutoBoneCancelRecordingRequest = 50
-    SaveFileNotification = 51
-    TrackingPauseStateRequest = 52
-    TrackingPauseStateResponse = 53
-    SerialTrackerGetWifiScanRequest = 54
-    UnknownDeviceHandshakeNotification = 55
-    AddUnknownDeviceRequest = 56
-    ForgetDeviceRequest = 57
-    FirmwareUpdateRequest = 58
-    FirmwareUpdateStatusResponse = 59
-    FirmwareUpdateStopQueuesRequest = 60
-    SettingsResetRequest = 61
-    MagToggleRequest = 62
-    MagToggleResponse = 63
-    ChangeMagToggleRequest = 64
-    RecordBVHStatusRequest = 65
-    VRCConfigStateRequest = 66
-    VRCConfigStateChangeResponse = 67
-    EnableStayAlignedRequest = 68
-    DetectStayAlignedRelaxedPoseRequest = 69
-    ResetStayAlignedRelaxedPoseRequest = 70
-    SerialTrackerCustomCommandRequest = 71
-    VRCConfigSettingToggleMute = 72
-    TrackingChecklistRequest = 73
-    TrackingChecklistResponse = 74
-    IgnoreTrackingChecklistStepRequest = 75
-    StartUserHeightCalibration = 76
-    CancelUserHeightCalibration = 77
-    UserHeightRecordingStatusResponse = 78
-    KeybindRequest = 79
-    ChangeKeybindRequest = 80
-    KeybindResponse = 81
-    InstalledInfoRequest = 82
-    InstalledInfoResponse = 83
-    OpenUriRequest = 84
-    OpenUriResponse = 85
-    EnableSteamVRDriverRequest = 86
-
-
-class KeybindId(object):
-    FULL_RESET = 0
-    YAW_RESET = 1
-    MOUNTING_RESET = 2
-    PAUSE_TRACKING = 3
-    FEET_MOUNTING_RESET = 4
-
-
-class ResetType(object):
-    Yaw = 0
-    Full = 1
-    # Second pose for calibrating mounting rotation
-    Mounting = 2
-
-
-class ResetStatus(object):
-    STARTED = 0
-    FINISHED = 1
-
-
-class ArmsMountingResetMode(object):
-    # Upper arm going back and forearm going forward
-    BACK = 0
-    # Arms going forward
-    FORWARD = 1
-    # Arms going up to the sides into a tpose
-    TPOSE_UP = 2
-    # Arms going down to the sides from a tpose
-    TPOSE_DOWN = 3
-
-
-class SkeletonBone(object):
-    NONE = 0
-    HEAD = 1
-    NECK = 2
-    CHEST = 3
-    CHEST_OFFSET = 4
-    WAIST = 5
-    HIP = 6
-    HIP_OFFSET = 7
-    HIPS_WIDTH = 8
-    UPPER_LEG = 9
-    LOWER_LEG = 10
-    FOOT_LENGTH = 11
-    FOOT_SHIFT = 12
-    SKELETON_OFFSET = 13
-    SHOULDERS_DISTANCE = 14
-    SHOULDERS_WIDTH = 15
-    UPPER_ARM = 16
-    LOWER_ARM = 17
-    HAND_Y = 18
-    HAND_Z = 19
-    ELBOW_OFFSET = 20
-    UPPER_CHEST = 21
-
-
-class SerialDeviceType(object):
-    ESP_TRACKER = 0
-    HID_RECEIVER = 1
-    HID_TRACKER = 2
-
-
-class WifiProvisioningStatus(object):
-    NONE = 0
-    SERIAL_INIT = 1
-    PROVISIONING = 2
-    CONNECTING = 3
-    CONNECTION_ERROR = 4
-    LOOKING_FOR_SERVER = 5
-    COULD_NOT_FIND_SERVER = 6
-    DONE = 7
-    OBTAINING_MAC_ADDRESS = 8
-    NO_SERIAL_LOGS_ERROR = 9
-    NO_SERIAL_DEVICE_FOUND = 10
-
-
 class AutoBoneProcessType(object):
     NONE = 0
     RECORD = 1
     SAVE = 2
     PROCESS = 3
-    # @deprecated
-    # Use AutoBoneApplyRequest instead
-    APPLY = 4
 
 
-class StatusData(object):
-    NONE = 0
-    StatusTrackerReset = 1
-    StatusTrackerError = 2
-    StatusSteamVRDisconnected = 3
-    StatusUnassignedHMD = 4
-    StatusPublicNetwork = 5
+# An output that bone data can be routed to.
+class RoutingOutput(object):
+    # Whatever is connected over the driver IPC: SteamVR or Monado, treated the same.
+    DRIVER = 0
+    VRC_OSC = 1
+    VMC = 2
 
 
-# Common folders often used in computers for storing files
-class ComputerDirectory(object):
-    Documents = 0
+class RoutingOutputState(object):
+    # Does not exist on this platform, for example the driver on Android.
+    UNSUPPORTED = 0
+    # Switched off in its own config, or no driver is connected.
+    INACTIVE = 1
+    # Known to be reaching something: a driver is connected, or a target was found.
+    ACTIVE = 2
+    # Switched on, but nothing confirms anything is listening. Routed to all the
+    # same, so the bones are already in place once something does listen.
+    ENABLED = 3
+
+
+# Whether the user agreed to send error reports and diagnostics.
+# The server owns this value and every layer (server, gui, electron) follows it.
+class ErrorReportingConsent(object):
+    UNDECIDED = 0
+    ALLOWED = 1
+    DENIED = 2
+
+
+class DriverConnectionState(object):
+    UNSUPPORTED = 0
+    DISABLED = 1
+    WAITING = 2
+    CONNECTED = 3
 
 
 class FirmwareUpdateStatus(object):
@@ -419,6 +276,7 @@ class FirmwareUpdateStatus(object):
     REBOOTING = 5
     # The server is provisioning the tracker
     PROVISIONING = 6
+    # The update process completed with success
     DONE = 7
     # Could not find the device
     ERROR_DEVICE_NOT_FOUND = 8
@@ -439,7 +297,7 @@ class FirmwareUpdateStatus(object):
 
 class FirmwareUpdateDeviceId(object):
     NONE = 0
-    solarxr_protocol_datatypes_DeviceIdTable = 1
+    FirmwareDeviceIdTable = 1
     SerialDevicePort = 2
 
 
@@ -447,64 +305,6 @@ class FirmwareUpdateMethod(object):
     NONE = 0
     OTAFirmwareUpdate = 1
     SerialFirmwareUpdate = 2
-
-
-class VRCTrackerModel(object):
-    UNKNOWN = 0
-    SPHERE = 1
-    SYSTEM = 2
-    BOX = 3
-    AXIS = 4
-
-
-class VRCSpineMode(object):
-    UNKNOWN = 0
-    LOCK_HIP = 1
-    LOCK_HEAD = 2
-    LOCK_BOTH = 3
-
-
-class VRCAvatarMeasurementType(object):
-    UNKNOWN = 0
-    HEIGHT = 1
-    ARM_SPAN = 2
-
-
-class TrackingChecklistStepId(object):
-    UNKNOWN = 0
-    TRACKERS_REST_CALIBRATION = 1
-    FULL_RESET = 2
-    VRCHAT_SETTINGS = 3
-    STEAMVR_DISCONNECTED = 4
-    UNASSIGNED_HMD = 5
-    TRACKER_ERROR = 6
-    NETWORK_PROFILE_PUBLIC = 7
-    MOUNTING_CALIBRATION = 8
-    FEET_MOUNTING_CALIBRATION = 9
-    STAY_ALIGNED_CONFIGURED = 10
-    STEAMVR_HANDS_ENABLED = 11
-    STANDABLE_INSTALLED = 12
-
-
-class TrackingChecklistStepVisibility(object):
-    ALWAYS = 0
-    WHEN_INVALID = 1
-
-
-class TrackingChecklistExtraData(object):
-    NONE = 0
-    TrackingChecklistTrackerReset = 1
-    TrackingChecklistTrackerError = 2
-    TrackingChecklistSteamVRDisconnected = 3
-    TrackingChecklistUnassignedHMD = 4
-    TrackingChecklistNeedCalibration = 5
-    TrackingChecklistPublicNetworks = 6
-
-
-class StayAlignedRelaxedPose(object):
-    STANDING = 0
-    SITTING = 1
-    FLAT = 2
 
 
 class UserHeightCalibrationStatus(object):
@@ -520,181 +320,432 @@ class UserHeightCalibrationStatus(object):
     ERROR_TIMEOUT = 9
 
 
-class Topic(object):
+class KeybindId(object):
     NONE = 0
-    TopicHandle = 1
-    TopicId = 2
+    FULL_RESET = 1
+    YAW_RESET = 2
+    MOUNTING_RESET = 3
+    PAUSE_TRACKING = 4
+    FEET_MOUNTING_RESET = 5
 
 
-class PubSubUnion(object):
+# How global keybinds are handled on the platform the server runs on
+class KeybindSupport(object):
+    # Global keybinds are not available at all (eg. macOS)
+    UNSUPPORTED = 0
+    # The compositor owns the bindings, so the user rebinds them from the system settings (eg. KDE)
+    SYSTEM_MANAGED = 1
+    # The server applies keybind changes itself, so the gui can offer a full editor (eg. Windows, GNOME)
+    APP_MANAGED = 2
+
+
+class WifiAuthMode(object):
+    OPEN = 0
+    WEP = 1
+    WPA_PSK = 2
+    WPA2_PSK = 3
+    WPA_WPA2_PSK = 4
+    WPA2_ENTERPRISE = 5
+    WPA3_PSK = 6
+    WPA2_WPA3_PSK = 7
+    WAPI_PSK = 8
+    WPA3_ENT_192 = 9
+    UNKNOWN = 10
+
+
+class WifiScanStatus(object):
     NONE = 0
-    Message = 1
-    SubscriptionRequest = 2
-    TopicHandleRequest = 3
-    TopicMapping = 4
+    SERIAL_INIT = 1
+    SCANNING = 2
+    RESULTS = 3
+    UNSUPPORTED = 4
+    CONNECTION_ERROR = 5
+    NO_SERIAL_LOGS_ERROR = 6
+    NO_SERIAL_DEVICE_FOUND = 7
 
 
-class Payload(object):
+class TrackerProvisioningStatus(object):
+    SERIAL_INIT = 0
+    OBTAINING_MAC_ADDRESS = 1
+    PROVISIONING = 2
+    CONNECTING = 3
+    CONNECTION_ERROR = 4
+    LOOKING_FOR_SERVER = 5
+    COULD_NOT_FIND_SERVER = 6
+    DONE = 7
+    NO_SERIAL_LOGS_ERROR = 8
+
+
+class ResetType(object):
+    # Resets the yaw (horizontal) axis
+    YAW = 0
+    # Resets all axes
+    FULL = 1
+    # Calibrates the mounting rotation with the configured MountingMethod
+    MOUNTING = 2
+
+
+class ResetLifecycle(object):
+    RUNNING = 0
+    DONE = 1
+    CANCELED = 2
+    FAILED = 3
+
+
+class StepMountingStatus(object):
     NONE = 0
-    solarxr_protocol_datatypes_StringTable = 1
-    solarxr_protocol_datatypes_Bytes = 2
-    KeyValues = 3
+    WAITING_FOR_MOVEMENT = 1
+    RECORDING = 2
+    PROCESSING = 3
+    DONE = 4
+    ERROR_NO_DATA = 5
+    ERROR_THRESHOLD_EXCEEDED = 6
+    ERROR_TIMEOUT = 7
 
 
-# Frequency as 32 bit float
-class HzF32(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def SizeOf(cls):
-        return 4
-
-    # HzF32
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-    # HzF32
-    def F(self): return self._tab.Get(flatbuffers.number_types.Float32Flags, self._tab.Pos + flatbuffers.number_types.UOffsetTFlags.py_type(0))
-
-def CreateHzF32(builder, f):
-    builder.Prep(4, 4)
-    builder.PrependFloat32(f)
-    return builder.Offset()
+class ResetDetail(object):
+    NONE = 0
+    CountdownDetail = 1
+    StepMountingDetail = 2
 
 
-class TransactionId(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def SizeOf(cls):
-        return 4
-
-    # TransactionId
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-    # This is expected to overflow, networking logic should handle this case.
-    # TransactionId
-    def Id(self): return self._tab.Get(flatbuffers.number_types.Uint32Flags, self._tab.Pos + flatbuffers.number_types.UOffsetTFlags.py_type(0))
-
-def CreateTransactionId(builder, id):
-    builder.Prep(4, 4)
-    builder.PrependUint32(id)
-    return builder.Offset()
+class ArmsMountingResetMode(object):
+    # Upper arm going back and forearm going forward.
+    BACK = 0
+    # Arms going forward.
+    FORWARD = 1
+    # Arms going in T-pose.
+    SIDE = 2
 
 
-# A unique ID for the device. IDs are not guaranteed to be the same after
-# the connection is terminated.
-class DeviceId(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def SizeOf(cls):
-        return 1
-
-    # DeviceId
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-    # DeviceId
-    def Id(self): return self._tab.Get(flatbuffers.number_types.Uint8Flags, self._tab.Pos + flatbuffers.number_types.UOffsetTFlags.py_type(0))
-
-def CreateDeviceId(builder, id):
-    builder.Prep(1, 1)
-    builder.PrependUint8(id)
-    return builder.Offset()
+class SerialDeviceType(object):
+    # A USB serial port whose vendor and product id are not recognized
+    UNKNOWN = 0
+    ESP_TRACKER = 1
+    HID_RECEIVER = 2
+    HID_TRACKER = 3
 
 
-# To be used inside unions
-class DeviceIdTable(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = DeviceIdTable()
-        x.Init(buf, n + offset)
-        return x
-
-    @classmethod
-    def GetRootAsDeviceIdTable(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # DeviceIdTable
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-    # DeviceIdTable
-    def Id(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        if o != 0:
-            x = o + self._tab.Pos
-            obj = DeviceId()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
-
-def DeviceIdTableStart(builder):
-    builder.StartObject(1)
-
-def DeviceIdTableAddId(builder, id):
-    builder.PrependStructSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(id), 0)
-
-def DeviceIdTableEnd(builder):
-    return builder.EndObject()
+# State of the console the server keeps on a serial port
+class SerialConsoleStatus(object):
+    # The port is open and logs are streaming
+    OPEN = 0
+    # The port is not present, the console resumes when it appears
+    WAITING = 1
+    # The port is in use by a firmware flash, the console resumes afterwards
+    BUSY = 2
+    # The port is present and the server is opening it
+    OPENING = 3
+    # The port is present but could not be opened
+    OPEN_FAILED = 4
 
 
+class SkeletonBone(object):
+    NONE = 0
+    NECK = 1
+    UPPER_CHEST = 2
+    LOWER_CHEST = 3
+    UPPER_WAIST = 4
+    LOWER_WAIST = 5
+    HIP = 6
+    HIPS_WIDTH = 7
+    UPPER_LEG = 8
+    LOWER_LEG = 9
+    FOOT_LENGTH = 10
+    FOOT_SHIFT = 11
+    SHOULDERS_DISTANCE = 12
+    SHOULDERS_WIDTH = 13
+    UPPER_ARM = 14
+    LOWER_ARM = 15
+    HAND = 16
 
-class TrackerId(object):
-    __slots__ = ['_tab']
 
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = TrackerId()
-        x.Init(buf, n + offset)
-        return x
+class FilteringType(object):
+    NONE = 0
+    SMOOTHING = 1
+    PREDICTION = 2
 
-    @classmethod
-    def GetRootAsTrackerId(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # TrackerId
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
 
-    # The device the tracker is associated with. If there is no hardware device it is
-    # associated with, this should be `null`.
-    # TrackerId
-    def DeviceId(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        if o != 0:
-            x = o + self._tab.Pos
-            obj = DeviceId()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
+class StayAlignedRelaxedPose(object):
+    STANDING = 0
+    SITTING = 1
+    FLAT = 2
 
-    # There are possibly multiple trackers per device. This identifies which one.
-    # TrackerId
-    def TrackerNum(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
-        return 0
 
-def TrackerIdStart(builder):
-    builder.StartObject(2)
+class TrackingChecklistStepId(object):
+    UNKNOWN = 0
+    TRACKERS_REST_CALIBRATION = 1
+    FULL_RESET = 2
+    VRCHAT_SETTINGS = 3
+    STEAMVR_DISCONNECTED = 4
+    UNASSIGNED_RELIABLE_REFERENCE = 5
+    TRACKER_ERROR = 6
+    NETWORK_PROFILE_PUBLIC = 7
+    MOUNTING_CALIBRATION = 8
+    FEET_MOUNTING_CALIBRATION = 9
+    STAY_ALIGNED_CONFIGURED = 10
+    STEAMVR_HANDS_ENABLED = 11
+    STANDABLE_INSTALLED = 12
+    VRCHAT_OSC_TRACKING_DISABLED = 13
+    MOUNTING_METHOD = 14
 
-def TrackerIdAddDeviceId(builder, deviceId):
-    builder.PrependStructSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(deviceId), 0)
 
-def TrackerIdAddTrackerNum(builder, trackerNum):
-    builder.PrependUint8Slot(1, trackerNum, 0)
+class TrackingChecklistStepVisibility(object):
+    ALWAYS = 0
+    WHEN_INVALID = 1
 
-def TrackerIdEnd(builder):
-    return builder.EndObject()
 
+class TrackingChecklistExtraData(object):
+    NONE = 0
+    TrackingChecklistTrackerReset = 1
+    TrackingChecklistTrackerError = 2
+    TrackingChecklistSteamVRDisconnected = 3
+    TrackingChecklistUnassignedReliableReference = 4
+    TrackingChecklistNeedCalibration = 5
+    TrackingChecklistPublicNetworks = 6
+
+
+class VMCOSCInputState(object):
+    IDLE = 0
+    LISTENING = 1
+    ERROR = 2
+
+
+class VMCOSCOutputState(object):
+    IDLE = 0
+    READY = 1
+    ERROR = 2
+
+
+class VMCOSCVrmState(object):
+    NONE = 0
+    LOADED = 1
+    ERROR = 2
+
+
+class VRCTrackerModel(object):
+    UNKNOWN = 0
+    SPHERE = 1
+    SYSTEM = 2
+    BOX = 3
+    AXIS = 4
+
+
+class VRCAvatarMeasurementType(object):
+    UNKNOWN = 0
+    HEIGHT = 1
+    ARM_SPAN = 2
+
+
+class VRCOSCInputState(object):
+    IDLE = 0
+    LISTENING = 1
+    ERROR = 2
+
+
+class VRCOSCOutputState(object):
+    IDLE = 0
+    READY = 1
+    ERROR = 2
+
+
+class VRCOSCTargetSource(object):
+    NONE = 0
+    MANUAL = 1
+    DISCOVERED = 2
+
+
+class VRCOSCOscQueryState(object):
+    DISABLED = 0
+    SEARCHING = 1
+    FOUND = 2
+    ERROR = 3
+
+
+class VRCOSCTrackingDataState(object):
+    # VRC OSC is off, or VRChat was not detected, so we cannot tell
+    UNKNOWN = 0
+    # VRChat is reachable but the tracking data toggle is off
+    DISABLED_IN_VRCHAT = 1
+    # Head/wrist poses are arriving
+    RECEIVED = 2
+
+
+class RpcMessage(object):
+    NONE = 0
+    HeartbeatRequest = 1
+    HeartbeatResponse = 2
+    ResetRequest = 3
+    ResetStatusResponse = 4
+    UpdateTrackerRequest = 5
+    ResetTrackerAssignments = 6
+    VMCOSCSettingsRequest = 7
+    VMCOSCSettingsResponse = 8
+    ChangeVMCOSCSettingsRequest = 9
+    VRMSettingsRequest = 10
+    VRMSettingsResponse = 11
+    ChangeVRMSettingsRequest = 12
+    SkeletonSettingsRequest = 13
+    SkeletonSettingsResponse = 14
+    ChangeSkeletonSettingsRequest = 15
+    UserHeightRequest = 16
+    UserHeightResponse = 17
+    ChangeUserHeightRequest = 18
+    TapDetectionSettingsRequest = 19
+    TapDetectionSettingsResponse = 20
+    ChangeTapDetectionSettingsRequest = 21
+    TapDetectionSetupModeRequest = 22
+    ResetsSettingsRequest = 23
+    ResetsSettingsResponse = 24
+    ChangeResetsSettingsRequest = 25
+    StayAlignedSettingsRequest = 26
+    StayAlignedSettingsResponse = 27
+    ChangeStayAlignedSettingsRequest = 28
+    ChangeStayAlignedEnabledRequest = 29
+    DetectStayAlignedRelaxedPoseRequest = 30
+    ResetStayAlignedRelaxedPoseRequest = 31
+    HIDSettingsRequest = 32
+    HIDSettingsResponse = 33
+    ChangeHIDSettingsRequest = 34
+    RecordBVHRequest = 35
+    RecordBVHStatus = 36
+    SkeletonProportionsRequest = 37
+    ChangeSkeletonProportionsRequest = 38
+    SkeletonProportionsResetAllRequest = 39
+    SkeletonProportionsResponse = 40
+    OpenSerialRequest = 41
+    CloseSerialRequest = 42
+    SerialUpdateResponse = 43
+    AutoBoneProcessRequest = 44
+    AutoBoneProcessStatusResponse = 45
+    AutoBoneEpochResponse = 46
+    OverlayDisplayModeRequest = 47
+    OverlayDisplayModeChangeRequest = 48
+    OverlayDisplayModeResponse = 49
+    SerialTrackerRebootRequest = 50
+    SerialTrackerGetInfoRequest = 51
+    SerialTrackerFactoryResetRequest = 52
+    SerialDevicesRequest = 53
+    SerialDevicesResponse = 54
+    StartWifiProvisioningRequest = 55
+    StopWifiProvisioningRequest = 56
+    WifiProvisioningStatusResponse = 57
+    StartWifiScanRequest = 58
+    StopWifiScanRequest = 59
+    WifiScanStatusResponse = 60
+    ServerInfosRequest = 61
+    ServerInfosResponse = 62
+    LegTweaksTmpChange = 63
+    LegTweaksTmpClear = 64
+    TapDetectionSetupNotification = 65
+    SetPauseTrackingRequest = 66
+    ClearMountingResetRequest = 67
+    AutoBoneApplyRequest = 68
+    AutoBoneStopRecordingRequest = 69
+    AutoBoneCancelRecordingRequest = 70
+    SaveFileNotification = 71
+    TrackingPauseStateRequest = 72
+    TrackingPauseStateResponse = 73
+    SerialTrackerGetWifiScanRequest = 74
+    UnknownDeviceHandshakeNotification = 75
+    AddUnknownDeviceRequest = 76
+    ForgetDeviceRequest = 77
+    FirmwareUpdateRequest = 78
+    FirmwareUpdateStatusResponse = 79
+    FirmwareUpdateStopQueuesRequest = 80
+    SettingsResetRequest = 81
+    MagToggleRequest = 82
+    MagToggleResponse = 83
+    ChangeMagToggleRequest = 84
+    RecordBVHStatusRequest = 85
+    VRCConfigStateRequest = 86
+    VRCConfigStateChangeResponse = 87
+    SerialTrackerCustomCommandRequest = 88
+    VRCConfigSettingToggleMute = 89
+    TrackingChecklistRequest = 90
+    TrackingChecklistResponse = 91
+    IgnoreTrackingChecklistStepRequest = 92
+    StartUserHeightCalibration = 93
+    CancelUserHeightCalibration = 94
+    UserHeightRecordingStatusResponse = 95
+    VRCOSCSettingsRequest = 96
+    VRCOSCSettingsResponse = 97
+    ChangeVRCOSCSettingsRequest = 98
+    VRCOSCStatusRequest = 99
+    VRCOSCStatusChangeResponse = 100
+    KeybindRequest = 101
+    ChangeKeybindRequest = 102
+    KeybindResponse = 103
+    InstalledInfoRequest = 104
+    InstalledInfoResponse = 105
+    OpenKeybindSettingsRequest = 106
+    OpenKeybindSettingsResponse = 107
+    EnableSteamVRDriverRequest = 108
+    SetKeybindRecordingRequest = 109
+    KeybindActivatedResponse = 110
+    BoneRoutingSettingsRequest = 111
+    BoneRoutingSettingsResponse = 112
+    ChangeBoneRoutingSettingsRequest = 113
+    DriverSettingsRequest = 114
+    DriverSettingsResponse = 115
+    ChangeDriverSettingsRequest = 116
+    VMCOSCStatusRequest = 117
+    VMCOSCStatusChangeResponse = 118
+    DriverStatusRequest = 119
+    DriverStatusChangeResponse = 120
+    ChangeDongleSettingsRequest = 121
+    TimeoutSettingsRequest = 122
+    TimeoutSettingsResponse = 123
+    ChangeTimeoutSettingsRequest = 124
+    StartTelemetryRequest = 125
+    StopTelemetryRequest = 126
+    TelemetryUpdateResponse = 127
+    TelemetryGapResponse = 128
+    ErrorReportingSettingsRequest = 129
+    ErrorReportingSettingsResponse = 130
+    ChangeErrorReportingSettingsRequest = 131
+    CancelResetRequest = 132
+    BodyPartPrerequisitesRequest = 133
+    BodyPartPrerequisitesResponse = 134
+    SerialKeepaliveRequest = 135
+
+
+# Common folders often used in computers for storing files
+class ComputerDirectory(object):
+    DOCUMENTS = 0
+
+
+class HandshakeStatus(object):
+    ACCEPTED = 0
+    # The driver name is blank.
+    REJECTED_UNNAMED = 1
+    # Another driver with the same name is already connected.
+    REJECTED_DUPLICATE = 2
+    # Driver is disabled by the user.
+    REJECTED_DISABLED = 3
+
+
+class AddTrackerStatus(object):
+    # The tracker has been created successfully, tracker_id is valid.
+    CREATED = 0
+    # A tracker matching the hardware identifier already exists, tracker_id is valid.
+    ALREADY_EXISTS = 1
+    # Not allowed to create the tracker, tracker_id should not be read.
+    ERROR = 2
+
+
+class DriverMessage(object):
+    NONE = 0
+    HandshakeAvailable = 1
+    HandshakeRequest = 2
+    HandshakeResponse = 3
+    AddTrackerRequest = 4
+    AddTrackerResponse = 5
+    UpdateTrackerStatus = 6
+    UpdateTrackerBattery = 7
+    UpdateTrackerPosition = 8
+    SkeletonUpdate = 9
+    BoneBatteryUpdate = 10
 
 
 # General purpose logging datatype
@@ -770,151 +821,6 @@ def LogDataCreateDataVector(builder, data):
     return builder.EndVector()
 
 def LogDataEnd(builder):
-    return builder.EndObject()
-
-
-
-# Temperature in degrees celsius
-class Temperature(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def SizeOf(cls):
-        return 4
-
-    # Temperature
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-    # Temperature
-    def Temp(self): return self._tab.Get(flatbuffers.number_types.Float32Flags, self._tab.Pos + flatbuffers.number_types.UOffsetTFlags.py_type(0))
-
-def CreateTemperature(builder, temp):
-    builder.Prep(4, 4)
-    builder.PrependFloat32(temp)
-    return builder.Offset()
-
-
-# The 4 bytes of an ip address are stored in 32 bits in big endian order.
-# We will switch over to fixed size arrays when they are supported better.
-class Ipv4Address(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def SizeOf(cls):
-        return 4
-
-    # Ipv4Address
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-    # Ipv4Address
-    def Addr(self): return self._tab.Get(flatbuffers.number_types.Uint32Flags, self._tab.Pos + flatbuffers.number_types.UOffsetTFlags.py_type(0))
-
-def CreateIpv4Address(builder, addr):
-    builder.Prep(4, 4)
-    builder.PrependUint32(addr)
-    return builder.Offset()
-
-
-class Bytes(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = Bytes()
-        x.Init(buf, n + offset)
-        return x
-
-    @classmethod
-    def GetRootAsBytes(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # Bytes
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-    # Bytes
-    def B(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        if o != 0:
-            a = self._tab.Vector(o)
-            return self._tab.Get(flatbuffers.number_types.Uint8Flags, a + flatbuffers.number_types.UOffsetTFlags.py_type(j * 1))
-        return 0
-
-    # Bytes
-    def BAsNumpy(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        if o != 0:
-            return self._tab.GetVectorAsNumpy(flatbuffers.number_types.Uint8Flags, o)
-        return 0
-
-    # Bytes
-    def BLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        if o != 0:
-            return self._tab.VectorLen(o)
-        return 0
-
-    # Bytes
-    def BIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        return o == 0
-
-def BytesStart(builder):
-    builder.StartObject(1)
-
-def BytesAddB(builder, b):
-    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(b), 0)
-
-def BytesStartBVector(builder, numElems):
-    return builder.StartVector(1, numElems, 1)
-
-def BytesCreateBVector(builder, data):
-    data = list(data)
-    builder.StartVector(1, len(data), 1)
-    for item in reversed(data):
-        builder.PrependUint8(item)
-    return builder.EndVector()
-
-def BytesEnd(builder):
-    return builder.EndObject()
-
-
-
-class StringTable(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = StringTable()
-        x.Init(buf, n + offset)
-        return x
-
-    @classmethod
-    def GetRootAsStringTable(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # StringTable
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-    # StringTable
-    def S(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
-
-def StringTableStart(builder):
-    builder.StartObject(1)
-
-def StringTableAddS(builder, s):
-    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(s), 0)
-
-def StringTableEnd(builder):
     return builder.EndObject()
 
 
@@ -1018,15 +924,13 @@ class HardwareInfo(object):
             return obj
         return None
 
+    # The 4 bytes of an ip address are stored in 32 bits in big endian order.
     # HardwareInfo
     def IpAddress(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(18))
         if o != 0:
-            x = o + self._tab.Pos
-            obj = Ipv4Address()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
+            return self._tab.Get(flatbuffers.number_types.Uint32Flags, o + self._tab.Pos)
+        return 0
 
     # A board type string that can be used to name a board. if possible you should use official board type
     # HardwareInfo
@@ -1094,7 +998,7 @@ def HardwareInfoAddHardwareAddress(builder, hardwareAddress):
     builder.PrependStructSlot(6, flatbuffers.number_types.UOffsetTFlags.py_type(hardwareAddress), 0)
 
 def HardwareInfoAddIpAddress(builder, ipAddress):
-    builder.PrependStructSlot(7, flatbuffers.number_types.UOffsetTFlags.py_type(ipAddress), 0)
+    builder.PrependUint32Slot(7, ipAddress, 0)
 
 def HardwareInfoAddBoardType(builder, boardType):
     builder.PrependUOffsetTRelativeSlot(8, flatbuffers.number_types.UOffsetTFlags.py_type(boardType), 0)
@@ -1144,15 +1048,33 @@ class HardwareStatus(object):
 
     # HardwareStatus
     def Ping(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Uint16Flags, o + self._tab.Pos)
         return None
 
-    # "Received Signal Strength Indicator" between device and wifi adapter in dBm
+    # "Received Signal Strength Indicator" between device and wifi adapter in dBm.
+    # Averaged over the datafeed interval (not an instantaneous single reading)
+    # see `rssi_min`/`rssi_max` for the range within that same window.
     # HardwareStatus
     def Rssi(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int16Flags, o + self._tab.Pos)
+        return None
+
+    # Weakest RSSI seen within the same recent window `rssi` is averaged over.
+    # HardwareStatus
+    def RssiMin(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int16Flags, o + self._tab.Pos)
+        return None
+
+    # Strongest RSSI seen within the same recent window `rssi` is averaged over.
+    # HardwareStatus
+    def RssiMax(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int16Flags, o + self._tab.Pos)
         return None
@@ -1160,28 +1082,28 @@ class HardwareStatus(object):
     # Temperature in degrees celsius
     # HardwareStatus
     def McuTemp(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
-        return None
-
-    # HardwareStatus
-    def BatteryVoltage(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
         return None
 
     # HardwareStatus
-    def BatteryPctEstimate(self):
+    def BatteryVoltage(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
+        return None
+
+    # HardwareStatus
+    def BatteryPctEstimate(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(18))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
         return None
 
     # HardwareStatus
     def LogData(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(18))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(20))
         if o != 0:
             x = self._tab.Indirect(o + self._tab.Pos)
             obj = LogData()
@@ -1189,23 +1111,24 @@ class HardwareStatus(object):
             return obj
         return None
 
+    # Averaged over the datafeed interval, not the connection's whole lifetime.
     # HardwareStatus
     def PacketLoss(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(20))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(22))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
         return None
 
     # HardwareStatus
     def PacketsLost(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(22))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(24))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return None
 
     # HardwareStatus
     def PacketsReceived(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(24))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(26))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
         return None
@@ -1213,46 +1136,52 @@ class HardwareStatus(object):
     # Runtime estimate in microseconds
     # HardwareStatus
     def BatteryRuntimeEstimate(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(26))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(28))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Int64Flags, o + self._tab.Pos)
         return None
 
 def HardwareStatusStart(builder):
-    builder.StartObject(12)
+    builder.StartObject(13)
 
 def HardwareStatusAddErrorStatus(builder, errorStatus):
     builder.PrependUint8Slot(0, errorStatus, None)
 
 def HardwareStatusAddPing(builder, ping):
-    builder.PrependUint16Slot(2, ping, None)
+    builder.PrependUint16Slot(1, ping, None)
 
 def HardwareStatusAddRssi(builder, rssi):
-    builder.PrependInt16Slot(3, rssi, None)
+    builder.PrependInt16Slot(2, rssi, None)
+
+def HardwareStatusAddRssiMin(builder, rssiMin):
+    builder.PrependInt16Slot(3, rssiMin, None)
+
+def HardwareStatusAddRssiMax(builder, rssiMax):
+    builder.PrependInt16Slot(4, rssiMax, None)
 
 def HardwareStatusAddMcuTemp(builder, mcuTemp):
-    builder.PrependFloat32Slot(4, mcuTemp, None)
+    builder.PrependFloat32Slot(5, mcuTemp, None)
 
 def HardwareStatusAddBatteryVoltage(builder, batteryVoltage):
-    builder.PrependFloat32Slot(5, batteryVoltage, None)
+    builder.PrependFloat32Slot(6, batteryVoltage, None)
 
 def HardwareStatusAddBatteryPctEstimate(builder, batteryPctEstimate):
-    builder.PrependUint8Slot(6, batteryPctEstimate, None)
+    builder.PrependUint8Slot(7, batteryPctEstimate, None)
 
 def HardwareStatusAddLogData(builder, logData):
-    builder.PrependUOffsetTRelativeSlot(7, flatbuffers.number_types.UOffsetTFlags.py_type(logData), 0)
+    builder.PrependUOffsetTRelativeSlot(8, flatbuffers.number_types.UOffsetTFlags.py_type(logData), 0)
 
 def HardwareStatusAddPacketLoss(builder, packetLoss):
-    builder.PrependFloat32Slot(8, packetLoss, None)
+    builder.PrependFloat32Slot(9, packetLoss, None)
 
 def HardwareStatusAddPacketsLost(builder, packetsLost):
-    builder.PrependInt32Slot(9, packetsLost, None)
+    builder.PrependInt32Slot(10, packetsLost, None)
 
 def HardwareStatusAddPacketsReceived(builder, packetsReceived):
-    builder.PrependInt32Slot(10, packetsReceived, None)
+    builder.PrependInt32Slot(11, packetsReceived, None)
 
 def HardwareStatusAddBatteryRuntimeEstimate(builder, batteryRuntimeEstimate):
-    builder.PrependInt64Slot(11, batteryRuntimeEstimate, None)
+    builder.PrependInt64Slot(12, batteryRuntimeEstimate, None)
 
 def HardwareStatusEnd(builder):
     return builder.EndObject()
@@ -1421,134 +1350,268 @@ def CreateVec3f(builder, x, y, z):
     return builder.Offset()
 
 
-class StayAlignedPose(object):
+# Unless specified otherwise, bone data is global (relative to the world, not to another bone).
+class Bone(object):
     __slots__ = ['_tab']
 
     @classmethod
     def GetRootAs(cls, buf, offset=0):
         n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = StayAlignedPose()
+        x = Bone()
         x.Init(buf, n + offset)
         return x
 
     @classmethod
-    def GetRootAsStayAlignedPose(cls, buf, offset=0):
+    def GetRootAsBone(cls, buf, offset=0):
         """This method is deprecated. Please switch to GetRootAs."""
         return cls.GetRootAs(buf, offset)
-    # StayAlignedPose
+    # Bone
     def Init(self, buf, pos):
         self._tab = flatbuffers.table.Table(buf, pos)
 
-    # StayAlignedPose
-    def UpperLegAngleInDeg(self):
+    # Bone
+    def BodyPart(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
         if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
-        return 0.0
+            return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
+        return 0
 
-    # StayAlignedPose
-    def LowerLegAngleInDeg(self):
+    # The length of the bone in meters.
+    # Bone
+    def BoneLength(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
         return 0.0
 
-    # StayAlignedPose
-    def FootAngleInDeg(self):
+    # A bone's default rotation is the identity rotation, where a bone's tail is towards -y
+    # (given that the head of the bone is the origin).
+    # Bone
+    def Rotation(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
         if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
-        return 0.0
+            x = o + self._tab.Pos
+            obj = Quat()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
 
-def StayAlignedPoseStart(builder):
-    builder.StartObject(3)
+    # A bone's default orientation is its rest pose (for example, for the feet,
+    # that is 90 degrees forward).
+    # Bone
+    def Orientation(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        if o != 0:
+            x = o + self._tab.Pos
+            obj = Quat()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
 
-def StayAlignedPoseAddUpperLegAngleInDeg(builder, upperLegAngleInDeg):
-    builder.PrependFloat32Slot(0, upperLegAngleInDeg, 0.0)
+    # The head of a bone is the extremity of the bone touching the parent bone.
+    # The parent is defined as the bone closer to the head.
+    # Bone
+    def HeadPosition(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
+        if o != 0:
+            x = o + self._tab.Pos
+            obj = Vec3f()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
 
-def StayAlignedPoseAddLowerLegAngleInDeg(builder, lowerLegAngleInDeg):
-    builder.PrependFloat32Slot(1, lowerLegAngleInDeg, 0.0)
+    # The tail of a bone is where the bone ends.
+    # It can also be computed from its head_position, orientation and bone_length.
+    # Bone
+    def TailPosition(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
+        if o != 0:
+            x = o + self._tab.Pos
+            obj = Vec3f()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
 
-def StayAlignedPoseAddFootAngleInDeg(builder, footAngleInDeg):
-    builder.PrependFloat32Slot(2, footAngleInDeg, 0.0)
+    # Linear velocity in meters/s.
+    # Bone
+    def LinearVelocity(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
+        if o != 0:
+            x = o + self._tab.Pos
+            obj = Vec3f()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
 
-def StayAlignedPoseEnd(builder):
+    # Angular velocity in rad/s.
+    # Bone
+    def AngularVelocity(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(18))
+        if o != 0:
+            x = o + self._tab.Pos
+            obj = Vec3f()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+    # Similar to TrackerInfo.position_offset, position offset from the head of the bone to the tracker.
+    # Bone
+    def TrackerOffset(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(20))
+        if o != 0:
+            x = o + self._tab.Pos
+            obj = Vec3f()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+def BoneStart(builder):
+    builder.StartObject(9)
+
+def BoneAddBodyPart(builder, bodyPart):
+    builder.PrependUint8Slot(0, bodyPart, 0)
+
+def BoneAddBoneLength(builder, boneLength):
+    builder.PrependFloat32Slot(1, boneLength, 0.0)
+
+def BoneAddRotation(builder, rotation):
+    builder.PrependStructSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(rotation), 0)
+
+def BoneAddOrientation(builder, orientation):
+    builder.PrependStructSlot(3, flatbuffers.number_types.UOffsetTFlags.py_type(orientation), 0)
+
+def BoneAddHeadPosition(builder, headPosition):
+    builder.PrependStructSlot(4, flatbuffers.number_types.UOffsetTFlags.py_type(headPosition), 0)
+
+def BoneAddTailPosition(builder, tailPosition):
+    builder.PrependStructSlot(5, flatbuffers.number_types.UOffsetTFlags.py_type(tailPosition), 0)
+
+def BoneAddLinearVelocity(builder, linearVelocity):
+    builder.PrependStructSlot(6, flatbuffers.number_types.UOffsetTFlags.py_type(linearVelocity), 0)
+
+def BoneAddAngularVelocity(builder, angularVelocity):
+    builder.PrependStructSlot(7, flatbuffers.number_types.UOffsetTFlags.py_type(angularVelocity), 0)
+
+def BoneAddTrackerOffset(builder, trackerOffset):
+    builder.PrependStructSlot(8, flatbuffers.number_types.UOffsetTFlags.py_type(trackerOffset), 0)
+
+def BoneEnd(builder):
     return builder.EndObject()
 
 
 
-class StayAlignedTracker(object):
+class BoneMask(object):
     __slots__ = ['_tab']
 
     @classmethod
     def GetRootAs(cls, buf, offset=0):
         n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = StayAlignedTracker()
+        x = BoneMask()
         x.Init(buf, n + offset)
         return x
 
     @classmethod
-    def GetRootAsStayAlignedTracker(cls, buf, offset=0):
+    def GetRootAsBoneMask(cls, buf, offset=0):
         """This method is deprecated. Please switch to GetRootAs."""
         return cls.GetRootAs(buf, offset)
-    # StayAlignedTracker
+    # BoneMask
     def Init(self, buf, pos):
         self._tab = flatbuffers.table.Table(buf, pos)
 
-    # StayAlignedTracker
-    def YawCorrectionInDeg(self):
+    # BoneMask
+    def BodyPart(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
         if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
-        return 0.0
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
 
-    # StayAlignedTracker
-    def LockedErrorInDeg(self):
+    # BoneMask
+    def BoneLength(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
         if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
-        return 0.0
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
 
-    # StayAlignedTracker
-    def CenterErrorInDeg(self):
+    # BoneMask
+    def Rotation(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
         if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
-        return 0.0
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
 
-    # StayAlignedTracker
-    def NeighborErrorInDeg(self):
+    # BoneMask
+    def Orientation(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
         if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
-        return 0.0
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
 
-    # StayAlignedTracker
-    def Locked(self):
+    # BoneMask
+    def HeadPosition(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
         if o != 0:
             return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
         return False
 
-def StayAlignedTrackerStart(builder):
-    builder.StartObject(5)
+    # BoneMask
+    def TailPosition(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
 
-def StayAlignedTrackerAddYawCorrectionInDeg(builder, yawCorrectionInDeg):
-    builder.PrependFloat32Slot(0, yawCorrectionInDeg, 0.0)
+    # BoneMask
+    def LinearVelocity(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
 
-def StayAlignedTrackerAddLockedErrorInDeg(builder, lockedErrorInDeg):
-    builder.PrependFloat32Slot(1, lockedErrorInDeg, 0.0)
+    # BoneMask
+    def AngularVelocity(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(18))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
 
-def StayAlignedTrackerAddCenterErrorInDeg(builder, centerErrorInDeg):
-    builder.PrependFloat32Slot(2, centerErrorInDeg, 0.0)
+    # BoneMask
+    def TrackerOffset(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(20))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
 
-def StayAlignedTrackerAddNeighborErrorInDeg(builder, neighborErrorInDeg):
-    builder.PrependFloat32Slot(3, neighborErrorInDeg, 0.0)
+def BoneMaskStart(builder):
+    builder.StartObject(9)
 
-def StayAlignedTrackerAddLocked(builder, locked):
-    builder.PrependBoolSlot(4, locked, 0)
+def BoneMaskAddBodyPart(builder, bodyPart):
+    builder.PrependBoolSlot(0, bodyPart, 0)
 
-def StayAlignedTrackerEnd(builder):
+def BoneMaskAddBoneLength(builder, boneLength):
+    builder.PrependBoolSlot(1, boneLength, 0)
+
+def BoneMaskAddRotation(builder, rotation):
+    builder.PrependBoolSlot(2, rotation, 0)
+
+def BoneMaskAddOrientation(builder, orientation):
+    builder.PrependBoolSlot(3, orientation, 0)
+
+def BoneMaskAddHeadPosition(builder, headPosition):
+    builder.PrependBoolSlot(4, headPosition, 0)
+
+def BoneMaskAddTailPosition(builder, tailPosition):
+    builder.PrependBoolSlot(5, tailPosition, 0)
+
+def BoneMaskAddLinearVelocity(builder, linearVelocity):
+    builder.PrependBoolSlot(6, linearVelocity, 0)
+
+def BoneMaskAddAngularVelocity(builder, angularVelocity):
+    builder.PrependBoolSlot(7, angularVelocity, 0)
+
+def BoneMaskAddTrackerOffset(builder, trackerOffset):
+    builder.PrependBoolSlot(8, trackerOffset, 0)
+
+def BoneMaskEnd(builder):
     return builder.EndObject()
 
 
@@ -1556,7 +1619,6 @@ def StayAlignedTrackerEnd(builder):
 # Describes all possible information about a tracker. A tracker is anything that
 # provides kinematic data about a particular body part.
 #
-# Trackers may be synthetic/computed or instead part of an actual hardware device.
 # There can be multiple trackers per hardware device.
 class TrackerData(object):
     __slots__ = ['_tab']
@@ -1577,18 +1639,22 @@ class TrackerData(object):
         self._tab = flatbuffers.table.Table(buf, pos)
 
     # TrackerData
-    def TrackerId(self):
+    def DeviceId(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
         if o != 0:
-            x = self._tab.Indirect(o + self._tab.Pos)
-            obj = TrackerId()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
+            return self._tab.Get(flatbuffers.number_types.Uint16Flags, o + self._tab.Pos)
+        return 0
+
+    # TrackerData
+    def TrackerId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Uint16Flags, o + self._tab.Pos)
+        return 0
 
     # TrackerData
     def Info(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
         if o != 0:
             x = self._tab.Indirect(o + self._tab.Pos)
             obj = TrackerInfo()
@@ -1598,7 +1664,7 @@ class TrackerData(object):
 
     # TrackerData
     def Status(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
         return 0
@@ -1606,7 +1672,7 @@ class TrackerData(object):
     # Sensor rotation after fusion
     # TrackerData
     def Rotation(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
         if o != 0:
             x = o + self._tab.Pos
             obj = Quat()
@@ -1614,20 +1680,9 @@ class TrackerData(object):
             return obj
         return None
 
-    # Position, in meters
+    # Position in meters in OpenVR's space (left-handed, X+ Right, Y+ Up, Z- Forward)
     # TrackerData
     def Position(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
-        if o != 0:
-            x = o + self._tab.Pos
-            obj = Vec3f()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
-
-    # Raw angular velocity, in euler angles, rad/s
-    # TrackerData
-    def RawAngularVelocity(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
         if o != 0:
             x = o + self._tab.Pos
@@ -1652,10 +1707,7 @@ class TrackerData(object):
     def Temp(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(18))
         if o != 0:
-            x = o + self._tab.Pos
-            obj = Temperature()
-            obj.Init(self._tab.Bytes, x)
-            return obj
+            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
         return None
 
     # Acceleration without gravity, in m/s^2
@@ -1669,8 +1721,8 @@ class TrackerData(object):
             return obj
         return None
 
-    # Reference-adjusted rotation for IMU-only trackers (VR HMD yaw is used as a reset reference).
-    # In other words, a rotation that is aligned to a reliable source of rotation ((0, VR HMD YAW, 0)),
+    # Reference-adjusted rotation for IMU-only trackers (Reference's yaw is used as a reset reference).
+    # In other words, a rotation that is aligned to a reliable source of rotation (0, Reference yaw, 0),
     # triggered after user input (using reset buttons).
     # This is a SlimeVR-specific field and computed exclusively by SlimeVR server.
     # Includes: mounting orientation, full, quick and mounting reset adjustments.
@@ -1686,7 +1738,7 @@ class TrackerData(object):
         return None
 
     # Zero-reference-adjusted rotation for IMU-only trackers (identity quaternion is used as a reset reference).
-    # In other words, a rotation that is aligned to a zero vector ((0, 0, 0)) by
+    # In other words, a rotation that is aligned to a zero vector (0, 0, 0) by
     # inverting the current rotation, triggered after user input (using reset buttons).
     # This is a SlimeVR-specific field and computed exclusively by SlimeVR server.
     # Includes: only full and quick reset adjustments.
@@ -1720,7 +1772,7 @@ class TrackerData(object):
             return obj
         return None
 
-    # Stay Aligned
+    # Stay Aligned info for this tracker
     # TrackerData
     def StayAligned(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(30))
@@ -1731,32 +1783,40 @@ class TrackerData(object):
             return obj
         return None
 
+    # What source this tracker comes from
+    # TrackerData
+    def Origin(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(32))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
+        return None
+
 def TrackerDataStart(builder):
-    builder.StartObject(14)
+    builder.StartObject(15)
+
+def TrackerDataAddDeviceId(builder, deviceId):
+    builder.PrependUint16Slot(0, deviceId, 0)
 
 def TrackerDataAddTrackerId(builder, trackerId):
-    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(trackerId), 0)
+    builder.PrependUint16Slot(1, trackerId, 0)
 
 def TrackerDataAddInfo(builder, info):
-    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(info), 0)
+    builder.PrependUOffsetTRelativeSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(info), 0)
 
 def TrackerDataAddStatus(builder, status):
-    builder.PrependUint8Slot(2, status, 0)
+    builder.PrependUint8Slot(3, status, 0)
 
 def TrackerDataAddRotation(builder, rotation):
-    builder.PrependStructSlot(3, flatbuffers.number_types.UOffsetTFlags.py_type(rotation), 0)
+    builder.PrependStructSlot(4, flatbuffers.number_types.UOffsetTFlags.py_type(rotation), 0)
 
 def TrackerDataAddPosition(builder, position):
-    builder.PrependStructSlot(4, flatbuffers.number_types.UOffsetTFlags.py_type(position), 0)
-
-def TrackerDataAddRawAngularVelocity(builder, rawAngularVelocity):
-    builder.PrependStructSlot(5, flatbuffers.number_types.UOffsetTFlags.py_type(rawAngularVelocity), 0)
+    builder.PrependStructSlot(5, flatbuffers.number_types.UOffsetTFlags.py_type(position), 0)
 
 def TrackerDataAddRawAcceleration(builder, rawAcceleration):
     builder.PrependStructSlot(6, flatbuffers.number_types.UOffsetTFlags.py_type(rawAcceleration), 0)
 
 def TrackerDataAddTemp(builder, temp):
-    builder.PrependStructSlot(7, flatbuffers.number_types.UOffsetTFlags.py_type(temp), 0)
+    builder.PrependFloat32Slot(7, temp, None)
 
 def TrackerDataAddLinearAcceleration(builder, linearAcceleration):
     builder.PrependStructSlot(8, flatbuffers.number_types.UOffsetTFlags.py_type(linearAcceleration), 0)
@@ -1775,6 +1835,9 @@ def TrackerDataAddRawMagneticVector(builder, rawMagneticVector):
 
 def TrackerDataAddStayAligned(builder, stayAligned):
     builder.PrependUOffsetTRelativeSlot(13, flatbuffers.number_types.UOffsetTFlags.py_type(stayAligned), 0)
+
+def TrackerDataAddOrigin(builder, origin):
+    builder.PrependUint8Slot(14, origin, None)
 
 def TrackerDataEnd(builder):
     return builder.EndObject()
@@ -1829,63 +1892,63 @@ class TrackerDataMask(object):
         return False
 
     # TrackerDataMask
-    def RawAngularVelocity(self):
+    def RawAcceleration(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
         if o != 0:
             return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
         return False
 
     # TrackerDataMask
-    def RawAcceleration(self):
+    def Temp(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
         if o != 0:
             return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
         return False
 
     # TrackerDataMask
-    def Temp(self):
+    def LinearAcceleration(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
         if o != 0:
             return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
         return False
 
     # TrackerDataMask
-    def LinearAcceleration(self):
+    def RotationReferenceAdjusted(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(18))
         if o != 0:
             return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
         return False
 
     # TrackerDataMask
-    def RotationReferenceAdjusted(self):
+    def RotationIdentityAdjusted(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(20))
         if o != 0:
             return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
         return False
 
     # TrackerDataMask
-    def RotationIdentityAdjusted(self):
+    def Tps(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(22))
         if o != 0:
             return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
         return False
 
     # TrackerDataMask
-    def Tps(self):
+    def RawMagneticVector(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(24))
         if o != 0:
             return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
         return False
 
     # TrackerDataMask
-    def RawMagneticVector(self):
+    def StayAligned(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(26))
         if o != 0:
             return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
         return False
 
     # TrackerDataMask
-    def StayAligned(self):
+    def Origin(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(28))
         if o != 0:
             return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
@@ -1906,32 +1969,32 @@ def TrackerDataMaskAddRotation(builder, rotation):
 def TrackerDataMaskAddPosition(builder, position):
     builder.PrependBoolSlot(3, position, 0)
 
-def TrackerDataMaskAddRawAngularVelocity(builder, rawAngularVelocity):
-    builder.PrependBoolSlot(4, rawAngularVelocity, 0)
-
 def TrackerDataMaskAddRawAcceleration(builder, rawAcceleration):
-    builder.PrependBoolSlot(5, rawAcceleration, 0)
+    builder.PrependBoolSlot(4, rawAcceleration, 0)
 
 def TrackerDataMaskAddTemp(builder, temp):
-    builder.PrependBoolSlot(6, temp, 0)
+    builder.PrependBoolSlot(5, temp, 0)
 
 def TrackerDataMaskAddLinearAcceleration(builder, linearAcceleration):
-    builder.PrependBoolSlot(7, linearAcceleration, 0)
+    builder.PrependBoolSlot(6, linearAcceleration, 0)
 
 def TrackerDataMaskAddRotationReferenceAdjusted(builder, rotationReferenceAdjusted):
-    builder.PrependBoolSlot(8, rotationReferenceAdjusted, 0)
+    builder.PrependBoolSlot(7, rotationReferenceAdjusted, 0)
 
 def TrackerDataMaskAddRotationIdentityAdjusted(builder, rotationIdentityAdjusted):
-    builder.PrependBoolSlot(9, rotationIdentityAdjusted, 0)
+    builder.PrependBoolSlot(8, rotationIdentityAdjusted, 0)
 
 def TrackerDataMaskAddTps(builder, tps):
-    builder.PrependBoolSlot(10, tps, 0)
+    builder.PrependBoolSlot(9, tps, 0)
 
 def TrackerDataMaskAddRawMagneticVector(builder, rawMagneticVector):
-    builder.PrependBoolSlot(11, rawMagneticVector, 0)
+    builder.PrependBoolSlot(10, rawMagneticVector, 0)
 
 def TrackerDataMaskAddStayAligned(builder, stayAligned):
-    builder.PrependBoolSlot(12, stayAligned, 0)
+    builder.PrependBoolSlot(11, stayAligned, 0)
+
+def TrackerDataMaskAddOrigin(builder, origin):
+    builder.PrependBoolSlot(12, origin, 0)
 
 def TrackerDataMaskEnd(builder):
     return builder.EndObject()
@@ -1957,36 +2020,41 @@ class TrackerInfo(object):
     def Init(self, buf, pos):
         self._tab = flatbuffers.table.Table(buf, pos)
 
+    # Indicates if the tracker is using an IMU for its tracking data
+    # TrackerInfo
+    def IsImu(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
+
     # TrackerInfo
     def ImuType(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Uint16Flags, o + self._tab.Pos)
         return 0
 
-    # The user-assigned role of the tracker.
+    # The user-assigned role of the tracker. Should be used in most cases.
     # TrackerInfo
     def BodyPart(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
         return 0
 
-    # average samples per second
+    # The source-assigned role of the tracker. For example, for a VR headset this will be the head.
     # TrackerInfo
-    def PollRate(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+    def IntendedBodyPart(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
         if o != 0:
-            x = o + self._tab.Pos
-            obj = HzF32()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
+            return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
+        return 0
 
-    # The orientation of the tracker when mounted on the body
+    # The manual mounting orientation. Used if last_mounting_method is MANUAL.
     # TrackerInfo
     def MountingOrientation(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
         if o != 0:
             x = o + self._tab.Pos
             obj = Quat()
@@ -1994,34 +2062,21 @@ class TrackerInfo(object):
             return obj
         return None
 
-    # Should the tracker's settings be editable by the user
+    # The automatic mounting reset orientation. Used if last_mounting_method isn't MANUAL.
     # TrackerInfo
-    def Editable(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
-        if o != 0:
-            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
-        return False
-
-    # Indicates if the tracker is computed (solved position and rotation)
-    # TrackerInfo
-    def IsComputed(self):
+    def MountingResetOrientation(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
         if o != 0:
-            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
-        return False
+            x = o + self._tab.Pos
+            obj = Quat()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
 
-    # Indicates if the tracker is using an IMU for its tracking data
-    # TrackerInfo
-    def IsImu(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
-        if o != 0:
-            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
-        return False
-
-    # A human-friendly name to display as the name of the tracker.
+    # A human-friendly name to display as the name of the tracker
     # TrackerInfo
     def DisplayName(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(18))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
@@ -2029,101 +2084,132 @@ class TrackerInfo(object):
     # name to display as the name of the tracker set by the user
     # TrackerInfo
     def CustomName(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(20))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(18))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
-    # Whether to allow yaw drift compensation for this tracker or not.
+    # Last mounting method used to set mounting orientation for this tracker
     # TrackerInfo
-    def AllowDriftCompensation(self):
+    def LastMountingMethod(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(20))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
+        return 0
+
+    # Status of the tracker's magnetometer
+    # TrackerInfo
+    def Magnetometer(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(22))
         if o != 0:
-            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
-        return False
+            return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
+        return 0
 
-    # Mounting Reset orientation overrides the current `mounting_orientation` of
-    # the tracker, this orientation is not saved and needs to be calculated
-    # each time the server is ran
+    # Indicates what type of data the physical tracker sends before it gets transformed into a rotation
     # TrackerInfo
-    def MountingResetOrientation(self):
+    def DataType(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(24))
         if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
+        return 0
+
+    # (for positional trackers) Offset from the head of the bone to the tracker. Ex: for a HMD this is around (0, 0, 0.1)
+    # TrackerInfo
+    def BoneOffset(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(26))
+        if o != 0:
             x = o + self._tab.Pos
-            obj = Quat()
+            obj = Vec3f()
             obj.Init(self._tab.Bytes, x)
             return obj
         return None
 
-    # Indicates if the tracker is actually an HMD
-    # TrackerInfo
-    def IsHmd(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(26))
+def TrackerInfoStart(builder):
+    builder.StartObject(12)
+
+def TrackerInfoAddIsImu(builder, isImu):
+    builder.PrependBoolSlot(0, isImu, 0)
+
+def TrackerInfoAddImuType(builder, imuType):
+    builder.PrependUint16Slot(1, imuType, 0)
+
+def TrackerInfoAddBodyPart(builder, bodyPart):
+    builder.PrependUint8Slot(2, bodyPart, 0)
+
+def TrackerInfoAddIntendedBodyPart(builder, intendedBodyPart):
+    builder.PrependUint8Slot(3, intendedBodyPart, 0)
+
+def TrackerInfoAddMountingOrientation(builder, mountingOrientation):
+    builder.PrependStructSlot(4, flatbuffers.number_types.UOffsetTFlags.py_type(mountingOrientation), 0)
+
+def TrackerInfoAddMountingResetOrientation(builder, mountingResetOrientation):
+    builder.PrependStructSlot(5, flatbuffers.number_types.UOffsetTFlags.py_type(mountingResetOrientation), 0)
+
+def TrackerInfoAddDisplayName(builder, displayName):
+    builder.PrependUOffsetTRelativeSlot(6, flatbuffers.number_types.UOffsetTFlags.py_type(displayName), 0)
+
+def TrackerInfoAddCustomName(builder, customName):
+    builder.PrependUOffsetTRelativeSlot(7, flatbuffers.number_types.UOffsetTFlags.py_type(customName), 0)
+
+def TrackerInfoAddLastMountingMethod(builder, lastMountingMethod):
+    builder.PrependUint8Slot(8, lastMountingMethod, 0)
+
+def TrackerInfoAddMagnetometer(builder, magnetometer):
+    builder.PrependUint8Slot(9, magnetometer, 0)
+
+def TrackerInfoAddDataType(builder, dataType):
+    builder.PrependUint8Slot(10, dataType, 0)
+
+def TrackerInfoAddBoneOffset(builder, boneOffset):
+    builder.PrependStructSlot(11, flatbuffers.number_types.UOffsetTFlags.py_type(boneOffset), 0)
+
+def TrackerInfoEnd(builder):
+    return builder.EndObject()
+
+
+
+class StayAlignedTracker(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = StayAlignedTracker()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsStayAlignedTracker(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # StayAlignedTracker
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # StayAlignedTracker
+    def YawCorrectionInDeg(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
+        return 0.0
+
+    # StayAlignedTracker
+    def Locked(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
         if o != 0:
             return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
         return False
 
-    # TrackerInfo
-    def Magnetometer(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(28))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
-        return 0
+def StayAlignedTrackerStart(builder):
+    builder.StartObject(2)
 
-    # Indicates what type of data the tracker sends (note: it always ends up being rotation in the end)
-    # TrackerInfo
-    def DataSupport(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(30))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
-        return 0
+def StayAlignedTrackerAddYawCorrectionInDeg(builder, yawCorrectionInDeg):
+    builder.PrependFloat32Slot(0, yawCorrectionInDeg, 0.0)
 
-def TrackerInfoStart(builder):
-    builder.StartObject(14)
+def StayAlignedTrackerAddLocked(builder, locked):
+    builder.PrependBoolSlot(1, locked, 0)
 
-def TrackerInfoAddImuType(builder, imuType):
-    builder.PrependUint16Slot(0, imuType, 0)
-
-def TrackerInfoAddBodyPart(builder, bodyPart):
-    builder.PrependUint8Slot(1, bodyPart, 0)
-
-def TrackerInfoAddPollRate(builder, pollRate):
-    builder.PrependStructSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(pollRate), 0)
-
-def TrackerInfoAddMountingOrientation(builder, mountingOrientation):
-    builder.PrependStructSlot(3, flatbuffers.number_types.UOffsetTFlags.py_type(mountingOrientation), 0)
-
-def TrackerInfoAddEditable(builder, editable):
-    builder.PrependBoolSlot(4, editable, 0)
-
-def TrackerInfoAddIsComputed(builder, isComputed):
-    builder.PrependBoolSlot(5, isComputed, 0)
-
-def TrackerInfoAddIsImu(builder, isImu):
-    builder.PrependBoolSlot(6, isImu, 0)
-
-def TrackerInfoAddDisplayName(builder, displayName):
-    builder.PrependUOffsetTRelativeSlot(7, flatbuffers.number_types.UOffsetTFlags.py_type(displayName), 0)
-
-def TrackerInfoAddCustomName(builder, customName):
-    builder.PrependUOffsetTRelativeSlot(8, flatbuffers.number_types.UOffsetTFlags.py_type(customName), 0)
-
-def TrackerInfoAddAllowDriftCompensation(builder, allowDriftCompensation):
-    builder.PrependBoolSlot(9, allowDriftCompensation, 0)
-
-def TrackerInfoAddMountingResetOrientation(builder, mountingResetOrientation):
-    builder.PrependStructSlot(10, flatbuffers.number_types.UOffsetTFlags.py_type(mountingResetOrientation), 0)
-
-def TrackerInfoAddIsHmd(builder, isHmd):
-    builder.PrependBoolSlot(11, isHmd, 0)
-
-def TrackerInfoAddMagnetometer(builder, magnetometer):
-    builder.PrependUint8Slot(12, magnetometer, 0)
-
-def TrackerInfoAddDataSupport(builder, dataSupport):
-    builder.PrependUint8Slot(13, dataSupport, 0)
-
-def TrackerInfoEnd(builder):
+def StayAlignedTrackerEnd(builder):
     return builder.EndObject()
 
 
@@ -2186,7 +2272,7 @@ def DeviceDataMaskEnd(builder):
 
 
 # Describes all possible information about a hardware device. For example, a
-# vive tracker is a  single hardware device, and a slime tracker with two
+# vive tracker is a single hardware device, and a slime tracker with two
 # extensions is a single hardware device but two trackers.
 class DeviceData(object):
     __slots__ = ['_tab']
@@ -2210,11 +2296,8 @@ class DeviceData(object):
     def Id(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
         if o != 0:
-            x = o + self._tab.Pos
-            obj = DeviceId()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
+            return self._tab.Get(flatbuffers.number_types.Uint16Flags, o + self._tab.Pos)
+        return 0
 
     # The dynamically changeable name of the device. This might be set by the
     # user to help them remember which tracker is which.
@@ -2272,11 +2355,18 @@ class DeviceData(object):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
         return o == 0
 
+    # DeviceData
+    def Origin(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
+        return 0
+
 def DeviceDataStart(builder):
-    builder.StartObject(5)
+    builder.StartObject(6)
 
 def DeviceDataAddId(builder, id):
-    builder.PrependStructSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(id), 0)
+    builder.PrependUint16Slot(0, id, 0)
 
 def DeviceDataAddCustomName(builder, customName):
     builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(customName), 0)
@@ -2296,91 +2386,361 @@ def DeviceDataStartTrackersVector(builder, numElems):
 def DeviceDataCreateTrackersVector(builder, data):
     return builder.CreateVectorOfTables(data)
 
+def DeviceDataAddOrigin(builder, origin):
+    builder.PrependUint8Slot(5, origin, 0)
+
 def DeviceDataEnd(builder):
     return builder.EndObject()
 
 
 
-class Bone(object):
+class DongleDataMask(object):
     __slots__ = ['_tab']
 
     @classmethod
     def GetRootAs(cls, buf, offset=0):
         n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = Bone()
+        x = DongleDataMask()
         x.Init(buf, n + offset)
         return x
 
     @classmethod
-    def GetRootAsBone(cls, buf, offset=0):
+    def GetRootAsDongleDataMask(cls, buf, offset=0):
         """This method is deprecated. Please switch to GetRootAs."""
         return cls.GetRootAs(buf, offset)
-    # Bone
+    # DongleDataMask
     def Init(self, buf, pos):
         self._tab = flatbuffers.table.Table(buf, pos)
 
-    # Bone
-    def BodyPart(self):
+    # DongleDataMask
+    def DisplayName(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
         if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
-        return 0
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
 
-    # The global rotation of the bone.
-    #
-    # Note that the identity rotation is where a bone's tail is towards -y (assuming
-    # the head of the bone is the origin)
-    # Bone
-    def RotationG(self):
+    # DongleDataMask
+    def CustomName(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
         if o != 0:
-            x = o + self._tab.Pos
-            obj = Quat()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
 
-    # Bone
-    def BoneLength(self):
+    # DongleDataMask
+    def HardwareRevision(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
         if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
-        return 0.0
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
 
-    # The global position of the head of this bone.
-    #
-    # The head of a bone is joint/node of the bone touching the parent bone. The
-    # parent is defined as the bone closer to the HMD.
-    # Bone
-    def HeadPositionG(self):
+    # DongleDataMask
+    def Model(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
         if o != 0:
-            x = o + self._tab.Pos
-            obj = Vec3f()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
 
-def BoneStart(builder):
-    builder.StartObject(4)
+    # DongleDataMask
+    def Manufacturer(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
 
-def BoneAddBodyPart(builder, bodyPart):
-    builder.PrependUint8Slot(0, bodyPart, 0)
+    # DongleDataMask
+    def FirmwareVersion(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
 
-def BoneAddRotationG(builder, rotationG):
-    builder.PrependStructSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(rotationG), 0)
+    # DongleDataMask
+    def FirmwareDate(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
 
-def BoneAddBoneLength(builder, boneLength):
-    builder.PrependFloat32Slot(2, boneLength, 0.0)
+    # DongleDataMask
+    def HardwareAddress(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(18))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
 
-def BoneAddHeadPositionG(builder, headPositionG):
-    builder.PrependStructSlot(3, flatbuffers.number_types.UOffsetTFlags.py_type(headPositionG), 0)
+    # DongleDataMask
+    def BoardType(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(20))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
 
-def BoneEnd(builder):
+    # DongleDataMask
+    def DevicesIds(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(22))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
+
+    # DongleDataMask
+    def Status(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(24))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
+
+    # DongleDataMask
+    def ProtocolVersion(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(26))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
+
+def DongleDataMaskStart(builder):
+    builder.StartObject(12)
+
+def DongleDataMaskAddDisplayName(builder, displayName):
+    builder.PrependBoolSlot(0, displayName, 0)
+
+def DongleDataMaskAddCustomName(builder, customName):
+    builder.PrependBoolSlot(1, customName, 0)
+
+def DongleDataMaskAddHardwareRevision(builder, hardwareRevision):
+    builder.PrependBoolSlot(2, hardwareRevision, 0)
+
+def DongleDataMaskAddModel(builder, model):
+    builder.PrependBoolSlot(3, model, 0)
+
+def DongleDataMaskAddManufacturer(builder, manufacturer):
+    builder.PrependBoolSlot(4, manufacturer, 0)
+
+def DongleDataMaskAddFirmwareVersion(builder, firmwareVersion):
+    builder.PrependBoolSlot(5, firmwareVersion, 0)
+
+def DongleDataMaskAddFirmwareDate(builder, firmwareDate):
+    builder.PrependBoolSlot(6, firmwareDate, 0)
+
+def DongleDataMaskAddHardwareAddress(builder, hardwareAddress):
+    builder.PrependBoolSlot(7, hardwareAddress, 0)
+
+def DongleDataMaskAddBoardType(builder, boardType):
+    builder.PrependBoolSlot(8, boardType, 0)
+
+def DongleDataMaskAddDevicesIds(builder, devicesIds):
+    builder.PrependBoolSlot(9, devicesIds, 0)
+
+def DongleDataMaskAddStatus(builder, status):
+    builder.PrependBoolSlot(10, status, 0)
+
+def DongleDataMaskAddProtocolVersion(builder, protocolVersion):
+    builder.PrependBoolSlot(11, protocolVersion, 0)
+
+def DongleDataMaskEnd(builder):
     return builder.EndObject()
 
 
 
+class DongleData(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = DongleData()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsDongleData(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # DongleData
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # DongleData
+    def Id(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Uint16Flags, o + self._tab.Pos)
+        return 0
+
+    # A human-friendly name to display as the name of the device.
+    # DongleData
+    def DisplayName(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # Name to display as the name of the device set by the user.
+    # DongleData
+    def CustomName(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # The hardware version of the device. For example, pcb version.
+    # DongleData
+    def HardwareRevision(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # A human-friendly string for the device model.
+    # DongleData
+    def Model(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # A human-friendly string for the manufacturer of the device.
+    # DongleData
+    def Manufacturer(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # The version of the slimevr firmware that the device is running.
+    # DongleData
+    def FirmwareVersion(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # The build date of the slimevr firmware that the device is running. YYYY-MM-DD
+    # DongleData
+    def FirmwareDate(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(18))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # DongleData
+    def HardwareAddress(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(20))
+        if o != 0:
+            x = o + self._tab.Pos
+            obj = HardwareAddress()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+    # A board type string that can be used to name a board
+    # DongleData
+    def BoardType(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(22))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # DongleData
+    def DevicesIds(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(24))
+        if o != 0:
+            a = self._tab.Vector(o)
+            return self._tab.Get(flatbuffers.number_types.Uint16Flags, a + flatbuffers.number_types.UOffsetTFlags.py_type(j * 2))
+        return 0
+
+    # DongleData
+    def DevicesIdsAsNumpy(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(24))
+        if o != 0:
+            return self._tab.GetVectorAsNumpy(flatbuffers.number_types.Uint16Flags, o)
+        return 0
+
+    # DongleData
+    def DevicesIdsLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(24))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # DongleData
+    def DevicesIdsIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(24))
+        return o == 0
+
+    # DongleData
+    def Status(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(26))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
+        return 0
+
+    # DongleData
+    def ProtocolVersion(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(28))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Uint16Flags, o + self._tab.Pos)
+        return None
+
+def DongleDataStart(builder):
+    builder.StartObject(13)
+
+def DongleDataAddId(builder, id):
+    builder.PrependUint16Slot(0, id, 0)
+
+def DongleDataAddDisplayName(builder, displayName):
+    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(displayName), 0)
+
+def DongleDataAddCustomName(builder, customName):
+    builder.PrependUOffsetTRelativeSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(customName), 0)
+
+def DongleDataAddHardwareRevision(builder, hardwareRevision):
+    builder.PrependUOffsetTRelativeSlot(3, flatbuffers.number_types.UOffsetTFlags.py_type(hardwareRevision), 0)
+
+def DongleDataAddModel(builder, model):
+    builder.PrependUOffsetTRelativeSlot(4, flatbuffers.number_types.UOffsetTFlags.py_type(model), 0)
+
+def DongleDataAddManufacturer(builder, manufacturer):
+    builder.PrependUOffsetTRelativeSlot(5, flatbuffers.number_types.UOffsetTFlags.py_type(manufacturer), 0)
+
+def DongleDataAddFirmwareVersion(builder, firmwareVersion):
+    builder.PrependUOffsetTRelativeSlot(6, flatbuffers.number_types.UOffsetTFlags.py_type(firmwareVersion), 0)
+
+def DongleDataAddFirmwareDate(builder, firmwareDate):
+    builder.PrependUOffsetTRelativeSlot(7, flatbuffers.number_types.UOffsetTFlags.py_type(firmwareDate), 0)
+
+def DongleDataAddHardwareAddress(builder, hardwareAddress):
+    builder.PrependStructSlot(8, flatbuffers.number_types.UOffsetTFlags.py_type(hardwareAddress), 0)
+
+def DongleDataAddBoardType(builder, boardType):
+    builder.PrependUOffsetTRelativeSlot(9, flatbuffers.number_types.UOffsetTFlags.py_type(boardType), 0)
+
+def DongleDataAddDevicesIds(builder, devicesIds):
+    builder.PrependUOffsetTRelativeSlot(10, flatbuffers.number_types.UOffsetTFlags.py_type(devicesIds), 0)
+
+def DongleDataStartDevicesIdsVector(builder, numElems):
+    return builder.StartVector(2, numElems, 2)
+
+def DongleDataCreateDevicesIdsVector(builder, data):
+    data = list(data)
+    builder.StartVector(2, len(data), 2)
+    for item in reversed(data):
+        builder.PrependUint16(item)
+    return builder.EndVector()
+
+def DongleDataAddStatus(builder, status):
+    builder.PrependUint8Slot(11, status, 0)
+
+def DongleDataAddProtocolVersion(builder, protocolVersion):
+    builder.PrependUint16Slot(12, protocolVersion, None)
+
+def DongleDataEnd(builder):
+    return builder.EndObject()
+
+
+
+# Contains various of flags / guards that inform the GUI
+# about possible actions or blocked states.
+# The idea is to have one source of truth for all these rules
+# that are spread accross the GUI.
 class ServerGuards(object):
     __slots__ = ['_tab']
 
@@ -2400,18 +2760,18 @@ class ServerGuards(object):
         self._tab = flatbuffers.table.Table(buf, pos)
 
     # ServerGuards
-    def CanDoMounting(self):
+    def YawReset(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
         if o != 0:
-            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
-        return False
+            return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
+        return 0
 
     # ServerGuards
-    def CanDoYawReset(self):
+    def MountingReset(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
         if o != 0:
-            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
-        return False
+            return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
+        return 0
 
     # ServerGuards
     def CanDoUserHeightCalibration(self):
@@ -2423,11 +2783,11 @@ class ServerGuards(object):
 def ServerGuardsStart(builder):
     builder.StartObject(3)
 
-def ServerGuardsAddCanDoMounting(builder, canDoMounting):
-    builder.PrependBoolSlot(0, canDoMounting, 0)
+def ServerGuardsAddYawReset(builder, yawReset):
+    builder.PrependUint8Slot(0, yawReset, 0)
 
-def ServerGuardsAddCanDoYawReset(builder, canDoYawReset):
-    builder.PrependBoolSlot(1, canDoYawReset, 0)
+def ServerGuardsAddMountingReset(builder, mountingReset):
+    builder.PrependUint8Slot(1, mountingReset, 0)
 
 def ServerGuardsAddCanDoUserHeightCalibration(builder, canDoUserHeightCalibration):
     builder.PrependBoolSlot(2, canDoUserHeightCalibration, 0)
@@ -2643,34 +3003,10 @@ class DataFeedUpdate(object):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
         return o == 0
 
-    # DataFeedUpdate
-    def SyntheticTrackers(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
-        if o != 0:
-            x = self._tab.Vector(o)
-            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
-            x = self._tab.Indirect(x)
-            obj = TrackerData()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
-
-    # DataFeedUpdate
-    def SyntheticTrackersLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
-        if o != 0:
-            return self._tab.VectorLen(o)
-        return 0
-
-    # DataFeedUpdate
-    def SyntheticTrackersIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
-        return o == 0
-
     # This must represent a set, where there is no more than one bone for a `BodyPart`.
     # DataFeedUpdate
     def Bones(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
         if o != 0:
             x = self._tab.Vector(o)
             x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
@@ -2682,36 +3018,27 @@ class DataFeedUpdate(object):
 
     # DataFeedUpdate
     def BonesLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
     # DataFeedUpdate
     def BonesIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
         return o == 0
 
-    # DataFeedUpdate
-    def StayAlignedPose(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
-        if o != 0:
-            x = self._tab.Indirect(o + self._tab.Pos)
-            obj = StayAlignedPose()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
-
+    # gives the index of the datafeed config that initiated the update
     # DataFeedUpdate
     def Index(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
         return 0
 
     # DataFeedUpdate
     def ServerGuards(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
         if o != 0:
             x = self._tab.Indirect(o + self._tab.Pos)
             obj = ServerGuards()
@@ -2719,8 +3046,33 @@ class DataFeedUpdate(object):
             return obj
         return None
 
+    # List of HID dongles connected to the server
+    # DataFeedUpdate
+    def Dongles(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
+        if o != 0:
+            x = self._tab.Vector(o)
+            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
+            x = self._tab.Indirect(x)
+            obj = DongleData()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+    # DataFeedUpdate
+    def DonglesLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # DataFeedUpdate
+    def DonglesIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
+        return o == 0
+
 def DataFeedUpdateStart(builder):
-    builder.StartObject(6)
+    builder.StartObject(5)
 
 def DataFeedUpdateAddDevices(builder, devices):
     builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(devices), 0)
@@ -2731,17 +3083,8 @@ def DataFeedUpdateStartDevicesVector(builder, numElems):
 def DataFeedUpdateCreateDevicesVector(builder, data):
     return builder.CreateVectorOfTables(data)
 
-def DataFeedUpdateAddSyntheticTrackers(builder, syntheticTrackers):
-    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(syntheticTrackers), 0)
-
-def DataFeedUpdateStartSyntheticTrackersVector(builder, numElems):
-    return builder.StartVector(4, numElems, 4)
-
-def DataFeedUpdateCreateSyntheticTrackersVector(builder, data):
-    return builder.CreateVectorOfTables(data)
-
 def DataFeedUpdateAddBones(builder, bones):
-    builder.PrependUOffsetTRelativeSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(bones), 0)
+    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(bones), 0)
 
 def DataFeedUpdateStartBonesVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
@@ -2749,14 +3092,20 @@ def DataFeedUpdateStartBonesVector(builder, numElems):
 def DataFeedUpdateCreateBonesVector(builder, data):
     return builder.CreateVectorOfTables(data)
 
-def DataFeedUpdateAddStayAlignedPose(builder, stayAlignedPose):
-    builder.PrependUOffsetTRelativeSlot(3, flatbuffers.number_types.UOffsetTFlags.py_type(stayAlignedPose), 0)
-
 def DataFeedUpdateAddIndex(builder, index):
-    builder.PrependUint8Slot(4, index, 0)
+    builder.PrependUint8Slot(2, index, 0)
 
 def DataFeedUpdateAddServerGuards(builder, serverGuards):
-    builder.PrependUOffsetTRelativeSlot(5, flatbuffers.number_types.UOffsetTFlags.py_type(serverGuards), 0)
+    builder.PrependUOffsetTRelativeSlot(3, flatbuffers.number_types.UOffsetTFlags.py_type(serverGuards), 0)
+
+def DataFeedUpdateAddDongles(builder, dongles):
+    builder.PrependUOffsetTRelativeSlot(4, flatbuffers.number_types.UOffsetTFlags.py_type(dongles), 0)
+
+def DataFeedUpdateStartDonglesVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
+
+def DataFeedUpdateCreateDonglesVector(builder, data):
+    return builder.CreateVectorOfTables(data)
 
 def DataFeedUpdateEnd(builder):
     return builder.EndObject()
@@ -2803,38 +3152,34 @@ class DataFeedConfig(object):
         return None
 
     # DataFeedConfig
-    def SyntheticTrackersMask(self):
+    def BoneMask(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
         if o != 0:
             x = self._tab.Indirect(o + self._tab.Pos)
-            obj = TrackerDataMask()
+            obj = BoneMask()
             obj.Init(self._tab.Bytes, x)
             return obj
         return None
 
     # DataFeedConfig
-    def BoneMask(self):
+    def ServerGuardsMask(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
         if o != 0:
             return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
         return False
 
     # DataFeedConfig
-    def StayAlignedPoseMask(self):
+    def DongleMask(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
         if o != 0:
-            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
-        return False
-
-    # DataFeedConfig
-    def ServerGuardsMask(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
-        if o != 0:
-            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
-        return False
+            x = self._tab.Indirect(o + self._tab.Pos)
+            obj = DongleDataMask()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
 
 def DataFeedConfigStart(builder):
-    builder.StartObject(6)
+    builder.StartObject(5)
 
 def DataFeedConfigAddMinimumTimeSinceLast(builder, minimumTimeSinceLast):
     builder.PrependUint16Slot(0, minimumTimeSinceLast, 0)
@@ -2842,2877 +3187,1032 @@ def DataFeedConfigAddMinimumTimeSinceLast(builder, minimumTimeSinceLast):
 def DataFeedConfigAddDataMask(builder, dataMask):
     builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(dataMask), 0)
 
-def DataFeedConfigAddSyntheticTrackersMask(builder, syntheticTrackersMask):
-    builder.PrependUOffsetTRelativeSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(syntheticTrackersMask), 0)
-
 def DataFeedConfigAddBoneMask(builder, boneMask):
-    builder.PrependBoolSlot(3, boneMask, 0)
-
-def DataFeedConfigAddStayAlignedPoseMask(builder, stayAlignedPoseMask):
-    builder.PrependBoolSlot(4, stayAlignedPoseMask, 0)
+    builder.PrependUOffsetTRelativeSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(boneMask), 0)
 
 def DataFeedConfigAddServerGuardsMask(builder, serverGuardsMask):
-    builder.PrependBoolSlot(5, serverGuardsMask, 0)
+    builder.PrependBoolSlot(3, serverGuardsMask, 0)
+
+def DataFeedConfigAddDongleMask(builder, dongleMask):
+    builder.PrependUOffsetTRelativeSlot(4, flatbuffers.number_types.UOffsetTFlags.py_type(dongleMask), 0)
 
 def DataFeedConfigEnd(builder):
     return builder.EndObject()
 
 
 
-# Settings for the skeletal model that are toggles.
-class ModelToggles(object):
+class AutoBoneProcessRequest(object):
     __slots__ = ['_tab']
 
     @classmethod
     def GetRootAs(cls, buf, offset=0):
         n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = ModelToggles()
+        x = AutoBoneProcessRequest()
         x.Init(buf, n + offset)
         return x
 
     @classmethod
-    def GetRootAsModelToggles(cls, buf, offset=0):
+    def GetRootAsAutoBoneProcessRequest(cls, buf, offset=0):
         """This method is deprecated. Please switch to GetRootAs."""
         return cls.GetRootAs(buf, offset)
-    # ModelToggles
+    # AutoBoneProcessRequest
     def Init(self, buf, pos):
         self._tab = flatbuffers.table.Table(buf, pos)
 
-    # ModelToggles
-    def ExtendedSpine(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        if o != 0:
-            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
-        return None
-
-    # ModelToggles
-    def ExtendedPelvis(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
-        if o != 0:
-            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
-        return None
-
-    # ModelToggles
-    def ExtendedKnee(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
-        if o != 0:
-            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
-        return None
-
-    # ModelToggles
-    def ForceArmsFromHmd(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
-        if o != 0:
-            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
-        return None
-
-    # ModelToggles
-    def FloorClip(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
-        if o != 0:
-            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
-        return None
-
-    # ModelToggles
-    def SkatingCorrection(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
-        if o != 0:
-            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
-        return None
-
-    # ModelToggles
-    def ToeSnap(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(18))
-        if o != 0:
-            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
-        return None
-
-    # ModelToggles
-    def FootPlant(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(20))
-        if o != 0:
-            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
-        return None
-
-    # ModelToggles
-    def SelfLocalization(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(22))
-        if o != 0:
-            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
-        return None
-
-    # ModelToggles
-    def UsePosition(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(24))
-        if o != 0:
-            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
-        return None
-
-    # ModelToggles
-    def EnforceConstraints(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(26))
-        if o != 0:
-            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
-        return None
-
-    # ModelToggles
-    def CorrectConstraints(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(28))
-        if o != 0:
-            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
-        return None
-
-def ModelTogglesStart(builder):
-    builder.StartObject(13)
-
-def ModelTogglesAddExtendedSpine(builder, extendedSpine):
-    builder.PrependBoolSlot(0, extendedSpine, None)
-
-def ModelTogglesAddExtendedPelvis(builder, extendedPelvis):
-    builder.PrependBoolSlot(1, extendedPelvis, None)
-
-def ModelTogglesAddExtendedKnee(builder, extendedKnee):
-    builder.PrependBoolSlot(2, extendedKnee, None)
-
-def ModelTogglesAddForceArmsFromHmd(builder, forceArmsFromHmd):
-    builder.PrependBoolSlot(3, forceArmsFromHmd, None)
-
-def ModelTogglesAddFloorClip(builder, floorClip):
-    builder.PrependBoolSlot(4, floorClip, None)
-
-def ModelTogglesAddSkatingCorrection(builder, skatingCorrection):
-    builder.PrependBoolSlot(5, skatingCorrection, None)
-
-def ModelTogglesAddToeSnap(builder, toeSnap):
-    builder.PrependBoolSlot(7, toeSnap, None)
-
-def ModelTogglesAddFootPlant(builder, footPlant):
-    builder.PrependBoolSlot(8, footPlant, None)
-
-def ModelTogglesAddSelfLocalization(builder, selfLocalization):
-    builder.PrependBoolSlot(9, selfLocalization, None)
-
-def ModelTogglesAddUsePosition(builder, usePosition):
-    builder.PrependBoolSlot(10, usePosition, None)
-
-def ModelTogglesAddEnforceConstraints(builder, enforceConstraints):
-    builder.PrependBoolSlot(11, enforceConstraints, None)
-
-def ModelTogglesAddCorrectConstraints(builder, correctConstraints):
-    builder.PrependBoolSlot(12, correctConstraints, None)
-
-def ModelTogglesEnd(builder):
-    return builder.EndObject()
-
-
-
-# Settings for the skeletal model that are ratios.
-# These values range from 0 to 1.
-class ModelRatios(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = ModelRatios()
-        x.Init(buf, n + offset)
-        return x
-
-    @classmethod
-    def GetRootAsModelRatios(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # ModelRatios
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-    # ModelRatios
-    def ImputeWaistFromChestHip(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
-        return None
-
-    # ModelRatios
-    def ImputeWaistFromChestLegs(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
-        return None
-
-    # ModelRatios
-    def ImputeHipFromChestLegs(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
-        return None
-
-    # ModelRatios
-    def ImputeHipFromWaistLegs(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
-        return None
-
-    # Hip's yaw and roll is set to the average of legs when 1.0
-    # ModelRatios
-    def InterpHipLegs(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
-        return None
-
-    # Knee trackers' yaw and roll is set to the lower leg's when 1.0
-    # ModelRatios
-    def InterpKneeTrackerAnkle(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
-        return None
-
-    # Upper leg's yaw and roll is set to the lower leg's when 1.0
-    # ModelRatios
-    def InterpKneeAnkle(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
-        return None
-
-def ModelRatiosStart(builder):
-    builder.StartObject(7)
-
-def ModelRatiosAddImputeWaistFromChestHip(builder, imputeWaistFromChestHip):
-    builder.PrependFloat32Slot(0, imputeWaistFromChestHip, None)
-
-def ModelRatiosAddImputeWaistFromChestLegs(builder, imputeWaistFromChestLegs):
-    builder.PrependFloat32Slot(1, imputeWaistFromChestLegs, None)
-
-def ModelRatiosAddImputeHipFromChestLegs(builder, imputeHipFromChestLegs):
-    builder.PrependFloat32Slot(2, imputeHipFromChestLegs, None)
-
-def ModelRatiosAddImputeHipFromWaistLegs(builder, imputeHipFromWaistLegs):
-    builder.PrependFloat32Slot(3, imputeHipFromWaistLegs, None)
-
-def ModelRatiosAddInterpHipLegs(builder, interpHipLegs):
-    builder.PrependFloat32Slot(4, interpHipLegs, None)
-
-def ModelRatiosAddInterpKneeTrackerAnkle(builder, interpKneeTrackerAnkle):
-    builder.PrependFloat32Slot(5, interpKneeTrackerAnkle, None)
-
-def ModelRatiosAddInterpKneeAnkle(builder, interpKneeAnkle):
-    builder.PrependFloat32Slot(6, interpKneeAnkle, None)
-
-def ModelRatiosEnd(builder):
-    return builder.EndObject()
-
-
-
-class LegTweaksSettings(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = LegTweaksSettings()
-        x.Init(buf, n + offset)
-        return x
-
-    @classmethod
-    def GetRootAsLegTweaksSettings(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # LegTweaksSettings
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-    # LegTweaksSettings
-    def CorrectionStrength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
-        return None
-
-def LegTweaksSettingsStart(builder):
-    builder.StartObject(1)
-
-def LegTweaksSettingsAddCorrectionStrength(builder, correctionStrength):
-    builder.PrependFloat32Slot(0, correctionStrength, None)
-
-def LegTweaksSettingsEnd(builder):
-    return builder.EndObject()
-
-
-
-class SkeletonHeight(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = SkeletonHeight()
-        x.Init(buf, n + offset)
-        return x
-
-    @classmethod
-    def GetRootAsSkeletonHeight(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # SkeletonHeight
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-    # SkeletonHeight
-    def HmdHeight(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
-        return None
-
-    # SkeletonHeight
-    def FloorHeight(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
-        return None
-
-def SkeletonHeightStart(builder):
-    builder.StartObject(2)
-
-def SkeletonHeightAddHmdHeight(builder, hmdHeight):
-    builder.PrependFloat32Slot(0, hmdHeight, None)
-
-def SkeletonHeightAddFloorHeight(builder, floorHeight):
-    builder.PrependFloat32Slot(1, floorHeight, None)
-
-def SkeletonHeightEnd(builder):
-    return builder.EndObject()
-
-
-
-# Settings for the skeletal model.
-class ModelSettings(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = ModelSettings()
-        x.Init(buf, n + offset)
-        return x
-
-    @classmethod
-    def GetRootAsModelSettings(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # ModelSettings
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-    # ModelSettings
-    def Toggles(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        if o != 0:
-            x = self._tab.Indirect(o + self._tab.Pos)
-            obj = ModelToggles()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
-
-    # ModelSettings
-    def Ratios(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
-        if o != 0:
-            x = self._tab.Indirect(o + self._tab.Pos)
-            obj = ModelRatios()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
-
-    # ModelSettings
-    def LegTweaks(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
-        if o != 0:
-            x = self._tab.Indirect(o + self._tab.Pos)
-            obj = LegTweaksSettings()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
-
-    # ModelSettings
-    def SkeletonHeight(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
-        if o != 0:
-            x = self._tab.Indirect(o + self._tab.Pos)
-            obj = SkeletonHeight()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
-
-def ModelSettingsStart(builder):
-    builder.StartObject(4)
-
-def ModelSettingsAddToggles(builder, toggles):
-    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(toggles), 0)
-
-def ModelSettingsAddRatios(builder, ratios):
-    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(ratios), 0)
-
-def ModelSettingsAddLegTweaks(builder, legTweaks):
-    builder.PrependUOffsetTRelativeSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(legTweaks), 0)
-
-def ModelSettingsAddSkeletonHeight(builder, skeletonHeight):
-    builder.PrependUOffsetTRelativeSlot(3, flatbuffers.number_types.UOffsetTFlags.py_type(skeletonHeight), 0)
-
-def ModelSettingsEnd(builder):
-    return builder.EndObject()
-
-
-
-class Keybind(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = Keybind()
-        x.Init(buf, n + offset)
-        return x
-
-    @classmethod
-    def GetRootAsKeybind(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # Keybind
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-    # Keybind
-    def KeybindId(self):
+    # AutoBoneProcessRequest
+    def ProcessType(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
         return 0
 
-    # Keybind
-    def KeybindNameId(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
-        if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
+def AutoBoneProcessRequestStart(builder):
+    builder.StartObject(1)
 
-    # Keybind
-    def KeybindValue(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
-        if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
+def AutoBoneProcessRequestAddProcessType(builder, processType):
+    builder.PrependUint8Slot(0, processType, 0)
 
-    # Keybind
-    def KeybindDelay(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
-        return 0.0
-
-def KeybindStart(builder):
-    builder.StartObject(4)
-
-def KeybindAddKeybindId(builder, keybindId):
-    builder.PrependUint8Slot(0, keybindId, 0)
-
-def KeybindAddKeybindNameId(builder, keybindNameId):
-    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(keybindNameId), 0)
-
-def KeybindAddKeybindValue(builder, keybindValue):
-    builder.PrependUOffsetTRelativeSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(keybindValue), 0)
-
-def KeybindAddKeybindDelay(builder, keybindDelay):
-    builder.PrependFloat32Slot(3, keybindDelay, 0.0)
-
-def KeybindEnd(builder):
+def AutoBoneProcessRequestEnd(builder):
     return builder.EndObject()
 
 
 
-class KeybindRequest(object):
+class AutoBoneProcessStatusResponse(object):
     __slots__ = ['_tab']
 
     @classmethod
     def GetRootAs(cls, buf, offset=0):
         n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = KeybindRequest()
+        x = AutoBoneProcessStatusResponse()
         x.Init(buf, n + offset)
         return x
 
     @classmethod
-    def GetRootAsKeybindRequest(cls, buf, offset=0):
+    def GetRootAsAutoBoneProcessStatusResponse(cls, buf, offset=0):
         """This method is deprecated. Please switch to GetRootAs."""
         return cls.GetRootAs(buf, offset)
-    # KeybindRequest
+    # AutoBoneProcessStatusResponse
     def Init(self, buf, pos):
         self._tab = flatbuffers.table.Table(buf, pos)
 
-    # KeybindRequest
-    def KeybindId(self):
+    # AutoBoneProcessStatusResponse
+    def ProcessType(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
         return 0
 
-def KeybindRequestStart(builder):
-    builder.StartObject(1)
-
-def KeybindRequestAddKeybindId(builder, keybindId):
-    builder.PrependUint8Slot(0, keybindId, 0)
-
-def KeybindRequestEnd(builder):
-    return builder.EndObject()
-
-
-
-class KeybindResponse(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = KeybindResponse()
-        x.Init(buf, n + offset)
-        return x
-
-    @classmethod
-    def GetRootAsKeybindResponse(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # KeybindResponse
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-    # KeybindResponse
-    def Keybind(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+    # The current count. This value is -1 if there is nothing to report.
+    # AutoBoneProcessStatusResponse
+    def Current(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
         if o != 0:
-            x = self._tab.Vector(o)
-            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
-            x = self._tab.Indirect(x)
-            obj = Keybind()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
-
-    # KeybindResponse
-    def KeybindLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        if o != 0:
-            return self._tab.VectorLen(o)
+            return self._tab.Get(flatbuffers.number_types.Uint32Flags, o + self._tab.Pos)
         return 0
 
-    # KeybindResponse
-    def KeybindIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        return o == 0
-
-    # KeybindResponse
-    def DefaultKeybinds(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+    # The total count. This value is -1 if there is nothing to report.
+    # AutoBoneProcessStatusResponse
+    def Total(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
         if o != 0:
-            x = self._tab.Vector(o)
-            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
-            x = self._tab.Indirect(x)
-            obj = Keybind()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
-
-    # KeybindResponse
-    def DefaultKeybindsLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
-        if o != 0:
-            return self._tab.VectorLen(o)
+            return self._tab.Get(flatbuffers.number_types.Uint32Flags, o + self._tab.Pos)
         return 0
 
-    # KeybindResponse
-    def DefaultKeybindsIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
-        return o == 0
-
-def KeybindResponseStart(builder):
-    builder.StartObject(2)
-
-def KeybindResponseAddKeybind(builder, keybind):
-    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(keybind), 0)
-
-def KeybindResponseStartKeybindVector(builder, numElems):
-    return builder.StartVector(4, numElems, 4)
-
-def KeybindResponseCreateKeybindVector(builder, data):
-    return builder.CreateVectorOfTables(data)
-
-def KeybindResponseAddDefaultKeybinds(builder, defaultKeybinds):
-    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(defaultKeybinds), 0)
-
-def KeybindResponseStartDefaultKeybindsVector(builder, numElems):
-    return builder.StartVector(4, numElems, 4)
-
-def KeybindResponseCreateDefaultKeybindsVector(builder, data):
-    return builder.CreateVectorOfTables(data)
-
-def KeybindResponseEnd(builder):
-    return builder.EndObject()
-
-
-
-class ChangeKeybindRequest(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = ChangeKeybindRequest()
-        x.Init(buf, n + offset)
-        return x
-
-    @classmethod
-    def GetRootAsChangeKeybindRequest(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # ChangeKeybindRequest
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-    # ChangeKeybindRequest
-    def Keybind(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+    # True if the operation has completed with any result, successful or not.
+    # AutoBoneProcessStatusResponse
+    def Completed(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
         if o != 0:
-            x = self._tab.Indirect(o + self._tab.Pos)
-            obj = Keybind()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
 
-def ChangeKeybindRequestStart(builder):
-    builder.StartObject(1)
-
-def ChangeKeybindRequestAddKeybind(builder, keybind):
-    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(keybind), 0)
-
-def ChangeKeybindRequestEnd(builder):
-    return builder.EndObject()
-
-
-
-class OpenUriRequest(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = OpenUriRequest()
-        x.Init(buf, n + offset)
-        return x
-
-    @classmethod
-    def GetRootAsOpenUriRequest(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # OpenUriRequest
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-def OpenUriRequestStart(builder):
-    builder.StartObject(0)
-
-def OpenUriRequestEnd(builder):
-    return builder.EndObject()
-
-
-
-class OpenUriResponse(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = OpenUriResponse()
-        x.Init(buf, n + offset)
-        return x
-
-    @classmethod
-    def GetRootAsOpenUriResponse(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # OpenUriResponse
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-    # OpenUriResponse
+    # True if the completed operation was successful, only observe if `completed` is true.
+    # AutoBoneProcessStatusResponse
     def Success(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
         if o != 0:
             return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
         return False
 
-def OpenUriResponseStart(builder):
-    builder.StartObject(1)
+    # The time remaining in seconds. This value is -1 if there is nothing to report.
+    # AutoBoneProcessStatusResponse
+    def Eta(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
+        return 0.0
 
-def OpenUriResponseAddSuccess(builder, success):
-    builder.PrependBoolSlot(0, success, 0)
+def AutoBoneProcessStatusResponseStart(builder):
+    builder.StartObject(6)
 
-def OpenUriResponseEnd(builder):
+def AutoBoneProcessStatusResponseAddProcessType(builder, processType):
+    builder.PrependUint8Slot(0, processType, 0)
+
+def AutoBoneProcessStatusResponseAddCurrent(builder, current):
+    builder.PrependUint32Slot(1, current, 0)
+
+def AutoBoneProcessStatusResponseAddTotal(builder, total):
+    builder.PrependUint32Slot(2, total, 0)
+
+def AutoBoneProcessStatusResponseAddCompleted(builder, completed):
+    builder.PrependBoolSlot(3, completed, 0)
+
+def AutoBoneProcessStatusResponseAddSuccess(builder, success):
+    builder.PrependBoolSlot(4, success, 0)
+
+def AutoBoneProcessStatusResponseAddEta(builder, eta):
+    builder.PrependFloat32Slot(5, eta, 0.0)
+
+def AutoBoneProcessStatusResponseEnd(builder):
     return builder.EndObject()
 
 
 
-class RpcMessageHeader(object):
+class AutoBoneEpochResponse(object):
     __slots__ = ['_tab']
 
     @classmethod
     def GetRootAs(cls, buf, offset=0):
         n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = RpcMessageHeader()
+        x = AutoBoneEpochResponse()
         x.Init(buf, n + offset)
         return x
 
     @classmethod
-    def GetRootAsRpcMessageHeader(cls, buf, offset=0):
+    def GetRootAsAutoBoneEpochResponse(cls, buf, offset=0):
         """This method is deprecated. Please switch to GetRootAs."""
         return cls.GetRootAs(buf, offset)
-    # RpcMessageHeader
+    # AutoBoneEpochResponse
     def Init(self, buf, pos):
         self._tab = flatbuffers.table.Table(buf, pos)
 
-    # For a request, this identifies the request. For a response, this corresponds
-    # to the request that it is responding to.
-    # RpcMessageHeader
-    def TxId(self):
+    # AutoBoneEpochResponse
+    def CurrentEpoch(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
         if o != 0:
-            x = o + self._tab.Pos
-            obj = TransactionId()
+            return self._tab.Get(flatbuffers.number_types.Uint32Flags, o + self._tab.Pos)
+        return 0
+
+    # AutoBoneEpochResponse
+    def TotalEpochs(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Uint32Flags, o + self._tab.Pos)
+        return 0
+
+    # The current error value. This can be any positive number, where lower is better.
+    # AutoBoneEpochResponse
+    def EpochError(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
+        return 0.0
+
+    # A list of the current estimated body proportions.
+    # AutoBoneEpochResponse
+    def AdjustedSkeletonParts(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        if o != 0:
+            x = self._tab.Vector(o)
+            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
+            x = self._tab.Indirect(x)
+            obj = SkeletonPart()
             obj.Init(self._tab.Bytes, x)
             return obj
         return None
 
-    # RpcMessageHeader
-    def MessageType(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+    # AutoBoneEpochResponse
+    def AdjustedSkeletonPartsLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
         if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
+            return self._tab.VectorLen(o)
         return 0
 
-    # RpcMessageHeader
-    def Message(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
-        if o != 0:
-            from flatbuffers.table import Table
-            obj = Table(bytearray(), 0)
-            self._tab.Union(obj, o)
-            return obj
-        return None
+    # AutoBoneEpochResponse
+    def AdjustedSkeletonPartsIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        return o == 0
 
-def RpcMessageHeaderStart(builder):
-    builder.StartObject(3)
+def AutoBoneEpochResponseStart(builder):
+    builder.StartObject(4)
 
-def RpcMessageHeaderAddTxId(builder, txId):
-    builder.PrependStructSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(txId), 0)
+def AutoBoneEpochResponseAddCurrentEpoch(builder, currentEpoch):
+    builder.PrependUint32Slot(0, currentEpoch, 0)
 
-def RpcMessageHeaderAddMessageType(builder, messageType):
-    builder.PrependUint8Slot(1, messageType, 0)
+def AutoBoneEpochResponseAddTotalEpochs(builder, totalEpochs):
+    builder.PrependUint32Slot(1, totalEpochs, 0)
 
-def RpcMessageHeaderAddMessage(builder, message):
-    builder.PrependUOffsetTRelativeSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(message), 0)
+def AutoBoneEpochResponseAddEpochError(builder, epochError):
+    builder.PrependFloat32Slot(2, epochError, 0.0)
 
-def RpcMessageHeaderEnd(builder):
+def AutoBoneEpochResponseAddAdjustedSkeletonParts(builder, adjustedSkeletonParts):
+    builder.PrependUOffsetTRelativeSlot(3, flatbuffers.number_types.UOffsetTFlags.py_type(adjustedSkeletonParts), 0)
+
+def AutoBoneEpochResponseStartAdjustedSkeletonPartsVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
+
+def AutoBoneEpochResponseCreateAdjustedSkeletonPartsVector(builder, data):
+    return builder.CreateVectorOfTables(data)
+
+def AutoBoneEpochResponseEnd(builder):
     return builder.EndObject()
 
 
 
-class InstalledInfoRequest(object):
+# Applies the estimated proportions
+class AutoBoneApplyRequest(object):
     __slots__ = ['_tab']
 
     @classmethod
     def GetRootAs(cls, buf, offset=0):
         n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = InstalledInfoRequest()
+        x = AutoBoneApplyRequest()
         x.Init(buf, n + offset)
         return x
 
     @classmethod
-    def GetRootAsInstalledInfoRequest(cls, buf, offset=0):
+    def GetRootAsAutoBoneApplyRequest(cls, buf, offset=0):
         """This method is deprecated. Please switch to GetRootAs."""
         return cls.GetRootAs(buf, offset)
-    # InstalledInfoRequest
+    # AutoBoneApplyRequest
     def Init(self, buf, pos):
         self._tab = flatbuffers.table.Table(buf, pos)
 
-def InstalledInfoRequestStart(builder):
+def AutoBoneApplyRequestStart(builder):
     builder.StartObject(0)
 
-def InstalledInfoRequestEnd(builder):
+def AutoBoneApplyRequestEnd(builder):
     return builder.EndObject()
 
 
 
-class InstalledInfoResponse(object):
+# Stops the current recording, using it as far as it has been recorded
+class AutoBoneStopRecordingRequest(object):
     __slots__ = ['_tab']
 
     @classmethod
     def GetRootAs(cls, buf, offset=0):
         n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = InstalledInfoResponse()
+        x = AutoBoneStopRecordingRequest()
         x.Init(buf, n + offset)
         return x
 
     @classmethod
-    def GetRootAsInstalledInfoResponse(cls, buf, offset=0):
+    def GetRootAsAutoBoneStopRecordingRequest(cls, buf, offset=0):
         """This method is deprecated. Please switch to GetRootAs."""
         return cls.GetRootAs(buf, offset)
-    # InstalledInfoResponse
+    # AutoBoneStopRecordingRequest
     def Init(self, buf, pos):
         self._tab = flatbuffers.table.Table(buf, pos)
 
-    # InstalledInfoResponse
-    def IsUdevInstalled(self):
+def AutoBoneStopRecordingRequestStart(builder):
+    builder.StartObject(0)
+
+def AutoBoneStopRecordingRequestEnd(builder):
+    return builder.EndObject()
+
+
+
+# Cancels the current recording, aborting the process and discarding the data
+class AutoBoneCancelRecordingRequest(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = AutoBoneCancelRecordingRequest()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsAutoBoneCancelRecordingRequest(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # AutoBoneCancelRecordingRequest
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+def AutoBoneCancelRecordingRequestStart(builder):
+    builder.StartObject(0)
+
+def AutoBoneCancelRecordingRequestEnd(builder):
+    return builder.EndObject()
+
+
+
+# One set of alternatives. Satisfied as soon as any member of it is assigned.
+class BodyPartRequirement(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = BodyPartRequirement()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsBodyPartRequirement(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # BodyPartRequirement
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # BodyPartRequirement
+    def AnyOf(self, j):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        if o != 0:
-            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
-        return False
-
-    # InstalledInfoResponse
-    def IsWayland(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
-        if o != 0:
-            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
-        return False
-
-def InstalledInfoResponseStart(builder):
-    builder.StartObject(2)
-
-def InstalledInfoResponseAddIsUdevInstalled(builder, isUdevInstalled):
-    builder.PrependBoolSlot(0, isUdevInstalled, 0)
-
-def InstalledInfoResponseAddIsWayland(builder, isWayland):
-    builder.PrependBoolSlot(1, isWayland, 0)
-
-def InstalledInfoResponseEnd(builder):
-    return builder.EndObject()
-
-
-
-class HeartbeatRequest(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = HeartbeatRequest()
-        x.Init(buf, n + offset)
-        return x
-
-    @classmethod
-    def GetRootAsHeartbeatRequest(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # HeartbeatRequest
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-def HeartbeatRequestStart(builder):
-    builder.StartObject(0)
-
-def HeartbeatRequestEnd(builder):
-    return builder.EndObject()
-
-
-
-class HeartbeatResponse(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = HeartbeatResponse()
-        x.Init(buf, n + offset)
-        return x
-
-    @classmethod
-    def GetRootAsHeartbeatResponse(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # HeartbeatResponse
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-def HeartbeatResponseStart(builder):
-    builder.StartObject(0)
-
-def HeartbeatResponseEnd(builder):
-    return builder.EndObject()
-
-
-
-class ResetRequest(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = ResetRequest()
-        x.Init(buf, n + offset)
-        return x
-
-    @classmethod
-    def GetRootAsResetRequest(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # ResetRequest
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-    # ResetRequest
-    def ResetType(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
-        return 0
-
-    # Which body parts to reset. Server handles it if empty (usually all)
-    # ResetRequest
-    def BodyParts(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
         if o != 0:
             a = self._tab.Vector(o)
             return self._tab.Get(flatbuffers.number_types.Uint8Flags, a + flatbuffers.number_types.UOffsetTFlags.py_type(j * 1))
         return 0
 
-    # ResetRequest
-    def BodyPartsAsNumpy(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+    # BodyPartRequirement
+    def AnyOfAsNumpy(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
         if o != 0:
             return self._tab.GetVectorAsNumpy(flatbuffers.number_types.Uint8Flags, o)
         return 0
 
-    # ResetRequest
-    def BodyPartsLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+    # BodyPartRequirement
+    def AnyOfLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
-    # ResetRequest
-    def BodyPartsIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+    # BodyPartRequirement
+    def AnyOfIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
         return o == 0
 
-    # ResetRequest
-    def Delay(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
-        return None
+def BodyPartRequirementStart(builder):
+    builder.StartObject(1)
 
-def ResetRequestStart(builder):
-    builder.StartObject(3)
+def BodyPartRequirementAddAnyOf(builder, anyOf):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(anyOf), 0)
 
-def ResetRequestAddResetType(builder, resetType):
-    builder.PrependUint8Slot(0, resetType, 0)
-
-def ResetRequestAddBodyParts(builder, bodyParts):
-    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(bodyParts), 0)
-
-def ResetRequestStartBodyPartsVector(builder, numElems):
+def BodyPartRequirementStartAnyOfVector(builder, numElems):
     return builder.StartVector(1, numElems, 1)
 
-def ResetRequestCreateBodyPartsVector(builder, data):
+def BodyPartRequirementCreateAnyOfVector(builder, data):
     data = list(data)
     builder.StartVector(1, len(data), 1)
     for item in reversed(data):
         builder.PrependUint8(item)
     return builder.EndVector()
 
-def ResetRequestAddDelay(builder, delay):
-    builder.PrependFloat32Slot(2, delay, None)
-
-def ResetRequestEnd(builder):
+def BodyPartRequirementEnd(builder):
     return builder.EndObject()
 
 
 
-class ResetResponse(object):
+# What a body part needs assigned around it for a tracker on it to track well.
+# Derived from the skeleton hierarchy and the processors that impute missing bones.
+class BodyPartPrerequisites(object):
     __slots__ = ['_tab']
 
     @classmethod
     def GetRootAs(cls, buf, offset=0):
         n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = ResetResponse()
+        x = BodyPartPrerequisites()
         x.Init(buf, n + offset)
         return x
 
     @classmethod
-    def GetRootAsResetResponse(cls, buf, offset=0):
+    def GetRootAsBodyPartPrerequisites(cls, buf, offset=0):
         """This method is deprecated. Please switch to GetRootAs."""
         return cls.GetRootAs(buf, offset)
-    # ResetResponse
+    # BodyPartPrerequisites
     def Init(self, buf, pos):
         self._tab = flatbuffers.table.Table(buf, pos)
 
-    # ResetResponse
-    def ResetType(self):
+    # BodyPartPrerequisites
+    def BodyPart(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
         return 0
 
-    # ResetResponse
-    def Status(self):
+    # Every requirement has to be met. Empty means the part stands on its own.
+    # BodyPartPrerequisites
+    def Requires(self, j):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            x = self._tab.Vector(o)
+            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
+            x = self._tab.Indirect(x)
+            obj = BodyPartRequirement()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+    # BodyPartPrerequisites
+    def RequiresLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # BodyPartPrerequisites
+    def RequiresIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        return o == 0
+
+def BodyPartPrerequisitesStart(builder):
+    builder.StartObject(2)
+
+def BodyPartPrerequisitesAddBodyPart(builder, bodyPart):
+    builder.PrependUint8Slot(0, bodyPart, 0)
+
+def BodyPartPrerequisitesAddRequires(builder, requires):
+    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(requires), 0)
+
+def BodyPartPrerequisitesStartRequiresVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
+
+def BodyPartPrerequisitesCreateRequiresVector(builder, data):
+    return builder.CreateVectorOfTables(data)
+
+def BodyPartPrerequisitesEnd(builder):
+    return builder.EndObject()
+
+
+
+class BodyPartPrerequisitesRequest(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = BodyPartPrerequisitesRequest()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsBodyPartPrerequisitesRequest(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # BodyPartPrerequisitesRequest
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+def BodyPartPrerequisitesRequestStart(builder):
+    builder.StartObject(0)
+
+def BodyPartPrerequisitesRequestEnd(builder):
+    return builder.EndObject()
+
+
+
+class BodyPartPrerequisitesResponse(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = BodyPartPrerequisitesResponse()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsBodyPartPrerequisitesResponse(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # BodyPartPrerequisitesResponse
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # BodyPartPrerequisitesResponse
+    def Parts(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            x = self._tab.Vector(o)
+            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
+            x = self._tab.Indirect(x)
+            obj = BodyPartPrerequisites()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+    # BodyPartPrerequisitesResponse
+    def PartsLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # BodyPartPrerequisitesResponse
+    def PartsIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        return o == 0
+
+def BodyPartPrerequisitesResponseStart(builder):
+    builder.StartObject(1)
+
+def BodyPartPrerequisitesResponseAddParts(builder, parts):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(parts), 0)
+
+def BodyPartPrerequisitesResponseStartPartsVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
+
+def BodyPartPrerequisitesResponseCreatePartsVector(builder, data):
+    return builder.CreateVectorOfTables(data)
+
+def BodyPartPrerequisitesResponseEnd(builder):
+    return builder.EndObject()
+
+
+
+# Where a single bone's data goes. Identical in both directions, so the change
+# request and the response carry the exact same shape.
+class BoneRoute(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = BoneRoute()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsBoneRoute(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # BoneRoute
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # BoneRoute
+    def Bone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
         return 0
 
-    # Should return the body parts reseted / being reset
-    # ResetResponse
-    def BodyParts(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+    # BoneRoute
+    def Outputs(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
         if o != 0:
             a = self._tab.Vector(o)
             return self._tab.Get(flatbuffers.number_types.Uint8Flags, a + flatbuffers.number_types.UOffsetTFlags.py_type(j * 1))
         return 0
 
-    # ResetResponse
-    def BodyPartsAsNumpy(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+    # BoneRoute
+    def OutputsAsNumpy(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
         if o != 0:
             return self._tab.GetVectorAsNumpy(flatbuffers.number_types.Uint8Flags, o)
         return 0
 
-    # ResetResponse
-    def BodyPartsLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+    # BoneRoute
+    def OutputsLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
-    # ResetResponse
-    def BodyPartsIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+    # BoneRoute
+    def OutputsIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
         return o == 0
 
-    # gives the time in seconds passed since the start of the reset
-    # is 0 when status == FINISHED
-    # starts at 0
-    # ResetResponse
-    def Progress(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
-        return 0
+def BoneRouteStart(builder):
+    builder.StartObject(2)
 
-    # ResetResponse
-    def Duration(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
-        return 0
+def BoneRouteAddBone(builder, bone):
+    builder.PrependUint8Slot(0, bone, 0)
 
-def ResetResponseStart(builder):
-    builder.StartObject(5)
+def BoneRouteAddOutputs(builder, outputs):
+    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(outputs), 0)
 
-def ResetResponseAddResetType(builder, resetType):
-    builder.PrependUint8Slot(0, resetType, 0)
-
-def ResetResponseAddStatus(builder, status):
-    builder.PrependUint8Slot(1, status, 0)
-
-def ResetResponseAddBodyParts(builder, bodyParts):
-    builder.PrependUOffsetTRelativeSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(bodyParts), 0)
-
-def ResetResponseStartBodyPartsVector(builder, numElems):
+def BoneRouteStartOutputsVector(builder, numElems):
     return builder.StartVector(1, numElems, 1)
 
-def ResetResponseCreateBodyPartsVector(builder, data):
+def BoneRouteCreateOutputsVector(builder, data):
     data = list(data)
     builder.StartVector(1, len(data), 1)
     for item in reversed(data):
         builder.PrependUint8(item)
     return builder.EndVector()
 
-def ResetResponseAddProgress(builder, progress):
-    builder.PrependInt32Slot(3, progress, 0)
-
-def ResetResponseAddDuration(builder, duration):
-    builder.PrependInt32Slot(4, duration, 0)
-
-def ResetResponseEnd(builder):
+def BoneRouteEnd(builder):
     return builder.EndObject()
 
 
 
-class AssignTrackerRequest(object):
+# Per output, response only.
+class RoutingOutputStatus(object):
     __slots__ = ['_tab']
 
     @classmethod
     def GetRootAs(cls, buf, offset=0):
         n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = AssignTrackerRequest()
+        x = RoutingOutputStatus()
         x.Init(buf, n + offset)
         return x
 
     @classmethod
-    def GetRootAsAssignTrackerRequest(cls, buf, offset=0):
+    def GetRootAsRoutingOutputStatus(cls, buf, offset=0):
         """This method is deprecated. Please switch to GetRootAs."""
         return cls.GetRootAs(buf, offset)
-    # AssignTrackerRequest
+    # RoutingOutputStatus
     def Init(self, buf, pos):
         self._tab = flatbuffers.table.Table(buf, pos)
 
-    # AssignTrackerRequest
-    def TrackerId(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        if o != 0:
-            x = self._tab.Indirect(o + self._tab.Pos)
-            obj = TrackerId()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
-
-    # AssignTrackerRequest
-    def BodyPosition(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
-        return 0
-
-    # AssignTrackerRequest
-    def MountingOrientation(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
-        if o != 0:
-            x = o + self._tab.Pos
-            obj = Quat()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
-
-    # AssignTrackerRequest
-    def DisplayName(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
-        if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
-
-    # AssignTrackerRequest
-    def AllowDriftCompensation(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
-        if o != 0:
-            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
-        return False
-
-def AssignTrackerRequestStart(builder):
-    builder.StartObject(5)
-
-def AssignTrackerRequestAddTrackerId(builder, trackerId):
-    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(trackerId), 0)
-
-def AssignTrackerRequestAddBodyPosition(builder, bodyPosition):
-    builder.PrependUint8Slot(1, bodyPosition, 0)
-
-def AssignTrackerRequestAddMountingOrientation(builder, mountingOrientation):
-    builder.PrependStructSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(mountingOrientation), 0)
-
-def AssignTrackerRequestAddDisplayName(builder, displayName):
-    builder.PrependUOffsetTRelativeSlot(3, flatbuffers.number_types.UOffsetTFlags.py_type(displayName), 0)
-
-def AssignTrackerRequestAddAllowDriftCompensation(builder, allowDriftCompensation):
-    builder.PrependBoolSlot(4, allowDriftCompensation, 0)
-
-def AssignTrackerRequestEnd(builder):
-    return builder.EndObject()
-
-
-
-class ClearDriftCompensationRequest(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = ClearDriftCompensationRequest()
-        x.Init(buf, n + offset)
-        return x
-
-    @classmethod
-    def GetRootAsClearDriftCompensationRequest(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # ClearDriftCompensationRequest
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-def ClearDriftCompensationRequestStart(builder):
-    builder.StartObject(0)
-
-def ClearDriftCompensationRequestEnd(builder):
-    return builder.EndObject()
-
-
-
-class SettingsRequest(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = SettingsRequest()
-        x.Init(buf, n + offset)
-        return x
-
-    @classmethod
-    def GetRootAsSettingsRequest(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # SettingsRequest
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-def SettingsRequestStart(builder):
-    builder.StartObject(0)
-
-def SettingsRequestEnd(builder):
-    return builder.EndObject()
-
-
-
-class SettingsResponse(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = SettingsResponse()
-        x.Init(buf, n + offset)
-        return x
-
-    @classmethod
-    def GetRootAsSettingsResponse(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # SettingsResponse
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-    # SettingsResponse
-    def SteamVrTrackers(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        if o != 0:
-            x = self._tab.Indirect(o + self._tab.Pos)
-            obj = SteamVRTrackersSetting()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
-
-    # SettingsResponse
-    def Filtering(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
-        if o != 0:
-            x = self._tab.Indirect(o + self._tab.Pos)
-            obj = FilteringSettings()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
-
-    # SettingsResponse
-    def DriftCompensation(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
-        if o != 0:
-            x = self._tab.Indirect(o + self._tab.Pos)
-            obj = DriftCompensationSettings()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
-
-    # SettingsResponse
-    def OscRouter(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
-        if o != 0:
-            x = self._tab.Indirect(o + self._tab.Pos)
-            obj = OSCRouterSettings()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
-
-    # SettingsResponse
-    def VrcOsc(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
-        if o != 0:
-            x = self._tab.Indirect(o + self._tab.Pos)
-            obj = VRCOSCSettings()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
-
-    # SettingsResponse
-    def VmcOsc(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
-        if o != 0:
-            x = self._tab.Indirect(o + self._tab.Pos)
-            obj = VMCOSCSettings()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
-
-    # SettingsResponse
-    def ModelSettings(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
-        if o != 0:
-            x = self._tab.Indirect(o + self._tab.Pos)
-            obj = ModelSettings()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
-
-    # SettingsResponse
-    def TapDetectionSettings(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(18))
-        if o != 0:
-            x = self._tab.Indirect(o + self._tab.Pos)
-            obj = TapDetectionSettings()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
-
-    # SettingsResponse
-    def AutoBoneSettings(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(20))
-        if o != 0:
-            x = self._tab.Indirect(o + self._tab.Pos)
-            obj = AutoBoneSettings()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
-
-    # SettingsResponse
-    def ResetsSettings(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(22))
-        if o != 0:
-            x = self._tab.Indirect(o + self._tab.Pos)
-            obj = ResetsSettings()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
-
-    # SettingsResponse
-    def StayAligned(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(24))
-        if o != 0:
-            x = self._tab.Indirect(o + self._tab.Pos)
-            obj = StayAlignedSettings()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
-
-    # SettingsResponse
-    def HidSettings(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(26))
-        if o != 0:
-            x = self._tab.Indirect(o + self._tab.Pos)
-            obj = HIDSettings()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
-
-    # SettingsResponse
-    def Timeout(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(28))
-        if o != 0:
-            x = self._tab.Indirect(o + self._tab.Pos)
-            obj = TimeoutSettings()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
-
-    # SettingsResponse
-    def VelocitySettings(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(30))
-        if o != 0:
-            x = self._tab.Indirect(o + self._tab.Pos)
-            obj = VelocitySettings()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
-
-    # SettingsResponse
-    def Vrm(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(32))
-        if o != 0:
-            x = self._tab.Indirect(o + self._tab.Pos)
-            obj = VRMSettings()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
-
-def SettingsResponseStart(builder):
-    builder.StartObject(15)
-
-def SettingsResponseAddSteamVrTrackers(builder, steamVrTrackers):
-    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(steamVrTrackers), 0)
-
-def SettingsResponseAddFiltering(builder, filtering):
-    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(filtering), 0)
-
-def SettingsResponseAddDriftCompensation(builder, driftCompensation):
-    builder.PrependUOffsetTRelativeSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(driftCompensation), 0)
-
-def SettingsResponseAddOscRouter(builder, oscRouter):
-    builder.PrependUOffsetTRelativeSlot(3, flatbuffers.number_types.UOffsetTFlags.py_type(oscRouter), 0)
-
-def SettingsResponseAddVrcOsc(builder, vrcOsc):
-    builder.PrependUOffsetTRelativeSlot(4, flatbuffers.number_types.UOffsetTFlags.py_type(vrcOsc), 0)
-
-def SettingsResponseAddVmcOsc(builder, vmcOsc):
-    builder.PrependUOffsetTRelativeSlot(5, flatbuffers.number_types.UOffsetTFlags.py_type(vmcOsc), 0)
-
-def SettingsResponseAddModelSettings(builder, modelSettings):
-    builder.PrependUOffsetTRelativeSlot(6, flatbuffers.number_types.UOffsetTFlags.py_type(modelSettings), 0)
-
-def SettingsResponseAddTapDetectionSettings(builder, tapDetectionSettings):
-    builder.PrependUOffsetTRelativeSlot(7, flatbuffers.number_types.UOffsetTFlags.py_type(tapDetectionSettings), 0)
-
-def SettingsResponseAddAutoBoneSettings(builder, autoBoneSettings):
-    builder.PrependUOffsetTRelativeSlot(8, flatbuffers.number_types.UOffsetTFlags.py_type(autoBoneSettings), 0)
-
-def SettingsResponseAddResetsSettings(builder, resetsSettings):
-    builder.PrependUOffsetTRelativeSlot(9, flatbuffers.number_types.UOffsetTFlags.py_type(resetsSettings), 0)
-
-def SettingsResponseAddStayAligned(builder, stayAligned):
-    builder.PrependUOffsetTRelativeSlot(10, flatbuffers.number_types.UOffsetTFlags.py_type(stayAligned), 0)
-
-def SettingsResponseAddHidSettings(builder, hidSettings):
-    builder.PrependUOffsetTRelativeSlot(11, flatbuffers.number_types.UOffsetTFlags.py_type(hidSettings), 0)
-
-def SettingsResponseAddTimeout(builder, timeout):
-    builder.PrependUOffsetTRelativeSlot(12, flatbuffers.number_types.UOffsetTFlags.py_type(timeout), 0)
-
-def SettingsResponseAddVelocitySettings(builder, velocitySettings):
-    builder.PrependUOffsetTRelativeSlot(13, flatbuffers.number_types.UOffsetTFlags.py_type(velocitySettings), 0)
-
-def SettingsResponseAddVrm(builder, vrm):
-    builder.PrependUOffsetTRelativeSlot(14, flatbuffers.number_types.UOffsetTFlags.py_type(vrm), 0)
-
-def SettingsResponseEnd(builder):
-    return builder.EndObject()
-
-
-
-class ChangeSettingsRequest(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = ChangeSettingsRequest()
-        x.Init(buf, n + offset)
-        return x
-
-    @classmethod
-    def GetRootAsChangeSettingsRequest(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # ChangeSettingsRequest
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-    # ChangeSettingsRequest
-    def SteamVrTrackers(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        if o != 0:
-            x = self._tab.Indirect(o + self._tab.Pos)
-            obj = SteamVRTrackersSetting()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
-
-    # ChangeSettingsRequest
-    def Filtering(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
-        if o != 0:
-            x = self._tab.Indirect(o + self._tab.Pos)
-            obj = FilteringSettings()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
-
-    # ChangeSettingsRequest
-    def DriftCompensation(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
-        if o != 0:
-            x = self._tab.Indirect(o + self._tab.Pos)
-            obj = DriftCompensationSettings()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
-
-    # ChangeSettingsRequest
-    def OscRouter(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
-        if o != 0:
-            x = self._tab.Indirect(o + self._tab.Pos)
-            obj = OSCRouterSettings()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
-
-    # ChangeSettingsRequest
-    def VrcOsc(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
-        if o != 0:
-            x = self._tab.Indirect(o + self._tab.Pos)
-            obj = VRCOSCSettings()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
-
-    # ChangeSettingsRequest
-    def VmcOsc(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
-        if o != 0:
-            x = self._tab.Indirect(o + self._tab.Pos)
-            obj = VMCOSCSettings()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
-
-    # ChangeSettingsRequest
-    def ModelSettings(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
-        if o != 0:
-            x = self._tab.Indirect(o + self._tab.Pos)
-            obj = ModelSettings()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
-
-    # ChangeSettingsRequest
-    def TapDetectionSettings(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(18))
-        if o != 0:
-            x = self._tab.Indirect(o + self._tab.Pos)
-            obj = TapDetectionSettings()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
-
-    # ChangeSettingsRequest
-    def AutoBoneSettings(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(20))
-        if o != 0:
-            x = self._tab.Indirect(o + self._tab.Pos)
-            obj = AutoBoneSettings()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
-
-    # ChangeSettingsRequest
-    def ResetsSettings(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(22))
-        if o != 0:
-            x = self._tab.Indirect(o + self._tab.Pos)
-            obj = ResetsSettings()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
-
-    # ChangeSettingsRequest
-    def StayAligned(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(24))
-        if o != 0:
-            x = self._tab.Indirect(o + self._tab.Pos)
-            obj = StayAlignedSettings()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
-
-    # ChangeSettingsRequest
-    def HidSettings(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(26))
-        if o != 0:
-            x = self._tab.Indirect(o + self._tab.Pos)
-            obj = HIDSettings()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
-
-    # ChangeSettingsRequest
-    def Timeout(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(28))
-        if o != 0:
-            x = self._tab.Indirect(o + self._tab.Pos)
-            obj = TimeoutSettings()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
-
-    # ChangeSettingsRequest
-    def VelocitySettings(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(30))
-        if o != 0:
-            x = self._tab.Indirect(o + self._tab.Pos)
-            obj = VelocitySettings()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
-
-    # ChangeSettingsRequest
-    def Vrm(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(32))
-        if o != 0:
-            x = self._tab.Indirect(o + self._tab.Pos)
-            obj = VRMSettings()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
-
-def ChangeSettingsRequestStart(builder):
-    builder.StartObject(15)
-
-def ChangeSettingsRequestAddSteamVrTrackers(builder, steamVrTrackers):
-    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(steamVrTrackers), 0)
-
-def ChangeSettingsRequestAddFiltering(builder, filtering):
-    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(filtering), 0)
-
-def ChangeSettingsRequestAddDriftCompensation(builder, driftCompensation):
-    builder.PrependUOffsetTRelativeSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(driftCompensation), 0)
-
-def ChangeSettingsRequestAddOscRouter(builder, oscRouter):
-    builder.PrependUOffsetTRelativeSlot(3, flatbuffers.number_types.UOffsetTFlags.py_type(oscRouter), 0)
-
-def ChangeSettingsRequestAddVrcOsc(builder, vrcOsc):
-    builder.PrependUOffsetTRelativeSlot(4, flatbuffers.number_types.UOffsetTFlags.py_type(vrcOsc), 0)
-
-def ChangeSettingsRequestAddVmcOsc(builder, vmcOsc):
-    builder.PrependUOffsetTRelativeSlot(5, flatbuffers.number_types.UOffsetTFlags.py_type(vmcOsc), 0)
-
-def ChangeSettingsRequestAddModelSettings(builder, modelSettings):
-    builder.PrependUOffsetTRelativeSlot(6, flatbuffers.number_types.UOffsetTFlags.py_type(modelSettings), 0)
-
-def ChangeSettingsRequestAddTapDetectionSettings(builder, tapDetectionSettings):
-    builder.PrependUOffsetTRelativeSlot(7, flatbuffers.number_types.UOffsetTFlags.py_type(tapDetectionSettings), 0)
-
-def ChangeSettingsRequestAddAutoBoneSettings(builder, autoBoneSettings):
-    builder.PrependUOffsetTRelativeSlot(8, flatbuffers.number_types.UOffsetTFlags.py_type(autoBoneSettings), 0)
-
-def ChangeSettingsRequestAddResetsSettings(builder, resetsSettings):
-    builder.PrependUOffsetTRelativeSlot(9, flatbuffers.number_types.UOffsetTFlags.py_type(resetsSettings), 0)
-
-def ChangeSettingsRequestAddStayAligned(builder, stayAligned):
-    builder.PrependUOffsetTRelativeSlot(10, flatbuffers.number_types.UOffsetTFlags.py_type(stayAligned), 0)
-
-def ChangeSettingsRequestAddHidSettings(builder, hidSettings):
-    builder.PrependUOffsetTRelativeSlot(11, flatbuffers.number_types.UOffsetTFlags.py_type(hidSettings), 0)
-
-def ChangeSettingsRequestAddTimeout(builder, timeout):
-    builder.PrependUOffsetTRelativeSlot(12, flatbuffers.number_types.UOffsetTFlags.py_type(timeout), 0)
-
-def ChangeSettingsRequestAddVelocitySettings(builder, velocitySettings):
-    builder.PrependUOffsetTRelativeSlot(13, flatbuffers.number_types.UOffsetTFlags.py_type(velocitySettings), 0)
-
-def ChangeSettingsRequestAddVrm(builder, vrm):
-    builder.PrependUOffsetTRelativeSlot(14, flatbuffers.number_types.UOffsetTFlags.py_type(vrm), 0)
-
-def ChangeSettingsRequestEnd(builder):
-    return builder.EndObject()
-
-
-
-class SteamVRTrackersSetting(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = SteamVRTrackersSetting()
-        x.Init(buf, n + offset)
-        return x
-
-    @classmethod
-    def GetRootAsSteamVRTrackersSetting(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # SteamVRTrackersSetting
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-    # SteamVRTrackersSetting
-    def Waist(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        if o != 0:
-            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
-        return False
-
-    # SteamVRTrackersSetting
-    def Chest(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
-        if o != 0:
-            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
-        return False
-
-    # SteamVRTrackersSetting
-    def AutomaticTrackerToggle(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
-        if o != 0:
-            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
-        return False
-
-    # SteamVRTrackersSetting
-    def LeftFoot(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(18))
-        if o != 0:
-            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
-        return False
-
-    # SteamVRTrackersSetting
-    def RightFoot(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(20))
-        if o != 0:
-            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
-        return False
-
-    # SteamVRTrackersSetting
-    def LeftKnee(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(22))
-        if o != 0:
-            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
-        return False
-
-    # SteamVRTrackersSetting
-    def RightKnee(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(24))
-        if o != 0:
-            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
-        return False
-
-    # SteamVRTrackersSetting
-    def LeftElbow(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(26))
-        if o != 0:
-            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
-        return False
-
-    # SteamVRTrackersSetting
-    def RightElbow(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(28))
-        if o != 0:
-            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
-        return False
-
-    # SteamVRTrackersSetting
-    def LeftHand(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(30))
-        if o != 0:
-            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
-        return False
-
-    # SteamVRTrackersSetting
-    def RightHand(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(32))
-        if o != 0:
-            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
-        return False
-
-def SteamVRTrackersSettingStart(builder):
-    builder.StartObject(15)
-
-def SteamVRTrackersSettingAddWaist(builder, waist):
-    builder.PrependBoolSlot(0, waist, 0)
-
-def SteamVRTrackersSettingAddChest(builder, chest):
-    builder.PrependBoolSlot(1, chest, 0)
-
-def SteamVRTrackersSettingAddAutomaticTrackerToggle(builder, automaticTrackerToggle):
-    builder.PrependBoolSlot(6, automaticTrackerToggle, 0)
-
-def SteamVRTrackersSettingAddLeftFoot(builder, leftFoot):
-    builder.PrependBoolSlot(7, leftFoot, 0)
-
-def SteamVRTrackersSettingAddRightFoot(builder, rightFoot):
-    builder.PrependBoolSlot(8, rightFoot, 0)
-
-def SteamVRTrackersSettingAddLeftKnee(builder, leftKnee):
-    builder.PrependBoolSlot(9, leftKnee, 0)
-
-def SteamVRTrackersSettingAddRightKnee(builder, rightKnee):
-    builder.PrependBoolSlot(10, rightKnee, 0)
-
-def SteamVRTrackersSettingAddLeftElbow(builder, leftElbow):
-    builder.PrependBoolSlot(11, leftElbow, 0)
-
-def SteamVRTrackersSettingAddRightElbow(builder, rightElbow):
-    builder.PrependBoolSlot(12, rightElbow, 0)
-
-def SteamVRTrackersSettingAddLeftHand(builder, leftHand):
-    builder.PrependBoolSlot(13, leftHand, 0)
-
-def SteamVRTrackersSettingAddRightHand(builder, rightHand):
-    builder.PrependBoolSlot(14, rightHand, 0)
-
-def SteamVRTrackersSettingEnd(builder):
-    return builder.EndObject()
-
-
-
-class FilteringSettings(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = FilteringSettings()
-        x.Init(buf, n + offset)
-        return x
-
-    @classmethod
-    def GetRootAsFilteringSettings(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # FilteringSettings
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-    # FilteringSettings
-    def Type(self):
+    # RoutingOutputStatus
+    def Output(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
         return 0
 
-    # 0 to 1. A higher value results in more smoothing or prediction
-    # FilteringSettings
-    def Amount(self):
+    # Bones this output can receive. A bone missing here cannot be routed to it.
+    # RoutingOutputStatus
+    def Accepts(self, j):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
         if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
-        return 0.0
-
-def FilteringSettingsStart(builder):
-    builder.StartObject(2)
-
-def FilteringSettingsAddType(builder, type):
-    builder.PrependUint8Slot(0, type, 0)
-
-def FilteringSettingsAddAmount(builder, amount):
-    builder.PrependFloat32Slot(1, amount, 0.0)
-
-def FilteringSettingsEnd(builder):
-    return builder.EndObject()
-
-
-
-# Settings related to IMU yaw drift compensation
-class DriftCompensationSettings(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = DriftCompensationSettings()
-        x.Init(buf, n + offset)
-        return x
-
-    @classmethod
-    def GetRootAsDriftCompensationSettings(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # DriftCompensationSettings
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-    # DriftCompensationSettings
-    def Enabled(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        if o != 0:
-            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
-        return False
-
-    # DriftCompensationSettings
-    def Prediction(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
-        if o != 0:
-            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
-        return False
-
-    # 0 to 1. A higher value results in more yaw drift compensation
-    # DriftCompensationSettings
-    def Amount(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
-        return 0.0
-
-    # Number of previous resets to take into account when calculating yaw drift
-    # DriftCompensationSettings
-    def MaxResets(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Uint16Flags, o + self._tab.Pos)
+            a = self._tab.Vector(o)
+            return self._tab.Get(flatbuffers.number_types.Uint8Flags, a + flatbuffers.number_types.UOffsetTFlags.py_type(j * 1))
         return 0
 
-def DriftCompensationSettingsStart(builder):
-    builder.StartObject(4)
-
-def DriftCompensationSettingsAddEnabled(builder, enabled):
-    builder.PrependBoolSlot(0, enabled, 0)
-
-def DriftCompensationSettingsAddPrediction(builder, prediction):
-    builder.PrependBoolSlot(1, prediction, 0)
-
-def DriftCompensationSettingsAddAmount(builder, amount):
-    builder.PrependFloat32Slot(2, amount, 0.0)
-
-def DriftCompensationSettingsAddMaxResets(builder, maxResets):
-    builder.PrependUint16Slot(3, maxResets, 0)
-
-def DriftCompensationSettingsEnd(builder):
-    return builder.EndObject()
-
-
-
-# OSC router forwards messages it receives, to allow the usage of multiple OSC programs for the same app.
-class OSCRouterSettings(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = OSCRouterSettings()
-        x.Init(buf, n + offset)
-        return x
-
-    @classmethod
-    def GetRootAsOSCRouterSettings(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # OSCRouterSettings
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-    # OSCRouterSettings
-    def OscSettings(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        if o != 0:
-            x = self._tab.Indirect(o + self._tab.Pos)
-            obj = OSCSettings()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
-
-def OSCRouterSettingsStart(builder):
-    builder.StartObject(1)
-
-def OSCRouterSettingsAddOscSettings(builder, oscSettings):
-    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(oscSettings), 0)
-
-def OSCRouterSettingsEnd(builder):
-    return builder.EndObject()
-
-
-
-# OSC Settings specific to VRChat
-class VRCOSCSettings(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = VRCOSCSettings()
-        x.Init(buf, n + offset)
-        return x
-
-    @classmethod
-    def GetRootAsVRCOSCSettings(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # VRCOSCSettings
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-    # VRCOSCSettings
-    def OscSettings(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        if o != 0:
-            x = self._tab.Indirect(o + self._tab.Pos)
-            obj = OSCSettings()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
-
-    # VRCOSCSettings
-    def Trackers(self):
+    # RoutingOutputStatus
+    def AcceptsAsNumpy(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
         if o != 0:
-            x = self._tab.Indirect(o + self._tab.Pos)
-            obj = OSCTrackersSetting()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
+            return self._tab.GetVectorAsNumpy(flatbuffers.number_types.Uint8Flags, o)
+        return 0
 
-    # VRCOSCSettings
-    def OscqueryEnabled(self):
+    # RoutingOutputStatus
+    def AcceptsLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # RoutingOutputStatus
+    def AcceptsIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        return o == 0
+
+    # Bones this output needs to work at all, so the server always routes them and
+    # the user cannot turn them off. Always a subset of `accepts`.
+    # RoutingOutputStatus
+    def Requires(self, j):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            a = self._tab.Vector(o)
+            return self._tab.Get(flatbuffers.number_types.Uint8Flags, a + flatbuffers.number_types.UOffsetTFlags.py_type(j * 1))
+        return 0
+
+    # RoutingOutputStatus
+    def RequiresAsNumpy(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            return self._tab.GetVectorAsNumpy(flatbuffers.number_types.Uint8Flags, o)
+        return 0
+
+    # RoutingOutputStatus
+    def RequiresLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # RoutingOutputStatus
+    def RequiresIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        return o == 0
+
+    # Outputs that reach the same app as this one. A bone routed to this output and
+    # to one of these arrives twice, which is what shows up as duplicate trackers.
+    # RoutingOutputStatus
+    def Conflicts(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        if o != 0:
+            a = self._tab.Vector(o)
+            return self._tab.Get(flatbuffers.number_types.Uint8Flags, a + flatbuffers.number_types.UOffsetTFlags.py_type(j * 1))
+        return 0
+
+    # RoutingOutputStatus
+    def ConflictsAsNumpy(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        if o != 0:
+            return self._tab.GetVectorAsNumpy(flatbuffers.number_types.Uint8Flags, o)
+        return 0
+
+    # RoutingOutputStatus
+    def ConflictsLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # RoutingOutputStatus
+    def ConflictsIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        return o == 0
+
+    # RoutingOutputStatus
+    def State(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
+        return 0
+
+    # Bones the user turns on or off for this output even while `automatic` is set.
+    # Automatic never routes them on its own. Always a subset of `accepts`.
+    # RoutingOutputStatus
+    def Overridable(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
+        if o != 0:
+            a = self._tab.Vector(o)
+            return self._tab.Get(flatbuffers.number_types.Uint8Flags, a + flatbuffers.number_types.UOffsetTFlags.py_type(j * 1))
+        return 0
+
+    # RoutingOutputStatus
+    def OverridableAsNumpy(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
+        if o != 0:
+            return self._tab.GetVectorAsNumpy(flatbuffers.number_types.Uint8Flags, o)
+        return 0
+
+    # RoutingOutputStatus
+    def OverridableLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # RoutingOutputStatus
+    def OverridableIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
+        return o == 0
+
+def RoutingOutputStatusStart(builder):
+    builder.StartObject(6)
+
+def RoutingOutputStatusAddOutput(builder, output):
+    builder.PrependUint8Slot(0, output, 0)
+
+def RoutingOutputStatusAddAccepts(builder, accepts):
+    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(accepts), 0)
+
+def RoutingOutputStatusStartAcceptsVector(builder, numElems):
+    return builder.StartVector(1, numElems, 1)
+
+def RoutingOutputStatusCreateAcceptsVector(builder, data):
+    data = list(data)
+    builder.StartVector(1, len(data), 1)
+    for item in reversed(data):
+        builder.PrependUint8(item)
+    return builder.EndVector()
+
+def RoutingOutputStatusAddRequires(builder, requires):
+    builder.PrependUOffsetTRelativeSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(requires), 0)
+
+def RoutingOutputStatusStartRequiresVector(builder, numElems):
+    return builder.StartVector(1, numElems, 1)
+
+def RoutingOutputStatusCreateRequiresVector(builder, data):
+    data = list(data)
+    builder.StartVector(1, len(data), 1)
+    for item in reversed(data):
+        builder.PrependUint8(item)
+    return builder.EndVector()
+
+def RoutingOutputStatusAddConflicts(builder, conflicts):
+    builder.PrependUOffsetTRelativeSlot(3, flatbuffers.number_types.UOffsetTFlags.py_type(conflicts), 0)
+
+def RoutingOutputStatusStartConflictsVector(builder, numElems):
+    return builder.StartVector(1, numElems, 1)
+
+def RoutingOutputStatusCreateConflictsVector(builder, data):
+    data = list(data)
+    builder.StartVector(1, len(data), 1)
+    for item in reversed(data):
+        builder.PrependUint8(item)
+    return builder.EndVector()
+
+def RoutingOutputStatusAddState(builder, state):
+    builder.PrependUint8Slot(4, state, 0)
+
+def RoutingOutputStatusAddOverridable(builder, overridable):
+    builder.PrependUOffsetTRelativeSlot(5, flatbuffers.number_types.UOffsetTFlags.py_type(overridable), 0)
+
+def RoutingOutputStatusStartOverridableVector(builder, numElems):
+    return builder.StartVector(1, numElems, 1)
+
+def RoutingOutputStatusCreateOverridableVector(builder, data):
+    data = list(data)
+    builder.StartVector(1, len(data), 1)
+    for item in reversed(data):
+        builder.PrependUint8(item)
+    return builder.EndVector()
+
+def RoutingOutputStatusEnd(builder):
+    return builder.EndObject()
+
+
+
+class BoneRoutingSettingsRequest(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = BoneRoutingSettingsRequest()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsBoneRoutingSettingsRequest(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # BoneRoutingSettingsRequest
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+def BoneRoutingSettingsRequestStart(builder):
+    builder.StartObject(0)
+
+def BoneRoutingSettingsRequestEnd(builder):
+    return builder.EndObject()
+
+
+
+class BoneRoutingSettingsResponse(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = BoneRoutingSettingsResponse()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsBoneRoutingSettingsResponse(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # BoneRoutingSettingsResponse
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # When set, `routes` is generated from the connected trackers and the
+    # output priority, and any stored manual routes are ignored.
+    # BoneRoutingSettingsResponse
+    def Automatic(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
         if o != 0:
             return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
         return False
 
-def VRCOSCSettingsStart(builder):
+    # The effective routes, whether generated or stored.
+    # BoneRoutingSettingsResponse
+    def Routes(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            x = self._tab.Vector(o)
+            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
+            x = self._tab.Indirect(x)
+            obj = BoneRoute()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+    # BoneRoutingSettingsResponse
+    def RoutesLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # BoneRoutingSettingsResponse
+    def RoutesIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        return o == 0
+
+    # Always one entry per output. `state` says what is up with each.
+    # BoneRoutingSettingsResponse
+    def Outputs(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            x = self._tab.Vector(o)
+            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
+            x = self._tab.Indirect(x)
+            obj = RoutingOutputStatus()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+    # BoneRoutingSettingsResponse
+    def OutputsLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # BoneRoutingSettingsResponse
+    def OutputsIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        return o == 0
+
+def BoneRoutingSettingsResponseStart(builder):
     builder.StartObject(3)
 
-def VRCOSCSettingsAddOscSettings(builder, oscSettings):
-    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(oscSettings), 0)
+def BoneRoutingSettingsResponseAddAutomatic(builder, automatic):
+    builder.PrependBoolSlot(0, automatic, 0)
 
-def VRCOSCSettingsAddTrackers(builder, trackers):
-    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(trackers), 0)
+def BoneRoutingSettingsResponseAddRoutes(builder, routes):
+    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(routes), 0)
 
-def VRCOSCSettingsAddOscqueryEnabled(builder, oscqueryEnabled):
-    builder.PrependBoolSlot(2, oscqueryEnabled, 0)
+def BoneRoutingSettingsResponseStartRoutesVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
 
-def VRCOSCSettingsEnd(builder):
+def BoneRoutingSettingsResponseCreateRoutesVector(builder, data):
+    return builder.CreateVectorOfTables(data)
+
+def BoneRoutingSettingsResponseAddOutputs(builder, outputs):
+    builder.PrependUOffsetTRelativeSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(outputs), 0)
+
+def BoneRoutingSettingsResponseStartOutputsVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
+
+def BoneRoutingSettingsResponseCreateOutputsVector(builder, data):
+    return builder.CreateVectorOfTables(data)
+
+def BoneRoutingSettingsResponseEnd(builder):
     return builder.EndObject()
 
 
 
-# OSC Settings specific to VMC
-class VMCOSCSettings(object):
+class ChangeBoneRoutingSettingsRequest(object):
     __slots__ = ['_tab']
 
     @classmethod
     def GetRootAs(cls, buf, offset=0):
         n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = VMCOSCSettings()
+        x = ChangeBoneRoutingSettingsRequest()
         x.Init(buf, n + offset)
         return x
 
     @classmethod
-    def GetRootAsVMCOSCSettings(cls, buf, offset=0):
+    def GetRootAsChangeBoneRoutingSettingsRequest(cls, buf, offset=0):
         """This method is deprecated. Please switch to GetRootAs."""
         return cls.GetRootAs(buf, offset)
-    # VMCOSCSettings
+    # ChangeBoneRoutingSettingsRequest
     def Init(self, buf, pos):
         self._tab = flatbuffers.table.Table(buf, pos)
 
-    # VMCOSCSettings
-    def OscSettings(self):
+    # ChangeBoneRoutingSettingsRequest
+    def Automatic(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
         if o != 0:
-            x = self._tab.Indirect(o + self._tab.Pos)
-            obj = OSCSettings()
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
+
+    # ChangeBoneRoutingSettingsRequest
+    def Routes(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            x = self._tab.Vector(o)
+            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
+            x = self._tab.Indirect(x)
+            obj = BoneRoute()
             obj.Init(self._tab.Bytes, x)
             return obj
         return None
 
-    # VMCOSCSettings
-    def AnchorHip(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
-        if o != 0:
-            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
-        return False
-
-    # VMCOSCSettings
-    def MirrorTracking(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
-        if o != 0:
-            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
-        return False
-
-def VMCOSCSettingsStart(builder):
-    builder.StartObject(4)
-
-def VMCOSCSettingsAddOscSettings(builder, oscSettings):
-    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(oscSettings), 0)
-
-def VMCOSCSettingsAddAnchorHip(builder, anchorHip):
-    builder.PrependBoolSlot(2, anchorHip, 0)
-
-def VMCOSCSettingsAddMirrorTracking(builder, mirrorTracking):
-    builder.PrependBoolSlot(3, mirrorTracking, 0)
-
-def VMCOSCSettingsEnd(builder):
-    return builder.EndObject()
-
-
-
-# VRM Settings for rescaling to avatar-scale
-class VRMSettings(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = VRMSettings()
-        x.Init(buf, n + offset)
-        return x
-
-    @classmethod
-    def GetRootAsVRMSettings(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # VRMSettings
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-    # VRMSettings
-    def VrmJson(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
-
-def VRMSettingsStart(builder):
-    builder.StartObject(1)
-
-def VRMSettingsAddVrmJson(builder, vrmJson):
-    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(vrmJson), 0)
-
-def VRMSettingsEnd(builder):
-    return builder.EndObject()
-
-
-
-# OSC Settings that are used in *any* osc application.
-class OSCSettings(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = OSCSettings()
-        x.Init(buf, n + offset)
-        return x
-
-    @classmethod
-    def GetRootAsOSCSettings(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # OSCSettings
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-    # OSCSettings
-    def Enabled(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        if o != 0:
-            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
-        return False
-
-    # OSCSettings
-    def PortIn(self):
+    # ChangeBoneRoutingSettingsRequest
+    def RoutesLength(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
         if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Uint16Flags, o + self._tab.Pos)
+            return self._tab.VectorLen(o)
         return 0
 
-    # OSCSettings
-    def PortOut(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Uint16Flags, o + self._tab.Pos)
-        return 0
-
-    # OSCSettings
-    def Address(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
-        if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
-
-def OSCSettingsStart(builder):
-    builder.StartObject(4)
-
-def OSCSettingsAddEnabled(builder, enabled):
-    builder.PrependBoolSlot(0, enabled, 0)
-
-def OSCSettingsAddPortIn(builder, portIn):
-    builder.PrependUint16Slot(1, portIn, 0)
-
-def OSCSettingsAddPortOut(builder, portOut):
-    builder.PrependUint16Slot(2, portOut, 0)
-
-def OSCSettingsAddAddress(builder, address):
-    builder.PrependUOffsetTRelativeSlot(3, flatbuffers.number_types.UOffsetTFlags.py_type(address), 0)
-
-def OSCSettingsEnd(builder):
-    return builder.EndObject()
-
-
-
-class OSCTrackersSetting(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = OSCTrackersSetting()
-        x.Init(buf, n + offset)
-        return x
-
-    @classmethod
-    def GetRootAsOSCTrackersSetting(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # OSCTrackersSetting
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-    # OSCTrackersSetting
-    def Head(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        if o != 0:
-            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
-        return False
-
-    # OSCTrackersSetting
-    def Chest(self):
+    # ChangeBoneRoutingSettingsRequest
+    def RoutesIsNone(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
-        if o != 0:
-            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
-        return False
+        return o == 0
 
-    # OSCTrackersSetting
-    def Waist(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
-        if o != 0:
-            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
-        return False
+def ChangeBoneRoutingSettingsRequestStart(builder):
+    builder.StartObject(2)
 
-    # OSCTrackersSetting
-    def Knees(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
-        if o != 0:
-            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
-        return False
+def ChangeBoneRoutingSettingsRequestAddAutomatic(builder, automatic):
+    builder.PrependBoolSlot(0, automatic, 0)
 
-    # OSCTrackersSetting
-    def Feet(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
-        if o != 0:
-            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
-        return False
+def ChangeBoneRoutingSettingsRequestAddRoutes(builder, routes):
+    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(routes), 0)
 
-    # OSCTrackersSetting
-    def Elbows(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
-        if o != 0:
-            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
-        return False
+def ChangeBoneRoutingSettingsRequestStartRoutesVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
 
-    # OSCTrackersSetting
-    def Hands(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
-        if o != 0:
-            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
-        return False
+def ChangeBoneRoutingSettingsRequestCreateRoutesVector(builder, data):
+    return builder.CreateVectorOfTables(data)
 
-def OSCTrackersSettingStart(builder):
-    builder.StartObject(7)
-
-def OSCTrackersSettingAddHead(builder, head):
-    builder.PrependBoolSlot(0, head, 0)
-
-def OSCTrackersSettingAddChest(builder, chest):
-    builder.PrependBoolSlot(1, chest, 0)
-
-def OSCTrackersSettingAddWaist(builder, waist):
-    builder.PrependBoolSlot(2, waist, 0)
-
-def OSCTrackersSettingAddKnees(builder, knees):
-    builder.PrependBoolSlot(3, knees, 0)
-
-def OSCTrackersSettingAddFeet(builder, feet):
-    builder.PrependBoolSlot(4, feet, 0)
-
-def OSCTrackersSettingAddElbows(builder, elbows):
-    builder.PrependBoolSlot(5, elbows, 0)
-
-def OSCTrackersSettingAddHands(builder, hands):
-    builder.PrependBoolSlot(6, hands, 0)
-
-def OSCTrackersSettingEnd(builder):
-    return builder.EndObject()
-
-
-
-class TapDetectionSettings(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = TapDetectionSettings()
-        x.Init(buf, n + offset)
-        return x
-
-    @classmethod
-    def GetRootAsTapDetectionSettings(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # TapDetectionSettings
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-    # TapDetectionSettings
-    def FullResetDelay(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
-        return None
-
-    # TapDetectionSettings
-    def FullResetEnabled(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
-        if o != 0:
-            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
-        return None
-
-    # TapDetectionSettings
-    def FullResetTaps(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
-        return None
-
-    # TapDetectionSettings
-    def YawResetDelay(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
-        return None
-
-    # TapDetectionSettings
-    def YawResetEnabled(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
-        if o != 0:
-            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
-        return None
-
-    # TapDetectionSettings
-    def YawResetTaps(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
-        return None
-
-    # TapDetectionSettings
-    def MountingResetDelay(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
-        return None
-
-    # TapDetectionSettings
-    def MountingResetEnabled(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(18))
-        if o != 0:
-            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
-        return None
-
-    # TapDetectionSettings
-    def MountingResetTaps(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(20))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
-        return None
-
-    # If true, disables reset behavior of tap detection and sends a
-    # TapDetectionSetupNotification, each time 2 taps are detected on any tracker
-    # TapDetectionSettings
-    def SetupMode(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(22))
-        if o != 0:
-            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
-        return None
-
-    # TapDetectionSettings
-    def NumberTrackersOverThreshold(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(24))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
-        return None
-
-    # TapDetectionSettings
-    def YawResetTracker(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(26))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
-        return None
-
-    # TapDetectionSettings
-    def FullResetTracker(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(28))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
-        return None
-
-    # TapDetectionSettings
-    def MountingResetTracker(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(30))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
-        return None
-
-def TapDetectionSettingsStart(builder):
-    builder.StartObject(14)
-
-def TapDetectionSettingsAddFullResetDelay(builder, fullResetDelay):
-    builder.PrependFloat32Slot(0, fullResetDelay, None)
-
-def TapDetectionSettingsAddFullResetEnabled(builder, fullResetEnabled):
-    builder.PrependBoolSlot(1, fullResetEnabled, None)
-
-def TapDetectionSettingsAddFullResetTaps(builder, fullResetTaps):
-    builder.PrependUint8Slot(2, fullResetTaps, None)
-
-def TapDetectionSettingsAddYawResetDelay(builder, yawResetDelay):
-    builder.PrependFloat32Slot(3, yawResetDelay, None)
-
-def TapDetectionSettingsAddYawResetEnabled(builder, yawResetEnabled):
-    builder.PrependBoolSlot(4, yawResetEnabled, None)
-
-def TapDetectionSettingsAddYawResetTaps(builder, yawResetTaps):
-    builder.PrependUint8Slot(5, yawResetTaps, None)
-
-def TapDetectionSettingsAddMountingResetDelay(builder, mountingResetDelay):
-    builder.PrependFloat32Slot(6, mountingResetDelay, None)
-
-def TapDetectionSettingsAddMountingResetEnabled(builder, mountingResetEnabled):
-    builder.PrependBoolSlot(7, mountingResetEnabled, None)
-
-def TapDetectionSettingsAddMountingResetTaps(builder, mountingResetTaps):
-    builder.PrependUint8Slot(8, mountingResetTaps, None)
-
-def TapDetectionSettingsAddSetupMode(builder, setupMode):
-    builder.PrependBoolSlot(9, setupMode, None)
-
-def TapDetectionSettingsAddNumberTrackersOverThreshold(builder, numberTrackersOverThreshold):
-    builder.PrependUint8Slot(10, numberTrackersOverThreshold, None)
-
-def TapDetectionSettingsAddYawResetTracker(builder, yawResetTracker):
-    builder.PrependUint8Slot(11, yawResetTracker, None)
-
-def TapDetectionSettingsAddFullResetTracker(builder, fullResetTracker):
-    builder.PrependUint8Slot(12, fullResetTracker, None)
-
-def TapDetectionSettingsAddMountingResetTracker(builder, mountingResetTracker):
-    builder.PrependUint8Slot(13, mountingResetTracker, None)
-
-def TapDetectionSettingsEnd(builder):
-    return builder.EndObject()
-
-
-
-class ResetsSettings(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = ResetsSettings()
-        x.Init(buf, n + offset)
-        return x
-
-    @classmethod
-    def GetRootAsResetsSettings(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # ResetsSettings
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-    # ResetsSettings
-    def ResetMountingFeet(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        if o != 0:
-            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
-        return False
-
-    # ResetsSettings
-    def ArmsMountingResetMode(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
-        return 0
-
-    # ResetsSettings
-    def YawResetSmoothTime(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
-        return 0.0
-
-    # ResetsSettings
-    def SaveMountingReset(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
-        if o != 0:
-            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
-        return False
-
-    # ResetsSettings
-    def ResetHmdPitch(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
-        if o != 0:
-            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
-        return False
-
-def ResetsSettingsStart(builder):
-    builder.StartObject(5)
-
-def ResetsSettingsAddResetMountingFeet(builder, resetMountingFeet):
-    builder.PrependBoolSlot(0, resetMountingFeet, 0)
-
-def ResetsSettingsAddArmsMountingResetMode(builder, armsMountingResetMode):
-    builder.PrependUint8Slot(1, armsMountingResetMode, 0)
-
-def ResetsSettingsAddYawResetSmoothTime(builder, yawResetSmoothTime):
-    builder.PrependFloat32Slot(2, yawResetSmoothTime, 0.0)
-
-def ResetsSettingsAddSaveMountingReset(builder, saveMountingReset):
-    builder.PrependBoolSlot(3, saveMountingReset, 0)
-
-def ResetsSettingsAddResetHmdPitch(builder, resetHmdPitch):
-    builder.PrependBoolSlot(4, resetHmdPitch, 0)
-
-def ResetsSettingsEnd(builder):
-    return builder.EndObject()
-
-
-
-class StayAlignedSettings(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = StayAlignedSettings()
-        x.Init(buf, n + offset)
-        return x
-
-    @classmethod
-    def GetRootAsStayAlignedSettings(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # StayAlignedSettings
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-    # StayAlignedSettings
-    def Enabled(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        if o != 0:
-            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
-        return False
-
-    # StayAlignedSettings
-    def ExtraYawCorrection(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
-        if o != 0:
-            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
-        return False
-
-    # StayAlignedSettings
-    def HideYawCorrection(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
-        if o != 0:
-            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
-        return False
-
-    # StayAlignedSettings
-    def StandingEnabled(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
-        if o != 0:
-            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
-        return False
-
-    # StayAlignedSettings
-    def StandingUpperLegAngle(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
-        return 0.0
-
-    # StayAlignedSettings
-    def StandingLowerLegAngle(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
-        return 0.0
-
-    # StayAlignedSettings
-    def StandingFootAngle(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
-        return 0.0
-
-    # StayAlignedSettings
-    def SittingEnabled(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(18))
-        if o != 0:
-            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
-        return False
-
-    # StayAlignedSettings
-    def SittingUpperLegAngle(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(20))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
-        return 0.0
-
-    # StayAlignedSettings
-    def SittingLowerLegAngle(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(22))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
-        return 0.0
-
-    # StayAlignedSettings
-    def SittingFootAngle(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(24))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
-        return 0.0
-
-    # StayAlignedSettings
-    def FlatEnabled(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(26))
-        if o != 0:
-            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
-        return False
-
-    # StayAlignedSettings
-    def FlatUpperLegAngle(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(28))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
-        return 0.0
-
-    # StayAlignedSettings
-    def FlatLowerLegAngle(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(30))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
-        return 0.0
-
-    # StayAlignedSettings
-    def FlatFootAngle(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(32))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
-        return 0.0
-
-    # StayAlignedSettings
-    def SetupComplete(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(34))
-        if o != 0:
-            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
-        return False
-
-def StayAlignedSettingsStart(builder):
-    builder.StartObject(16)
-
-def StayAlignedSettingsAddEnabled(builder, enabled):
-    builder.PrependBoolSlot(0, enabled, 0)
-
-def StayAlignedSettingsAddExtraYawCorrection(builder, extraYawCorrection):
-    builder.PrependBoolSlot(1, extraYawCorrection, 0)
-
-def StayAlignedSettingsAddHideYawCorrection(builder, hideYawCorrection):
-    builder.PrependBoolSlot(2, hideYawCorrection, 0)
-
-def StayAlignedSettingsAddStandingEnabled(builder, standingEnabled):
-    builder.PrependBoolSlot(3, standingEnabled, 0)
-
-def StayAlignedSettingsAddStandingUpperLegAngle(builder, standingUpperLegAngle):
-    builder.PrependFloat32Slot(4, standingUpperLegAngle, 0.0)
-
-def StayAlignedSettingsAddStandingLowerLegAngle(builder, standingLowerLegAngle):
-    builder.PrependFloat32Slot(5, standingLowerLegAngle, 0.0)
-
-def StayAlignedSettingsAddStandingFootAngle(builder, standingFootAngle):
-    builder.PrependFloat32Slot(6, standingFootAngle, 0.0)
-
-def StayAlignedSettingsAddSittingEnabled(builder, sittingEnabled):
-    builder.PrependBoolSlot(7, sittingEnabled, 0)
-
-def StayAlignedSettingsAddSittingUpperLegAngle(builder, sittingUpperLegAngle):
-    builder.PrependFloat32Slot(8, sittingUpperLegAngle, 0.0)
-
-def StayAlignedSettingsAddSittingLowerLegAngle(builder, sittingLowerLegAngle):
-    builder.PrependFloat32Slot(9, sittingLowerLegAngle, 0.0)
-
-def StayAlignedSettingsAddSittingFootAngle(builder, sittingFootAngle):
-    builder.PrependFloat32Slot(10, sittingFootAngle, 0.0)
-
-def StayAlignedSettingsAddFlatEnabled(builder, flatEnabled):
-    builder.PrependBoolSlot(11, flatEnabled, 0)
-
-def StayAlignedSettingsAddFlatUpperLegAngle(builder, flatUpperLegAngle):
-    builder.PrependFloat32Slot(12, flatUpperLegAngle, 0.0)
-
-def StayAlignedSettingsAddFlatLowerLegAngle(builder, flatLowerLegAngle):
-    builder.PrependFloat32Slot(13, flatLowerLegAngle, 0.0)
-
-def StayAlignedSettingsAddFlatFootAngle(builder, flatFootAngle):
-    builder.PrependFloat32Slot(14, flatFootAngle, 0.0)
-
-def StayAlignedSettingsAddSetupComplete(builder, setupComplete):
-    builder.PrependBoolSlot(15, setupComplete, 0)
-
-def StayAlignedSettingsEnd(builder):
-    return builder.EndObject()
-
-
-
-class HIDSettings(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = HIDSettings()
-        x.Init(buf, n + offset)
-        return x
-
-    @classmethod
-    def GetRootAsHIDSettings(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # HIDSettings
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-    # HIDSettings
-    def TrackersOverHid(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        if o != 0:
-            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
-        return False
-
-def HIDSettingsStart(builder):
-    builder.StartObject(1)
-
-def HIDSettingsAddTrackersOverHid(builder, trackersOverHid):
-    builder.PrependBoolSlot(0, trackersOverHid, 0)
-
-def HIDSettingsEnd(builder):
-    return builder.EndObject()
-
-
-
-class TimeoutSettings(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = TimeoutSettings()
-        x.Init(buf, n + offset)
-        return x
-
-    @classmethod
-    def GetRootAsTimeoutSettings(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # TimeoutSettings
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-    # TimeoutSettings
-    def Duration(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
-        return 0.0
-
-def TimeoutSettingsStart(builder):
-    builder.StartObject(1)
-
-def TimeoutSettingsAddDuration(builder, duration):
-    builder.PrependFloat32Slot(0, duration, 0.0)
-
-def TimeoutSettingsEnd(builder):
-    return builder.EndObject()
-
-
-
-class VelocitySettings(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = VelocitySettings()
-        x.Init(buf, n + offset)
-        return x
-
-    @classmethod
-    def GetRootAsVelocitySettings(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # VelocitySettings
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-    # VelocitySettings
-    def SendDerivedVelocity(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        if o != 0:
-            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
-        return False
-
-def VelocitySettingsStart(builder):
-    builder.StartObject(1)
-
-def VelocitySettingsAddSendDerivedVelocity(builder, sendDerivedVelocity):
-    builder.PrependBoolSlot(0, sendDerivedVelocity, 0)
-
-def VelocitySettingsEnd(builder):
-    return builder.EndObject()
-
-
-
-# See TapDetectionSettings::setup_mode
-class TapDetectionSetupNotification(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = TapDetectionSetupNotification()
-        x.Init(buf, n + offset)
-        return x
-
-    @classmethod
-    def GetRootAsTapDetectionSetupNotification(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # TapDetectionSetupNotification
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-    # TapDetectionSetupNotification
-    def TrackerId(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        if o != 0:
-            x = self._tab.Indirect(o + self._tab.Pos)
-            obj = TrackerId()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
-
-def TapDetectionSetupNotificationStart(builder):
-    builder.StartObject(1)
-
-def TapDetectionSetupNotificationAddTrackerId(builder, trackerId):
-    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(trackerId), 0)
-
-def TapDetectionSetupNotificationEnd(builder):
+def ChangeBoneRoutingSettingsRequestEnd(builder):
     return builder.EndObject()
 
 
@@ -5827,2423 +4327,459 @@ def RecordBVHStatusRequestEnd(builder):
 
 
 
-class SkeletonPart(object):
+# Server notifies connection of an unknown device.
+# If the notification is no longer sent, it means the device connected to another
+# server, got connected to this server or it was turned off.
+class UnknownDeviceHandshakeNotification(object):
     __slots__ = ['_tab']
 
     @classmethod
     def GetRootAs(cls, buf, offset=0):
         n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = SkeletonPart()
+        x = UnknownDeviceHandshakeNotification()
         x.Init(buf, n + offset)
         return x
 
     @classmethod
-    def GetRootAsSkeletonPart(cls, buf, offset=0):
+    def GetRootAsUnknownDeviceHandshakeNotification(cls, buf, offset=0):
         """This method is deprecated. Please switch to GetRootAs."""
         return cls.GetRootAs(buf, offset)
-    # SkeletonPart
+    # UnknownDeviceHandshakeNotification
     def Init(self, buf, pos):
         self._tab = flatbuffers.table.Table(buf, pos)
 
-    # SkeletonPart
-    def Bone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
-        return 0
-
-    # SkeletonPart
-    def Value(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
-        return 0.0
-
-def SkeletonPartStart(builder):
-    builder.StartObject(2)
-
-def SkeletonPartAddBone(builder, bone):
-    builder.PrependUint8Slot(0, bone, 0)
-
-def SkeletonPartAddValue(builder, value):
-    builder.PrependFloat32Slot(1, value, 0.0)
-
-def SkeletonPartEnd(builder):
-    return builder.EndObject()
-
-
-
-class SkeletonConfigRequest(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = SkeletonConfigRequest()
-        x.Init(buf, n + offset)
-        return x
-
-    @classmethod
-    def GetRootAsSkeletonConfigRequest(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # SkeletonConfigRequest
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-def SkeletonConfigRequestStart(builder):
-    builder.StartObject(0)
-
-def SkeletonConfigRequestEnd(builder):
-    return builder.EndObject()
-
-
-
-class SkeletonConfigResponse(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = SkeletonConfigResponse()
-        x.Init(buf, n + offset)
-        return x
-
-    @classmethod
-    def GetRootAsSkeletonConfigResponse(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # SkeletonConfigResponse
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-    # SkeletonConfigResponse
-    def SkeletonParts(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        if o != 0:
-            x = self._tab.Vector(o)
-            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
-            x = self._tab.Indirect(x)
-            obj = SkeletonPart()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
-
-    # SkeletonConfigResponse
-    def SkeletonPartsLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        if o != 0:
-            return self._tab.VectorLen(o)
-        return 0
-
-    # SkeletonConfigResponse
-    def SkeletonPartsIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        return o == 0
-
-    # SkeletonConfigResponse
-    def UserHeight(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
-        return 0.0
-
-def SkeletonConfigResponseStart(builder):
-    builder.StartObject(2)
-
-def SkeletonConfigResponseAddSkeletonParts(builder, skeletonParts):
-    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(skeletonParts), 0)
-
-def SkeletonConfigResponseStartSkeletonPartsVector(builder, numElems):
-    return builder.StartVector(4, numElems, 4)
-
-def SkeletonConfigResponseCreateSkeletonPartsVector(builder, data):
-    return builder.CreateVectorOfTables(data)
-
-def SkeletonConfigResponseAddUserHeight(builder, userHeight):
-    builder.PrependFloat32Slot(1, userHeight, 0.0)
-
-def SkeletonConfigResponseEnd(builder):
-    return builder.EndObject()
-
-
-
-class SkeletonResetAllRequest(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = SkeletonResetAllRequest()
-        x.Init(buf, n + offset)
-        return x
-
-    @classmethod
-    def GetRootAsSkeletonResetAllRequest(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # SkeletonResetAllRequest
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-def SkeletonResetAllRequestStart(builder):
-    builder.StartObject(0)
-
-def SkeletonResetAllRequestEnd(builder):
-    return builder.EndObject()
-
-
-
-class ChangeSkeletonConfigRequest(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = ChangeSkeletonConfigRequest()
-        x.Init(buf, n + offset)
-        return x
-
-    @classmethod
-    def GetRootAsChangeSkeletonConfigRequest(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # ChangeSkeletonConfigRequest
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-    # ChangeSkeletonConfigRequest
-    def Bone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
-        return 0
-
-    # ChangeSkeletonConfigRequest
-    def Value(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
-        return 0.0
-
-def ChangeSkeletonConfigRequestStart(builder):
-    builder.StartObject(2)
-
-def ChangeSkeletonConfigRequestAddBone(builder, bone):
-    builder.PrependUint8Slot(0, bone, 0)
-
-def ChangeSkeletonConfigRequestAddValue(builder, value):
-    builder.PrependFloat32Slot(1, value, 0.0)
-
-def ChangeSkeletonConfigRequestEnd(builder):
-    return builder.EndObject()
-
-
-
-class SerialDevice(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = SerialDevice()
-        x.Init(buf, n + offset)
-        return x
-
-    @classmethod
-    def GetRootAsSerialDevice(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # SerialDevice
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-    # SerialDevice
-    def Port(self):
+    # UnknownDeviceHandshakeNotification
+    def MacAddress(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
-    # SerialDevice
-    def Name(self):
+def UnknownDeviceHandshakeNotificationStart(builder):
+    builder.StartObject(1)
+
+def UnknownDeviceHandshakeNotificationAddMacAddress(builder, macAddress):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(macAddress), 0)
+
+def UnknownDeviceHandshakeNotificationEnd(builder):
+    return builder.EndObject()
+
+
+
+class AddUnknownDeviceRequest(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = AddUnknownDeviceRequest()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsAddUnknownDeviceRequest(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # AddUnknownDeviceRequest
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # AddUnknownDeviceRequest
+    def MacAddress(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+def AddUnknownDeviceRequestStart(builder):
+    builder.StartObject(1)
+
+def AddUnknownDeviceRequestAddMacAddress(builder, macAddress):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(macAddress), 0)
+
+def AddUnknownDeviceRequestEnd(builder):
+    return builder.EndObject()
+
+
+
+class ForgetDeviceRequest(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = ForgetDeviceRequest()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsForgetDeviceRequest(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # ForgetDeviceRequest
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # ForgetDeviceRequest
+    def MacAddress(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+def ForgetDeviceRequestStart(builder):
+    builder.StartObject(1)
+
+def ForgetDeviceRequestAddMacAddress(builder, macAddress):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(macAddress), 0)
+
+def ForgetDeviceRequestEnd(builder):
+    return builder.EndObject()
+
+
+
+class ChangeDongleSettingsRequest(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = ChangeDongleSettingsRequest()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsChangeDongleSettingsRequest(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # ChangeDongleSettingsRequest
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # ChangeDongleSettingsRequest
+    def DongleId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Uint16Flags, o + self._tab.Pos)
+        return 0
+
+    # ChangeDongleSettingsRequest
+    def DisplayName(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
         if o != 0:
             return self._tab.String(o + self._tab.Pos)
         return None
 
-    # SerialDevice
-    def Type(self):
+def ChangeDongleSettingsRequestStart(builder):
+    builder.StartObject(2)
+
+def ChangeDongleSettingsRequestAddDongleId(builder, dongleId):
+    builder.PrependUint16Slot(0, dongleId, 0)
+
+def ChangeDongleSettingsRequestAddDisplayName(builder, displayName):
+    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(displayName), 0)
+
+def ChangeDongleSettingsRequestEnd(builder):
+    return builder.EndObject()
+
+
+
+class ErrorReportingSettingsRequest(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = ErrorReportingSettingsRequest()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsErrorReportingSettingsRequest(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # ErrorReportingSettingsRequest
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+def ErrorReportingSettingsRequestStart(builder):
+    builder.StartObject(0)
+
+def ErrorReportingSettingsRequestEnd(builder):
+    return builder.EndObject()
+
+
+
+class ErrorReportingSettingsResponse(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = ErrorReportingSettingsResponse()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsErrorReportingSettingsResponse(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # ErrorReportingSettingsResponse
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # ErrorReportingSettingsResponse
+    def Consent(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
+        return 0
+
+    # Random id reports are attached to, not tied to the user's identity.
+    # ErrorReportingSettingsResponse
+    def UserId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # Random id of this server run, so gui and server reports of one run can be matched.
+    # ErrorReportingSettingsResponse
+    def SessionId(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
         if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
-        return 0
+            return self._tab.String(o + self._tab.Pos)
+        return None
 
-def SerialDeviceStart(builder):
+def ErrorReportingSettingsResponseStart(builder):
     builder.StartObject(3)
 
-def SerialDeviceAddPort(builder, port):
-    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(port), 0)
+def ErrorReportingSettingsResponseAddConsent(builder, consent):
+    builder.PrependUint8Slot(0, consent, 0)
 
-def SerialDeviceAddName(builder, name):
-    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(name), 0)
+def ErrorReportingSettingsResponseAddUserId(builder, userId):
+    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(userId), 0)
 
-def SerialDeviceAddType(builder, type):
-    builder.PrependUint8Slot(2, type, 0)
+def ErrorReportingSettingsResponseAddSessionId(builder, sessionId):
+    builder.PrependUOffsetTRelativeSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(sessionId), 0)
 
-def SerialDeviceEnd(builder):
+def ErrorReportingSettingsResponseEnd(builder):
     return builder.EndObject()
 
 
 
-class OpenSerialRequest(object):
+class ChangeErrorReportingSettingsRequest(object):
     __slots__ = ['_tab']
 
     @classmethod
     def GetRootAs(cls, buf, offset=0):
         n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = OpenSerialRequest()
+        x = ChangeErrorReportingSettingsRequest()
         x.Init(buf, n + offset)
         return x
 
     @classmethod
-    def GetRootAsOpenSerialRequest(cls, buf, offset=0):
+    def GetRootAsChangeErrorReportingSettingsRequest(cls, buf, offset=0):
         """This method is deprecated. Please switch to GetRootAs."""
         return cls.GetRootAs(buf, offset)
-    # OpenSerialRequest
+    # ChangeErrorReportingSettingsRequest
     def Init(self, buf, pos):
         self._tab = flatbuffers.table.Table(buf, pos)
 
-    # Automatically pick the first serial device available
-    # OpenSerialRequest
-    def Auto(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        if o != 0:
-            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
-        return False
-
-    # OpenSerialRequest
-    def Port(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
-        if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
-
-def OpenSerialRequestStart(builder):
-    builder.StartObject(2)
-
-def OpenSerialRequestAddAuto(builder, auto):
-    builder.PrependBoolSlot(0, auto, 0)
-
-def OpenSerialRequestAddPort(builder, port):
-    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(port), 0)
-
-def OpenSerialRequestEnd(builder):
-    return builder.EndObject()
-
-
-
-class CloseSerialRequest(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = CloseSerialRequest()
-        x.Init(buf, n + offset)
-        return x
-
-    @classmethod
-    def GetRootAsCloseSerialRequest(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # CloseSerialRequest
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-def CloseSerialRequestStart(builder):
-    builder.StartObject(0)
-
-def CloseSerialRequestEnd(builder):
-    return builder.EndObject()
-
-
-
-class SetWifiRequest(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = SetWifiRequest()
-        x.Init(buf, n + offset)
-        return x
-
-    @classmethod
-    def GetRootAsSetWifiRequest(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # SetWifiRequest
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-    # SetWifiRequest
-    def Ssid(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
-
-    # SetWifiRequest
-    def Password(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
-        if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
-
-def SetWifiRequestStart(builder):
-    builder.StartObject(2)
-
-def SetWifiRequestAddSsid(builder, ssid):
-    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(ssid), 0)
-
-def SetWifiRequestAddPassword(builder, password):
-    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(password), 0)
-
-def SetWifiRequestEnd(builder):
-    return builder.EndObject()
-
-
-
-class SerialUpdateResponse(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = SerialUpdateResponse()
-        x.Init(buf, n + offset)
-        return x
-
-    @classmethod
-    def GetRootAsSerialUpdateResponse(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # SerialUpdateResponse
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-    # SerialUpdateResponse
-    def Log(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
-
-    # SerialUpdateResponse
-    def Closed(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
-        if o != 0:
-            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
-        return False
-
-    # SerialUpdateResponse
-    def Device(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
-        if o != 0:
-            x = self._tab.Indirect(o + self._tab.Pos)
-            obj = SerialDevice()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
-
-def SerialUpdateResponseStart(builder):
-    builder.StartObject(3)
-
-def SerialUpdateResponseAddLog(builder, log):
-    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(log), 0)
-
-def SerialUpdateResponseAddClosed(builder, closed):
-    builder.PrependBoolSlot(1, closed, 0)
-
-def SerialUpdateResponseAddDevice(builder, device):
-    builder.PrependUOffsetTRelativeSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(device), 0)
-
-def SerialUpdateResponseEnd(builder):
-    return builder.EndObject()
-
-
-
-# Reboots the tracker connected to the serial monitor
-class SerialTrackerRebootRequest(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = SerialTrackerRebootRequest()
-        x.Init(buf, n + offset)
-        return x
-
-    @classmethod
-    def GetRootAsSerialTrackerRebootRequest(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # SerialTrackerRebootRequest
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-def SerialTrackerRebootRequestStart(builder):
-    builder.StartObject(0)
-
-def SerialTrackerRebootRequestEnd(builder):
-    return builder.EndObject()
-
-
-
-# Sends the GET INFO cmd to the current tracker on the serial monitor
-class SerialTrackerGetInfoRequest(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = SerialTrackerGetInfoRequest()
-        x.Init(buf, n + offset)
-        return x
-
-    @classmethod
-    def GetRootAsSerialTrackerGetInfoRequest(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # SerialTrackerGetInfoRequest
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-def SerialTrackerGetInfoRequestStart(builder):
-    builder.StartObject(0)
-
-def SerialTrackerGetInfoRequestEnd(builder):
-    return builder.EndObject()
-
-
-
-# Sends the FRST cmd to the currently connected Tracker over the Serial Monitor
-class SerialTrackerFactoryResetRequest(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = SerialTrackerFactoryResetRequest()
-        x.Init(buf, n + offset)
-        return x
-
-    @classmethod
-    def GetRootAsSerialTrackerFactoryResetRequest(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # SerialTrackerFactoryResetRequest
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-def SerialTrackerFactoryResetRequestStart(builder):
-    builder.StartObject(0)
-
-def SerialTrackerFactoryResetRequestEnd(builder):
-    return builder.EndObject()
-
-
-
-# Sends a custom cmd to the currently connected Tracker over the Serial Monitor
-class SerialTrackerCustomCommandRequest(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = SerialTrackerCustomCommandRequest()
-        x.Init(buf, n + offset)
-        return x
-
-    @classmethod
-    def GetRootAsSerialTrackerCustomCommandRequest(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # SerialTrackerCustomCommandRequest
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-    # SerialTrackerCustomCommandRequest
-    def Command(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
-
-def SerialTrackerCustomCommandRequestStart(builder):
-    builder.StartObject(1)
-
-def SerialTrackerCustomCommandRequestAddCommand(builder, command):
-    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(command), 0)
-
-def SerialTrackerCustomCommandRequestEnd(builder):
-    return builder.EndObject()
-
-
-
-class SerialDevicesRequest(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = SerialDevicesRequest()
-        x.Init(buf, n + offset)
-        return x
-
-    @classmethod
-    def GetRootAsSerialDevicesRequest(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # SerialDevicesRequest
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-def SerialDevicesRequestStart(builder):
-    builder.StartObject(0)
-
-def SerialDevicesRequestEnd(builder):
-    return builder.EndObject()
-
-
-
-class SerialDevicesResponse(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = SerialDevicesResponse()
-        x.Init(buf, n + offset)
-        return x
-
-    @classmethod
-    def GetRootAsSerialDevicesResponse(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # SerialDevicesResponse
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-    # SerialDevicesResponse
-    def Devices(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        if o != 0:
-            x = self._tab.Vector(o)
-            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
-            x = self._tab.Indirect(x)
-            obj = SerialDevice()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
-
-    # SerialDevicesResponse
-    def DevicesLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        if o != 0:
-            return self._tab.VectorLen(o)
-        return 0
-
-    # SerialDevicesResponse
-    def DevicesIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        return o == 0
-
-def SerialDevicesResponseStart(builder):
-    builder.StartObject(1)
-
-def SerialDevicesResponseAddDevices(builder, devices):
-    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(devices), 0)
-
-def SerialDevicesResponseStartDevicesVector(builder, numElems):
-    return builder.StartVector(4, numElems, 4)
-
-def SerialDevicesResponseCreateDevicesVector(builder, data):
-    return builder.CreateVectorOfTables(data)
-
-def SerialDevicesResponseEnd(builder):
-    return builder.EndObject()
-
-
-
-class NewSerialDeviceResponse(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = NewSerialDeviceResponse()
-        x.Init(buf, n + offset)
-        return x
-
-    @classmethod
-    def GetRootAsNewSerialDeviceResponse(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # NewSerialDeviceResponse
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-    # NewSerialDeviceResponse
-    def Device(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        if o != 0:
-            x = self._tab.Indirect(o + self._tab.Pos)
-            obj = SerialDevice()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
-
-def NewSerialDeviceResponseStart(builder):
-    builder.StartObject(1)
-
-def NewSerialDeviceResponseAddDevice(builder, device):
-    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(device), 0)
-
-def NewSerialDeviceResponseEnd(builder):
-    return builder.EndObject()
-
-
-
-class StartWifiProvisioningRequest(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = StartWifiProvisioningRequest()
-        x.Init(buf, n + offset)
-        return x
-
-    @classmethod
-    def GetRootAsStartWifiProvisioningRequest(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # StartWifiProvisioningRequest
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-    # StartWifiProvisioningRequest
-    def Ssid(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
-
-    # StartWifiProvisioningRequest
-    def Password(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
-        if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
-
-    # StartWifiProvisioningRequest
-    def Port(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
-        if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
-
-def StartWifiProvisioningRequestStart(builder):
-    builder.StartObject(3)
-
-def StartWifiProvisioningRequestAddSsid(builder, ssid):
-    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(ssid), 0)
-
-def StartWifiProvisioningRequestAddPassword(builder, password):
-    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(password), 0)
-
-def StartWifiProvisioningRequestAddPort(builder, port):
-    builder.PrependUOffsetTRelativeSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(port), 0)
-
-def StartWifiProvisioningRequestEnd(builder):
-    return builder.EndObject()
-
-
-
-class StopWifiProvisioningRequest(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = StopWifiProvisioningRequest()
-        x.Init(buf, n + offset)
-        return x
-
-    @classmethod
-    def GetRootAsStopWifiProvisioningRequest(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # StopWifiProvisioningRequest
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-def StopWifiProvisioningRequestStart(builder):
-    builder.StartObject(0)
-
-def StopWifiProvisioningRequestEnd(builder):
-    return builder.EndObject()
-
-
-
-class WifiProvisioningStatusResponse(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = WifiProvisioningStatusResponse()
-        x.Init(buf, n + offset)
-        return x
-
-    @classmethod
-    def GetRootAsWifiProvisioningStatusResponse(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # WifiProvisioningStatusResponse
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-    # WifiProvisioningStatusResponse
-    def Status(self):
+    # ChangeErrorReportingSettingsRequest
+    def Consent(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
         return 0
 
-def WifiProvisioningStatusResponseStart(builder):
+def ChangeErrorReportingSettingsRequestStart(builder):
     builder.StartObject(1)
 
-def WifiProvisioningStatusResponseAddStatus(builder, status):
-    builder.PrependUint8Slot(0, status, 0)
+def ChangeErrorReportingSettingsRequestAddConsent(builder, consent):
+    builder.PrependUint8Slot(0, consent, 0)
 
-def WifiProvisioningStatusResponseEnd(builder):
+def ChangeErrorReportingSettingsRequestEnd(builder):
     return builder.EndObject()
 
 
 
-class AutoBoneProcessRequest(object):
+class DriverSettingsRequest(object):
     __slots__ = ['_tab']
 
     @classmethod
     def GetRootAs(cls, buf, offset=0):
         n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = AutoBoneProcessRequest()
+        x = DriverSettingsRequest()
         x.Init(buf, n + offset)
         return x
 
     @classmethod
-    def GetRootAsAutoBoneProcessRequest(cls, buf, offset=0):
+    def GetRootAsDriverSettingsRequest(cls, buf, offset=0):
         """This method is deprecated. Please switch to GetRootAs."""
         return cls.GetRootAs(buf, offset)
-    # AutoBoneProcessRequest
+    # DriverSettingsRequest
     def Init(self, buf, pos):
         self._tab = flatbuffers.table.Table(buf, pos)
 
-    # AutoBoneProcessRequest
-    def ProcessType(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
-        return 0
-
-def AutoBoneProcessRequestStart(builder):
-    builder.StartObject(1)
-
-def AutoBoneProcessRequestAddProcessType(builder, processType):
-    builder.PrependUint8Slot(0, processType, 0)
-
-def AutoBoneProcessRequestEnd(builder):
-    return builder.EndObject()
-
-
-
-class AutoBoneProcessStatusResponse(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = AutoBoneProcessStatusResponse()
-        x.Init(buf, n + offset)
-        return x
-
-    @classmethod
-    def GetRootAsAutoBoneProcessStatusResponse(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # AutoBoneProcessStatusResponse
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-    # AutoBoneProcessStatusResponse
-    def ProcessType(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
-        return 0
-
-    # The current count. This value is -1 if there is nothing to report.
-    # AutoBoneProcessStatusResponse
-    def Current(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Uint32Flags, o + self._tab.Pos)
-        return 0
-
-    # The total count. This value is -1 if there is nothing to report.
-    # AutoBoneProcessStatusResponse
-    def Total(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Uint32Flags, o + self._tab.Pos)
-        return 0
-
-    # True if the operation has completed with any result, successful or not.
-    # AutoBoneProcessStatusResponse
-    def Completed(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
-        if o != 0:
-            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
-        return False
-
-    # True if the completed operation was successful, only observe if `completed` is true.
-    # AutoBoneProcessStatusResponse
-    def Success(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
-        if o != 0:
-            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
-        return False
-
-    # The time remaining in seconds. This value is -1 if there is nothing to report.
-    # AutoBoneProcessStatusResponse
-    def Eta(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
-        return 0.0
-
-def AutoBoneProcessStatusResponseStart(builder):
-    builder.StartObject(7)
-
-def AutoBoneProcessStatusResponseAddProcessType(builder, processType):
-    builder.PrependUint8Slot(0, processType, 0)
-
-def AutoBoneProcessStatusResponseAddCurrent(builder, current):
-    builder.PrependUint32Slot(2, current, 0)
-
-def AutoBoneProcessStatusResponseAddTotal(builder, total):
-    builder.PrependUint32Slot(3, total, 0)
-
-def AutoBoneProcessStatusResponseAddCompleted(builder, completed):
-    builder.PrependBoolSlot(4, completed, 0)
-
-def AutoBoneProcessStatusResponseAddSuccess(builder, success):
-    builder.PrependBoolSlot(5, success, 0)
-
-def AutoBoneProcessStatusResponseAddEta(builder, eta):
-    builder.PrependFloat32Slot(6, eta, 0.0)
-
-def AutoBoneProcessStatusResponseEnd(builder):
-    return builder.EndObject()
-
-
-
-class AutoBoneEpochResponse(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = AutoBoneEpochResponse()
-        x.Init(buf, n + offset)
-        return x
-
-    @classmethod
-    def GetRootAsAutoBoneEpochResponse(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # AutoBoneEpochResponse
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-    # AutoBoneEpochResponse
-    def CurrentEpoch(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Uint32Flags, o + self._tab.Pos)
-        return 0
-
-    # AutoBoneEpochResponse
-    def TotalEpochs(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Uint32Flags, o + self._tab.Pos)
-        return 0
-
-    # The current error value. This can be any positive number, where lower is better.
-    # AutoBoneEpochResponse
-    def EpochError(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
-        return 0.0
-
-    # A list of the current estimated body proportions.
-    # AutoBoneEpochResponse
-    def AdjustedSkeletonParts(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
-        if o != 0:
-            x = self._tab.Vector(o)
-            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
-            x = self._tab.Indirect(x)
-            obj = SkeletonPart()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
-
-    # AutoBoneEpochResponse
-    def AdjustedSkeletonPartsLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
-        if o != 0:
-            return self._tab.VectorLen(o)
-        return 0
-
-    # AutoBoneEpochResponse
-    def AdjustedSkeletonPartsIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
-        return o == 0
-
-def AutoBoneEpochResponseStart(builder):
-    builder.StartObject(4)
-
-def AutoBoneEpochResponseAddCurrentEpoch(builder, currentEpoch):
-    builder.PrependUint32Slot(0, currentEpoch, 0)
-
-def AutoBoneEpochResponseAddTotalEpochs(builder, totalEpochs):
-    builder.PrependUint32Slot(1, totalEpochs, 0)
-
-def AutoBoneEpochResponseAddEpochError(builder, epochError):
-    builder.PrependFloat32Slot(2, epochError, 0.0)
-
-def AutoBoneEpochResponseAddAdjustedSkeletonParts(builder, adjustedSkeletonParts):
-    builder.PrependUOffsetTRelativeSlot(3, flatbuffers.number_types.UOffsetTFlags.py_type(adjustedSkeletonParts), 0)
-
-def AutoBoneEpochResponseStartAdjustedSkeletonPartsVector(builder, numElems):
-    return builder.StartVector(4, numElems, 4)
-
-def AutoBoneEpochResponseCreateAdjustedSkeletonPartsVector(builder, data):
-    return builder.CreateVectorOfTables(data)
-
-def AutoBoneEpochResponseEnd(builder):
-    return builder.EndObject()
-
-
-
-# https://github.com/SlimeVR/SlimeVR-Server/blob/v0.8.3/server/src/main/java/dev/slimevr/config/AutoBoneConfig.kt
-class AutoBoneSettings(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = AutoBoneSettings()
-        x.Init(buf, n + offset)
-        return x
-
-    @classmethod
-    def GetRootAsAutoBoneSettings(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # AutoBoneSettings
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-    # AutoBoneSettings
-    def CursorIncrement(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
-        return None
-
-    # AutoBoneSettings
-    def MinDataDistance(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
-        return None
-
-    # AutoBoneSettings
-    def MaxDataDistance(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
-        return None
-
-    # AutoBoneSettings
-    def NumEpochs(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
-        return None
-
-    # AutoBoneSettings
-    def PrintEveryNumEpochs(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
-        return None
-
-    # AutoBoneSettings
-    def InitialAdjustRate(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
-        return None
-
-    # AutoBoneSettings
-    def AdjustRateDecay(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
-        return None
-
-    # AutoBoneSettings
-    def SlideErrorFactor(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(18))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
-        return None
-
-    # AutoBoneSettings
-    def OffsetSlideErrorFactor(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(20))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
-        return None
-
-    # AutoBoneSettings
-    def FootHeightOffsetErrorFactor(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(22))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
-        return None
-
-    # AutoBoneSettings
-    def BodyProportionErrorFactor(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(24))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
-        return None
-
-    # AutoBoneSettings
-    def HeightErrorFactor(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(26))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
-        return None
-
-    # AutoBoneSettings
-    def PositionErrorFactor(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(28))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
-        return None
-
-    # AutoBoneSettings
-    def PositionOffsetErrorFactor(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(30))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
-        return None
-
-    # AutoBoneSettings
-    def CalcInitError(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(32))
-        if o != 0:
-            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
-        return None
-
-    # AutoBoneSettings
-    def RandomizeFrameOrder(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(34))
-        if o != 0:
-            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
-        return None
-
-    # AutoBoneSettings
-    def ScaleEachStep(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(36))
-        if o != 0:
-            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
-        return None
-
-    # AutoBoneSettings
-    def SampleCount(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(38))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
-        return None
-
-    # AutoBoneSettings
-    def SampleRateMs(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(40))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Int64Flags, o + self._tab.Pos)
-        return None
-
-    # AutoBoneSettings
-    def SaveRecordings(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(42))
-        if o != 0:
-            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
-        return None
-
-    # AutoBoneSettings
-    def UseSkeletonHeight(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(44))
-        if o != 0:
-            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
-        return None
-
-    # AutoBoneSettings
-    def RandSeed(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(46))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Int64Flags, o + self._tab.Pos)
-        return None
-
-def AutoBoneSettingsStart(builder):
-    builder.StartObject(22)
-
-def AutoBoneSettingsAddCursorIncrement(builder, cursorIncrement):
-    builder.PrependInt32Slot(0, cursorIncrement, None)
-
-def AutoBoneSettingsAddMinDataDistance(builder, minDataDistance):
-    builder.PrependInt32Slot(1, minDataDistance, None)
-
-def AutoBoneSettingsAddMaxDataDistance(builder, maxDataDistance):
-    builder.PrependInt32Slot(2, maxDataDistance, None)
-
-def AutoBoneSettingsAddNumEpochs(builder, numEpochs):
-    builder.PrependInt32Slot(3, numEpochs, None)
-
-def AutoBoneSettingsAddPrintEveryNumEpochs(builder, printEveryNumEpochs):
-    builder.PrependInt32Slot(4, printEveryNumEpochs, None)
-
-def AutoBoneSettingsAddInitialAdjustRate(builder, initialAdjustRate):
-    builder.PrependFloat32Slot(5, initialAdjustRate, None)
-
-def AutoBoneSettingsAddAdjustRateDecay(builder, adjustRateDecay):
-    builder.PrependFloat32Slot(6, adjustRateDecay, None)
-
-def AutoBoneSettingsAddSlideErrorFactor(builder, slideErrorFactor):
-    builder.PrependFloat32Slot(7, slideErrorFactor, None)
-
-def AutoBoneSettingsAddOffsetSlideErrorFactor(builder, offsetSlideErrorFactor):
-    builder.PrependFloat32Slot(8, offsetSlideErrorFactor, None)
-
-def AutoBoneSettingsAddFootHeightOffsetErrorFactor(builder, footHeightOffsetErrorFactor):
-    builder.PrependFloat32Slot(9, footHeightOffsetErrorFactor, None)
-
-def AutoBoneSettingsAddBodyProportionErrorFactor(builder, bodyProportionErrorFactor):
-    builder.PrependFloat32Slot(10, bodyProportionErrorFactor, None)
-
-def AutoBoneSettingsAddHeightErrorFactor(builder, heightErrorFactor):
-    builder.PrependFloat32Slot(11, heightErrorFactor, None)
-
-def AutoBoneSettingsAddPositionErrorFactor(builder, positionErrorFactor):
-    builder.PrependFloat32Slot(12, positionErrorFactor, None)
-
-def AutoBoneSettingsAddPositionOffsetErrorFactor(builder, positionOffsetErrorFactor):
-    builder.PrependFloat32Slot(13, positionOffsetErrorFactor, None)
-
-def AutoBoneSettingsAddCalcInitError(builder, calcInitError):
-    builder.PrependBoolSlot(14, calcInitError, None)
-
-def AutoBoneSettingsAddRandomizeFrameOrder(builder, randomizeFrameOrder):
-    builder.PrependBoolSlot(15, randomizeFrameOrder, None)
-
-def AutoBoneSettingsAddScaleEachStep(builder, scaleEachStep):
-    builder.PrependBoolSlot(16, scaleEachStep, None)
-
-def AutoBoneSettingsAddSampleCount(builder, sampleCount):
-    builder.PrependInt32Slot(17, sampleCount, None)
-
-def AutoBoneSettingsAddSampleRateMs(builder, sampleRateMs):
-    builder.PrependInt64Slot(18, sampleRateMs, None)
-
-def AutoBoneSettingsAddSaveRecordings(builder, saveRecordings):
-    builder.PrependBoolSlot(19, saveRecordings, None)
-
-def AutoBoneSettingsAddUseSkeletonHeight(builder, useSkeletonHeight):
-    builder.PrependBoolSlot(20, useSkeletonHeight, None)
-
-def AutoBoneSettingsAddRandSeed(builder, randSeed):
-    builder.PrependInt64Slot(21, randSeed, None)
-
-def AutoBoneSettingsEnd(builder):
-    return builder.EndObject()
-
-
-
-class HeightRequest(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = HeightRequest()
-        x.Init(buf, n + offset)
-        return x
-
-    @classmethod
-    def GetRootAsHeightRequest(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # HeightRequest
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-def HeightRequestStart(builder):
+def DriverSettingsRequestStart(builder):
     builder.StartObject(0)
 
-def HeightRequestEnd(builder):
+def DriverSettingsRequestEnd(builder):
     return builder.EndObject()
 
 
 
-# Returns the current min and max positional tracker heights
-class HeightResponse(object):
+class DriverSettingsResponse(object):
     __slots__ = ['_tab']
 
     @classmethod
     def GetRootAs(cls, buf, offset=0):
         n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = HeightResponse()
+        x = DriverSettingsResponse()
         x.Init(buf, n + offset)
         return x
 
     @classmethod
-    def GetRootAsHeightResponse(cls, buf, offset=0):
+    def GetRootAsDriverSettingsResponse(cls, buf, offset=0):
         """This method is deprecated. Please switch to GetRootAs."""
         return cls.GetRootAs(buf, offset)
-    # HeightResponse
+    # DriverSettingsResponse
     def Init(self, buf, pos):
         self._tab = flatbuffers.table.Table(buf, pos)
 
-    # HeightResponse
-    def MinHeight(self):
+    # DriverSettingsResponse
+    def Enabled(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
         if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
-        return 0.0
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
 
-    # HeightResponse
-    def MaxHeight(self):
+    # DriverSettingsResponse
+    def SendVelocity(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
         if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
-        return 0.0
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
 
-def HeightResponseStart(builder):
+def DriverSettingsResponseStart(builder):
     builder.StartObject(2)
 
-def HeightResponseAddMinHeight(builder, minHeight):
-    builder.PrependFloat32Slot(0, minHeight, 0.0)
+def DriverSettingsResponseAddEnabled(builder, enabled):
+    builder.PrependBoolSlot(0, enabled, 0)
 
-def HeightResponseAddMaxHeight(builder, maxHeight):
-    builder.PrependFloat32Slot(1, maxHeight, 0.0)
+def DriverSettingsResponseAddSendVelocity(builder, sendVelocity):
+    builder.PrependBoolSlot(1, sendVelocity, 0)
 
-def HeightResponseEnd(builder):
+def DriverSettingsResponseEnd(builder):
     return builder.EndObject()
 
 
 
-# Applies the estimated proportions
-class AutoBoneApplyRequest(object):
+class ChangeDriverSettingsRequest(object):
     __slots__ = ['_tab']
 
     @classmethod
     def GetRootAs(cls, buf, offset=0):
         n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = AutoBoneApplyRequest()
+        x = ChangeDriverSettingsRequest()
         x.Init(buf, n + offset)
         return x
 
     @classmethod
-    def GetRootAsAutoBoneApplyRequest(cls, buf, offset=0):
+    def GetRootAsChangeDriverSettingsRequest(cls, buf, offset=0):
         """This method is deprecated. Please switch to GetRootAs."""
         return cls.GetRootAs(buf, offset)
-    # AutoBoneApplyRequest
+    # ChangeDriverSettingsRequest
     def Init(self, buf, pos):
         self._tab = flatbuffers.table.Table(buf, pos)
 
-def AutoBoneApplyRequestStart(builder):
-    builder.StartObject(0)
-
-def AutoBoneApplyRequestEnd(builder):
-    return builder.EndObject()
-
-
-
-# Stops the current recording, using it as far as it has been recorded
-class AutoBoneStopRecordingRequest(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = AutoBoneStopRecordingRequest()
-        x.Init(buf, n + offset)
-        return x
-
-    @classmethod
-    def GetRootAsAutoBoneStopRecordingRequest(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # AutoBoneStopRecordingRequest
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-def AutoBoneStopRecordingRequestStart(builder):
-    builder.StartObject(0)
-
-def AutoBoneStopRecordingRequestEnd(builder):
-    return builder.EndObject()
-
-
-
-# Cancels the current recording, aborting the process and discarding the data
-class AutoBoneCancelRecordingRequest(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = AutoBoneCancelRecordingRequest()
-        x.Init(buf, n + offset)
-        return x
-
-    @classmethod
-    def GetRootAsAutoBoneCancelRecordingRequest(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # AutoBoneCancelRecordingRequest
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-def AutoBoneCancelRecordingRequestStart(builder):
-    builder.StartObject(0)
-
-def AutoBoneCancelRecordingRequestEnd(builder):
-    return builder.EndObject()
-
-
-
-# Requests the current state of `OverlayDisplayModeResponse`.
-class OverlayDisplayModeRequest(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = OverlayDisplayModeRequest()
-        x.Init(buf, n + offset)
-        return x
-
-    @classmethod
-    def GetRootAsOverlayDisplayModeRequest(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # OverlayDisplayModeRequest
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-def OverlayDisplayModeRequestStart(builder):
-    builder.StartObject(0)
-
-def OverlayDisplayModeRequestEnd(builder):
-    return builder.EndObject()
-
-
-
-# Changes the state of the overlay's display mode.
-class OverlayDisplayModeChangeRequest(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = OverlayDisplayModeChangeRequest()
-        x.Init(buf, n + offset)
-        return x
-
-    @classmethod
-    def GetRootAsOverlayDisplayModeChangeRequest(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # OverlayDisplayModeChangeRequest
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-    # OverlayDisplayModeChangeRequest
-    def IsVisible(self):
+    # ChangeDriverSettingsRequest
+    def Enabled(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
         if o != 0:
             return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
-        return None
+        return False
 
-    # OverlayDisplayModeChangeRequest
-    def IsMirrored(self):
+    # ChangeDriverSettingsRequest
+    def SendVelocity(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
         if o != 0:
             return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
-        return None
+        return False
 
-def OverlayDisplayModeChangeRequestStart(builder):
+def ChangeDriverSettingsRequestStart(builder):
     builder.StartObject(2)
 
-def OverlayDisplayModeChangeRequestAddIsVisible(builder, isVisible):
-    builder.PrependBoolSlot(0, isVisible, None)
+def ChangeDriverSettingsRequestAddEnabled(builder, enabled):
+    builder.PrependBoolSlot(0, enabled, 0)
 
-def OverlayDisplayModeChangeRequestAddIsMirrored(builder, isMirrored):
-    builder.PrependBoolSlot(1, isMirrored, None)
+def ChangeDriverSettingsRequestAddSendVelocity(builder, sendVelocity):
+    builder.PrependBoolSlot(1, sendVelocity, 0)
 
-def OverlayDisplayModeChangeRequestEnd(builder):
+def ChangeDriverSettingsRequestEnd(builder):
     return builder.EndObject()
 
 
 
-# The current state of the overlay's display mode.
-class OverlayDisplayModeResponse(object):
+class DriverStatusRequest(object):
     __slots__ = ['_tab']
 
     @classmethod
     def GetRootAs(cls, buf, offset=0):
         n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = OverlayDisplayModeResponse()
+        x = DriverStatusRequest()
         x.Init(buf, n + offset)
         return x
 
     @classmethod
-    def GetRootAsOverlayDisplayModeResponse(cls, buf, offset=0):
+    def GetRootAsDriverStatusRequest(cls, buf, offset=0):
         """This method is deprecated. Please switch to GetRootAs."""
         return cls.GetRootAs(buf, offset)
-    # OverlayDisplayModeResponse
+    # DriverStatusRequest
     def Init(self, buf, pos):
         self._tab = flatbuffers.table.Table(buf, pos)
 
-    # OverlayDisplayModeResponse
-    def IsVisible(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        if o != 0:
-            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
-        return False
-
-    # OverlayDisplayModeResponse
-    def IsMirrored(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
-        if o != 0:
-            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
-        return False
-
-def OverlayDisplayModeResponseStart(builder):
-    builder.StartObject(2)
-
-def OverlayDisplayModeResponseAddIsVisible(builder, isVisible):
-    builder.PrependBoolSlot(0, isVisible, 0)
-
-def OverlayDisplayModeResponseAddIsMirrored(builder, isMirrored):
-    builder.PrependBoolSlot(1, isMirrored, 0)
-
-def OverlayDisplayModeResponseEnd(builder):
-    return builder.EndObject()
-
-
-
-# Allows to ask generic infos about the server,
-# like the local ip address, the version of the server, the java version,
-# the current working dir and other information we might want to show in the gui
-# for information/debug purposes
-class ServerInfosRequest(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = ServerInfosRequest()
-        x.Init(buf, n + offset)
-        return x
-
-    @classmethod
-    def GetRootAsServerInfosRequest(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # ServerInfosRequest
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-def ServerInfosRequestStart(builder):
+def DriverStatusRequestStart(builder):
     builder.StartObject(0)
 
-def ServerInfosRequestEnd(builder):
+def DriverStatusRequestEnd(builder):
     return builder.EndObject()
 
 
 
-# Holds the Server information, this is a basic table holding various information about the currently running server
-# like its local ip address (useful for standalone users so they can specify the ip of the server more easily) and any more
-# infos we might want to add in the future. (like java version, working dir, server version ....)
-# This only holds the local ip for now. But there will be other information added as we chose to display them on the gui for instance
-class ServerInfosResponse(object):
+class DriverStatusChangeResponse(object):
     __slots__ = ['_tab']
 
     @classmethod
     def GetRootAs(cls, buf, offset=0):
         n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = ServerInfosResponse()
+        x = DriverStatusChangeResponse()
         x.Init(buf, n + offset)
         return x
 
     @classmethod
-    def GetRootAsServerInfosResponse(cls, buf, offset=0):
+    def GetRootAsDriverStatusChangeResponse(cls, buf, offset=0):
         """This method is deprecated. Please switch to GetRootAs."""
         return cls.GetRootAs(buf, offset)
-    # ServerInfosResponse
+    # DriverStatusChangeResponse
     def Init(self, buf, pos):
         self._tab = flatbuffers.table.Table(buf, pos)
 
-    # ServerInfosResponse
-    def LocalIp(self):
+    # DriverStatusChangeResponse
+    def State(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
-
-def ServerInfosResponseStart(builder):
-    builder.StartObject(1)
-
-def ServerInfosResponseAddLocalIp(builder, localIp):
-    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(localIp), 0)
-
-def ServerInfosResponseEnd(builder):
-    return builder.EndObject()
-
-
-
-# Makes a temporary change to legtweaks. This is not saved to disk, and can be
-# cleared with `LegTweaksTmpClear`
-class LegTweaksTmpChange(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = LegTweaksTmpChange()
-        x.Init(buf, n + offset)
-        return x
-
-    @classmethod
-    def GetRootAsLegTweaksTmpChange(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # LegTweaksTmpChange
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-    # LegTweaksTmpChange
-    def FloorClip(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        if o != 0:
-            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
-        return None
-
-    # LegTweaksTmpChange
-    def SkatingCorrection(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
-        if o != 0:
-            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
-        return None
-
-    # LegTweaksTmpChange
-    def ToeSnap(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
-        if o != 0:
-            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
-        return None
-
-    # LegTweaksTmpChange
-    def FootPlant(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
-        if o != 0:
-            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
-        return None
-
-def LegTweaksTmpChangeStart(builder):
-    builder.StartObject(4)
-
-def LegTweaksTmpChangeAddFloorClip(builder, floorClip):
-    builder.PrependBoolSlot(0, floorClip, None)
-
-def LegTweaksTmpChangeAddSkatingCorrection(builder, skatingCorrection):
-    builder.PrependBoolSlot(1, skatingCorrection, None)
-
-def LegTweaksTmpChangeAddToeSnap(builder, toeSnap):
-    builder.PrependBoolSlot(2, toeSnap, None)
-
-def LegTweaksTmpChangeAddFootPlant(builder, footPlant):
-    builder.PrependBoolSlot(3, footPlant, None)
-
-def LegTweaksTmpChangeEnd(builder):
-    return builder.EndObject()
-
-
-
-# Clears the legtweaks temporary state back to what the config has.
-# Setting a field to `true` will reset that field.
-class LegTweaksTmpClear(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = LegTweaksTmpClear()
-        x.Init(buf, n + offset)
-        return x
-
-    @classmethod
-    def GetRootAsLegTweaksTmpClear(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # LegTweaksTmpClear
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-    # LegTweaksTmpClear
-    def FloorClip(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        if o != 0:
-            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
-        return False
-
-    # LegTweaksTmpClear
-    def SkatingCorrection(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
-        if o != 0:
-            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
-        return False
-
-    # LegTweaksTmpClear
-    def ToeSnap(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
-        if o != 0:
-            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
-        return False
-
-    # LegTweaksTmpClear
-    def FootPlant(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
-        if o != 0:
-            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
-        return False
-
-def LegTweaksTmpClearStart(builder):
-    builder.StartObject(4)
-
-def LegTweaksTmpClearAddFloorClip(builder, floorClip):
-    builder.PrependBoolSlot(0, floorClip, 0)
-
-def LegTweaksTmpClearAddSkatingCorrection(builder, skatingCorrection):
-    builder.PrependBoolSlot(1, skatingCorrection, 0)
-
-def LegTweaksTmpClearAddToeSnap(builder, toeSnap):
-    builder.PrependBoolSlot(2, toeSnap, 0)
-
-def LegTweaksTmpClearAddFootPlant(builder, footPlant):
-    builder.PrependBoolSlot(3, footPlant, 0)
-
-def LegTweaksTmpClearEnd(builder):
-    return builder.EndObject()
-
-
-
-# Tracker requires full reset
-class StatusTrackerReset(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = StatusTrackerReset()
-        x.Init(buf, n + offset)
-        return x
-
-    @classmethod
-    def GetRootAsStatusTrackerReset(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # StatusTrackerReset
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-    # StatusTrackerReset
-    def TrackerId(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        if o != 0:
-            x = self._tab.Vector(o)
-            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
-            x = self._tab.Indirect(x)
-            obj = TrackerId()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
-
-    # StatusTrackerReset
-    def TrackerIdLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        if o != 0:
-            return self._tab.VectorLen(o)
-        return 0
-
-    # StatusTrackerReset
-    def TrackerIdIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        return o == 0
-
-def StatusTrackerResetStart(builder):
-    builder.StartObject(1)
-
-def StatusTrackerResetAddTrackerId(builder, trackerId):
-    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(trackerId), 0)
-
-def StatusTrackerResetStartTrackerIdVector(builder, numElems):
-    return builder.StartVector(4, numElems, 4)
-
-def StatusTrackerResetCreateTrackerIdVector(builder, data):
-    return builder.CreateVectorOfTables(data)
-
-def StatusTrackerResetEnd(builder):
-    return builder.EndObject()
-
-
-
-# Trackers with error state
-class StatusTrackerError(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = StatusTrackerError()
-        x.Init(buf, n + offset)
-        return x
-
-    @classmethod
-    def GetRootAsStatusTrackerError(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # StatusTrackerError
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-    # StatusTrackerError
-    def TrackerId(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        if o != 0:
-            x = self._tab.Vector(o)
-            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
-            x = self._tab.Indirect(x)
-            obj = TrackerId()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
-
-    # StatusTrackerError
-    def TrackerIdLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        if o != 0:
-            return self._tab.VectorLen(o)
-        return 0
-
-    # StatusTrackerError
-    def TrackerIdIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        return o == 0
-
-def StatusTrackerErrorStart(builder):
-    builder.StartObject(1)
-
-def StatusTrackerErrorAddTrackerId(builder, trackerId):
-    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(trackerId), 0)
-
-def StatusTrackerErrorStartTrackerIdVector(builder, numElems):
-    return builder.StartVector(4, numElems, 4)
-
-def StatusTrackerErrorCreateTrackerIdVector(builder, data):
-    return builder.CreateVectorOfTables(data)
-
-def StatusTrackerErrorEnd(builder):
-    return builder.EndObject()
-
-
-
-# SteamVR bridge is disconnected
-class StatusSteamVRDisconnected(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = StatusSteamVRDisconnected()
-        x.Init(buf, n + offset)
-        return x
-
-    @classmethod
-    def GetRootAsStatusSteamVRDisconnected(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # StatusSteamVRDisconnected
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-    # Name of bridge in the server's config
-    # StatusSteamVRDisconnected
-    def BridgeSettingsName(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
-
-def StatusSteamVRDisconnectedStart(builder):
-    builder.StartObject(1)
-
-def StatusSteamVRDisconnectedAddBridgeSettingsName(builder, bridgeSettingsName):
-    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(bridgeSettingsName), 0)
-
-def StatusSteamVRDisconnectedEnd(builder):
-    return builder.EndObject()
-
-
-
-# There is an available HMD tracker and it's not assigned to head
-class StatusUnassignedHMD(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = StatusUnassignedHMD()
-        x.Init(buf, n + offset)
-        return x
-
-    @classmethod
-    def GetRootAsStatusUnassignedHMD(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # StatusUnassignedHMD
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-    # StatusUnassignedHMD
-    def TrackerId(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        if o != 0:
-            x = self._tab.Indirect(o + self._tab.Pos)
-            obj = TrackerId()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
-
-def StatusUnassignedHMDStart(builder):
-    builder.StartObject(1)
-
-def StatusUnassignedHMDAddTrackerId(builder, trackerId):
-    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(trackerId), 0)
-
-def StatusUnassignedHMDEnd(builder):
-    return builder.EndObject()
-
-
-
-# Request current statuses that we have
-class StatusSystemRequest(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = StatusSystemRequest()
-        x.Init(buf, n + offset)
-        return x
-
-    @classmethod
-    def GetRootAsStatusSystemRequest(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # StatusSystemRequest
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-def StatusSystemRequestStart(builder):
-    builder.StartObject(0)
-
-def StatusSystemRequestEnd(builder):
-    return builder.EndObject()
-
-
-
-# Response containing all current valid statuses
-class StatusSystemResponse(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = StatusSystemResponse()
-        x.Init(buf, n + offset)
-        return x
-
-    @classmethod
-    def GetRootAsStatusSystemResponse(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # StatusSystemResponse
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-    # StatusSystemResponse
-    def CurrentStatuses(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        if o != 0:
-            x = self._tab.Vector(o)
-            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
-            x = self._tab.Indirect(x)
-            obj = StatusMessage()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
-
-    # StatusSystemResponse
-    def CurrentStatusesLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        if o != 0:
-            return self._tab.VectorLen(o)
-        return 0
-
-    # StatusSystemResponse
-    def CurrentStatusesIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        return o == 0
-
-def StatusSystemResponseStart(builder):
-    builder.StartObject(1)
-
-def StatusSystemResponseAddCurrentStatuses(builder, currentStatuses):
-    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(currentStatuses), 0)
-
-def StatusSystemResponseStartCurrentStatusesVector(builder, numElems):
-    return builder.StartVector(4, numElems, 4)
-
-def StatusSystemResponseCreateCurrentStatusesVector(builder, data):
-    return builder.CreateVectorOfTables(data)
-
-def StatusSystemResponseEnd(builder):
-    return builder.EndObject()
-
-
-
-# When a new status appears, it's sent alone
-class StatusSystemUpdate(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = StatusSystemUpdate()
-        x.Init(buf, n + offset)
-        return x
-
-    @classmethod
-    def GetRootAsStatusSystemUpdate(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # StatusSystemUpdate
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-    # StatusSystemUpdate
-    def NewStatus(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        if o != 0:
-            x = self._tab.Indirect(o + self._tab.Pos)
-            obj = StatusMessage()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
-
-def StatusSystemUpdateStart(builder):
-    builder.StartObject(1)
-
-def StatusSystemUpdateAddNewStatus(builder, newStatus):
-    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(newStatus), 0)
-
-def StatusSystemUpdateEnd(builder):
-    return builder.EndObject()
-
-
-
-# When an status is fixed and it's removed, it's ID is sent
-class StatusSystemFixed(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = StatusSystemFixed()
-        x.Init(buf, n + offset)
-        return x
-
-    @classmethod
-    def GetRootAsStatusSystemFixed(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # StatusSystemFixed
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-    # StatusSystemFixed
-    def FixedStatusId(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Uint32Flags, o + self._tab.Pos)
-        return 0
-
-def StatusSystemFixedStart(builder):
-    builder.StartObject(1)
-
-def StatusSystemFixedAddFixedStatusId(builder, fixedStatusId):
-    builder.PrependUint32Slot(0, fixedStatusId, 0)
-
-def StatusSystemFixedEnd(builder):
-    return builder.EndObject()
-
-
-
-# When the server detects a public network profile
-class StatusPublicNetwork(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = StatusPublicNetwork()
-        x.Init(buf, n + offset)
-        return x
-
-    @classmethod
-    def GetRootAsStatusPublicNetwork(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # StatusPublicNetwork
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-    # names of the adapters set to public
-    # StatusPublicNetwork
-    def Adapters(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        if o != 0:
-            a = self._tab.Vector(o)
-            return self._tab.String(a + flatbuffers.number_types.UOffsetTFlags.py_type(j * 4))
-        return ""
-
-    # StatusPublicNetwork
-    def AdaptersLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        if o != 0:
-            return self._tab.VectorLen(o)
-        return 0
-
-    # StatusPublicNetwork
-    def AdaptersIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        return o == 0
-
-def StatusPublicNetworkStart(builder):
-    builder.StartObject(1)
-
-def StatusPublicNetworkAddAdapters(builder, adapters):
-    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(adapters), 0)
-
-def StatusPublicNetworkStartAdaptersVector(builder, numElems):
-    return builder.StartVector(4, numElems, 4)
-
-def StatusPublicNetworkCreateAdaptersVector(builder, data):
-    return builder.CreateVectorOfTables(data)
-
-def StatusPublicNetworkEnd(builder):
-    return builder.EndObject()
-
-
-
-# An status is some kind of warning sent by the server, it's mainly made for
-# showing problems with the server and need attention from the user.
-class StatusMessage(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = StatusMessage()
-        x.Init(buf, n + offset)
-        return x
-
-    @classmethod
-    def GetRootAsStatusMessage(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # StatusMessage
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-    # The status ID
-    # StatusMessage
-    def Id(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Uint32Flags, o + self._tab.Pos)
-        return 0
-
-    # This should be prioritized in the GUI in some way if true
-    # StatusMessage
-    def Prioritized(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
-        if o != 0:
-            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
-        return False
-
-    # StatusMessage
-    def DataType(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
         return 0
 
-    # StatusMessage
-    def Data(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
-        if o != 0:
-            from flatbuffers.table import Table
-            obj = Table(bytearray(), 0)
-            self._tab.Union(obj, o)
-            return obj
-        return None
-
-def StatusMessageStart(builder):
-    builder.StartObject(4)
-
-def StatusMessageAddId(builder, id):
-    builder.PrependUint32Slot(0, id, 0)
-
-def StatusMessageAddPrioritized(builder, prioritized):
-    builder.PrependBoolSlot(1, prioritized, 0)
-
-def StatusMessageAddDataType(builder, dataType):
-    builder.PrependUint8Slot(2, dataType, 0)
-
-def StatusMessageAddData(builder, data):
-    builder.PrependUOffsetTRelativeSlot(3, flatbuffers.number_types.UOffsetTFlags.py_type(data), 0)
-
-def StatusMessageEnd(builder):
-    return builder.EndObject()
-
-
-
-class SetPauseTrackingRequest(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = SetPauseTrackingRequest()
-        x.Init(buf, n + offset)
-        return x
-
-    @classmethod
-    def GetRootAsSetPauseTrackingRequest(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # SetPauseTrackingRequest
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-    # Pauses skeleton tracking if true, resumes skeleton tracking if false.
-    # SetPauseTrackingRequest
-    def PauseTracking(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        if o != 0:
-            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
-        return False
-
-def SetPauseTrackingRequestStart(builder):
+def DriverStatusChangeResponseStart(builder):
     builder.StartObject(1)
 
-def SetPauseTrackingRequestAddPauseTracking(builder, pauseTracking):
-    builder.PrependBoolSlot(0, pauseTracking, 0)
+def DriverStatusChangeResponseAddState(builder, state):
+    builder.PrependUint8Slot(0, state, 0)
 
-def SetPauseTrackingRequestEnd(builder):
-    return builder.EndObject()
-
-
-
-# Clears mounting reset data, defaulting to the manually set mounting orientations
-class ClearMountingResetRequest(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = ClearMountingResetRequest()
-        x.Init(buf, n + offset)
-        return x
-
-    @classmethod
-    def GetRootAsClearMountingResetRequest(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # ClearMountingResetRequest
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-def ClearMountingResetRequestStart(builder):
-    builder.StartObject(0)
-
-def ClearMountingResetRequestEnd(builder):
-    return builder.EndObject()
-
-
-
-# Used for the server to save a file and have it prompt in the user side
-class SaveFileNotification(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = SaveFileNotification()
-        x.Init(buf, n + offset)
-        return x
-
-    @classmethod
-    def GetRootAsSaveFileNotification(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # SaveFileNotification
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-    # Binary data of the file
-    # SaveFileNotification
-    def Data(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        if o != 0:
-            a = self._tab.Vector(o)
-            return self._tab.Get(flatbuffers.number_types.Uint8Flags, a + flatbuffers.number_types.UOffsetTFlags.py_type(j * 1))
-        return 0
-
-    # SaveFileNotification
-    def DataAsNumpy(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        if o != 0:
-            return self._tab.GetVectorAsNumpy(flatbuffers.number_types.Uint8Flags, o)
-        return 0
-
-    # SaveFileNotification
-    def DataLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        if o != 0:
-            return self._tab.VectorLen(o)
-        return 0
-
-    # SaveFileNotification
-    def DataIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        return o == 0
-
-    # MIME type of file if one exists, use `file_extension` otherwise
-    # SaveFileNotification
-    def MimeType(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
-        if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
-
-    # Use MIME type preferably if one exists
-    # SaveFileNotification
-    def FileExtension(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
-        if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
-
-    # Directory recommended to save the file on
-    # SaveFileNotification
-    def ExpectedDir(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
-        return None
-
-    # Recommended filename
-    # SaveFileNotification
-    def ExpectedFilename(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
-        if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
-
-def SaveFileNotificationStart(builder):
-    builder.StartObject(5)
-
-def SaveFileNotificationAddData(builder, data):
-    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(data), 0)
-
-def SaveFileNotificationStartDataVector(builder, numElems):
-    return builder.StartVector(1, numElems, 1)
-
-def SaveFileNotificationCreateDataVector(builder, data):
-    data = list(data)
-    builder.StartVector(1, len(data), 1)
-    for item in reversed(data):
-        builder.PrependUint8(item)
-    return builder.EndVector()
-
-def SaveFileNotificationAddMimeType(builder, mimeType):
-    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(mimeType), 0)
-
-def SaveFileNotificationAddFileExtension(builder, fileExtension):
-    builder.PrependUOffsetTRelativeSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(fileExtension), 0)
-
-def SaveFileNotificationAddExpectedDir(builder, expectedDir):
-    builder.PrependUint8Slot(3, expectedDir, None)
-
-def SaveFileNotificationAddExpectedFilename(builder, expectedFilename):
-    builder.PrependUOffsetTRelativeSlot(4, flatbuffers.number_types.UOffsetTFlags.py_type(expectedFilename), 0)
-
-def SaveFileNotificationEnd(builder):
+def DriverStatusChangeResponseEnd(builder):
     return builder.EndObject()
 
 
@@ -8280,6 +4816,42 @@ def SerialDevicePortAddPort(builder, port):
     builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(port), 0)
 
 def SerialDevicePortEnd(builder):
+    return builder.EndObject()
+
+
+
+class FirmwareDeviceIdTable(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = FirmwareDeviceIdTable()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsFirmwareDeviceIdTable(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # FirmwareDeviceIdTable
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # FirmwareDeviceIdTable
+    def Id(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Uint16Flags, o + self._tab.Pos)
+        return 0
+
+def FirmwareDeviceIdTableStart(builder):
+    builder.StartObject(1)
+
+def FirmwareDeviceIdTableAddId(builder, id):
+    builder.PrependUint16Slot(0, id, 0)
+
+def FirmwareDeviceIdTableEnd(builder):
     return builder.EndObject()
 
 
@@ -8411,16 +4983,13 @@ class OTAFirmwareUpdate(object):
     def Init(self, buf, pos):
         self._tab = flatbuffers.table.Table(buf, pos)
 
-    # id of the device, this refer to the actual DeviceId from the protocol
+    # Id of the device
     # OTAFirmwareUpdate
     def DeviceId(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
         if o != 0:
-            x = o + self._tab.Pos
-            obj = DeviceId()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
+            return self._tab.Get(flatbuffers.number_types.Uint16Flags, o + self._tab.Pos)
+        return 0
 
     # A table containing the url and offset of the firmware bin file
     # OTAFirmwareUpdate
@@ -8437,7 +5006,7 @@ def OTAFirmwareUpdateStart(builder):
     builder.StartObject(2)
 
 def OTAFirmwareUpdateAddDeviceId(builder, deviceId):
-    builder.PrependStructSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(deviceId), 0)
+    builder.PrependUint16Slot(0, deviceId, 0)
 
 def OTAFirmwareUpdateAddFirmwarePart(builder, firmwarePart):
     builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(firmwarePart), 0)
@@ -8651,6 +5220,2491 @@ def FirmwareUpdateStopQueuesRequestEnd(builder):
 
 
 
+class StartUserHeightCalibration(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = StartUserHeightCalibration()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsStartUserHeightCalibration(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # StartUserHeightCalibration
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+def StartUserHeightCalibrationStart(builder):
+    builder.StartObject(0)
+
+def StartUserHeightCalibrationEnd(builder):
+    return builder.EndObject()
+
+
+
+class CancelUserHeightCalibration(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = CancelUserHeightCalibration()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsCancelUserHeightCalibration(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # CancelUserHeightCalibration
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+def CancelUserHeightCalibrationStart(builder):
+    builder.StartObject(0)
+
+def CancelUserHeightCalibrationEnd(builder):
+    return builder.EndObject()
+
+
+
+class UserHeightRecordingStatusResponse(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = UserHeightRecordingStatusResponse()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsUserHeightRecordingStatusResponse(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # UserHeightRecordingStatusResponse
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # UserHeightRecordingStatusResponse
+    def HeadHeight(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
+        return 0.0
+
+    # UserHeightRecordingStatusResponse
+    def Status(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
+        return 0
+
+def UserHeightRecordingStatusResponseStart(builder):
+    builder.StartObject(2)
+
+def UserHeightRecordingStatusResponseAddHeadHeight(builder, headHeight):
+    builder.PrependFloat32Slot(0, headHeight, 0.0)
+
+def UserHeightRecordingStatusResponseAddStatus(builder, status):
+    builder.PrependUint8Slot(1, status, 0)
+
+def UserHeightRecordingStatusResponseEnd(builder):
+    return builder.EndObject()
+
+
+
+class Keybind(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = Keybind()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsKeybind(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # Keybind
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # Keybind
+    def KeybindId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
+        return 0
+
+    # Keybind
+    def KeybindNameId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # Keybind
+    def KeybindValue(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # Keybind
+    def KeybindDelay(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
+        return 0.0
+
+def KeybindStart(builder):
+    builder.StartObject(4)
+
+def KeybindAddKeybindId(builder, keybindId):
+    builder.PrependUint8Slot(0, keybindId, 0)
+
+def KeybindAddKeybindNameId(builder, keybindNameId):
+    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(keybindNameId), 0)
+
+def KeybindAddKeybindValue(builder, keybindValue):
+    builder.PrependUOffsetTRelativeSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(keybindValue), 0)
+
+def KeybindAddKeybindDelay(builder, keybindDelay):
+    builder.PrependFloat32Slot(3, keybindDelay, 0.0)
+
+def KeybindEnd(builder):
+    return builder.EndObject()
+
+
+
+# Requests specified keybind eg. FULL_RESET -> KeybindResponse sends the keybind back to gui
+class KeybindRequest(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = KeybindRequest()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsKeybindRequest(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # KeybindRequest
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # KeybindRequest
+    def KeybindId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
+        return 0
+
+def KeybindRequestStart(builder):
+    builder.StartObject(1)
+
+def KeybindRequestAddKeybindId(builder, keybindId):
+    builder.PrependUint8Slot(0, keybindId, 0)
+
+def KeybindRequestEnd(builder):
+    return builder.EndObject()
+
+
+
+# Returns keybinds for displaying in gui
+class KeybindResponse(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = KeybindResponse()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsKeybindResponse(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # KeybindResponse
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # KeybindResponse
+    def Keybind(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            x = self._tab.Vector(o)
+            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
+            x = self._tab.Indirect(x)
+            obj = Keybind()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+    # KeybindResponse
+    def KeybindLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # KeybindResponse
+    def KeybindIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        return o == 0
+
+    # KeybindResponse
+    def DefaultKeybinds(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            x = self._tab.Vector(o)
+            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
+            x = self._tab.Indirect(x)
+            obj = Keybind()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+    # KeybindResponse
+    def DefaultKeybindsLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # KeybindResponse
+    def DefaultKeybindsIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        return o == 0
+
+    # KeybindResponse
+    def Support(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
+        return 0
+
+def KeybindResponseStart(builder):
+    builder.StartObject(3)
+
+def KeybindResponseAddKeybind(builder, keybind):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(keybind), 0)
+
+def KeybindResponseStartKeybindVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
+
+def KeybindResponseCreateKeybindVector(builder, data):
+    return builder.CreateVectorOfTables(data)
+
+def KeybindResponseAddDefaultKeybinds(builder, defaultKeybinds):
+    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(defaultKeybinds), 0)
+
+def KeybindResponseStartDefaultKeybindsVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
+
+def KeybindResponseCreateDefaultKeybindsVector(builder, data):
+    return builder.CreateVectorOfTables(data)
+
+def KeybindResponseAddSupport(builder, support):
+    builder.PrependUint8Slot(2, support, 0)
+
+def KeybindResponseEnd(builder):
+    return builder.EndObject()
+
+
+
+class ChangeKeybindRequest(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = ChangeKeybindRequest()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsChangeKeybindRequest(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # ChangeKeybindRequest
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # ChangeKeybindRequest
+    def Keybind(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            x = self._tab.Indirect(o + self._tab.Pos)
+            obj = Keybind()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+def ChangeKeybindRequestStart(builder):
+    builder.StartObject(1)
+
+def ChangeKeybindRequestAddKeybind(builder, keybind):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(keybind), 0)
+
+def ChangeKeybindRequestEnd(builder):
+    return builder.EndObject()
+
+
+
+# Opens the system settings page where the compositor's global shortcuts are configured.
+# Only meaningful when KeybindSupport is SYSTEM_MANAGED.
+class OpenKeybindSettingsRequest(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = OpenKeybindSettingsRequest()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsOpenKeybindSettingsRequest(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # OpenKeybindSettingsRequest
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+def OpenKeybindSettingsRequestStart(builder):
+    builder.StartObject(0)
+
+def OpenKeybindSettingsRequestEnd(builder):
+    return builder.EndObject()
+
+
+
+class OpenKeybindSettingsResponse(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = OpenKeybindSettingsResponse()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsOpenKeybindSettingsResponse(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # OpenKeybindSettingsResponse
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # OpenKeybindSettingsResponse
+    def Success(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
+
+def OpenKeybindSettingsResponseStart(builder):
+    builder.StartObject(1)
+
+def OpenKeybindSettingsResponseAddSuccess(builder, success):
+    builder.PrependBoolSlot(0, success, 0)
+
+def OpenKeybindSettingsResponseEnd(builder):
+    return builder.EndObject()
+
+
+
+# Tells the server the gui keybind recorder is open, so the server suppresses keybind
+# actions and instead reports which keybind was pressed (see KeybindActivatedResponse).
+# This lets the gui detect a combo already grabbed by the compositor, which never reaches
+# the web view as a keypress.
+class SetKeybindRecordingRequest(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = SetKeybindRecordingRequest()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsSetKeybindRecordingRequest(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # SetKeybindRecordingRequest
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # SetKeybindRecordingRequest
+    def Recording(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
+
+def SetKeybindRecordingRequestStart(builder):
+    builder.StartObject(1)
+
+def SetKeybindRecordingRequestAddRecording(builder, recording):
+    builder.PrependBoolSlot(0, recording, 0)
+
+def SetKeybindRecordingRequestEnd(builder):
+    return builder.EndObject()
+
+
+
+# Sent while recording when a keybind fires, so the gui can flag the combo as already used.
+class KeybindActivatedResponse(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = KeybindActivatedResponse()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsKeybindActivatedResponse(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # KeybindActivatedResponse
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # KeybindActivatedResponse
+    def KeybindId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
+        return 0
+
+def KeybindActivatedResponseStart(builder):
+    builder.StartObject(1)
+
+def KeybindActivatedResponseAddKeybindId(builder, keybindId):
+    builder.PrependUint8Slot(0, keybindId, 0)
+
+def KeybindActivatedResponseEnd(builder):
+    return builder.EndObject()
+
+
+
+# Requests the current state of `OverlayDisplayModeResponse`.
+class OverlayDisplayModeRequest(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = OverlayDisplayModeRequest()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsOverlayDisplayModeRequest(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # OverlayDisplayModeRequest
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+def OverlayDisplayModeRequestStart(builder):
+    builder.StartObject(0)
+
+def OverlayDisplayModeRequestEnd(builder):
+    return builder.EndObject()
+
+
+
+# Changes the state of the overlay's display mode.
+class OverlayDisplayModeChangeRequest(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = OverlayDisplayModeChangeRequest()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsOverlayDisplayModeChangeRequest(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # OverlayDisplayModeChangeRequest
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # OverlayDisplayModeChangeRequest
+    def IsVisible(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return None
+
+    # OverlayDisplayModeChangeRequest
+    def IsMirrored(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return None
+
+def OverlayDisplayModeChangeRequestStart(builder):
+    builder.StartObject(2)
+
+def OverlayDisplayModeChangeRequestAddIsVisible(builder, isVisible):
+    builder.PrependBoolSlot(0, isVisible, None)
+
+def OverlayDisplayModeChangeRequestAddIsMirrored(builder, isMirrored):
+    builder.PrependBoolSlot(1, isMirrored, None)
+
+def OverlayDisplayModeChangeRequestEnd(builder):
+    return builder.EndObject()
+
+
+
+# The current state of the overlay's display mode.
+class OverlayDisplayModeResponse(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = OverlayDisplayModeResponse()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsOverlayDisplayModeResponse(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # OverlayDisplayModeResponse
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # OverlayDisplayModeResponse
+    def IsVisible(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
+
+    # OverlayDisplayModeResponse
+    def IsMirrored(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
+
+def OverlayDisplayModeResponseStart(builder):
+    builder.StartObject(2)
+
+def OverlayDisplayModeResponseAddIsVisible(builder, isVisible):
+    builder.PrependBoolSlot(0, isVisible, 0)
+
+def OverlayDisplayModeResponseAddIsMirrored(builder, isMirrored):
+    builder.PrependBoolSlot(1, isMirrored, 0)
+
+def OverlayDisplayModeResponseEnd(builder):
+    return builder.EndObject()
+
+
+
+class StartWifiProvisioningRequest(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = StartWifiProvisioningRequest()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsStartWifiProvisioningRequest(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # StartWifiProvisioningRequest
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # StartWifiProvisioningRequest
+    def Ssid(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # StartWifiProvisioningRequest
+    def Password(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+def StartWifiProvisioningRequestStart(builder):
+    builder.StartObject(2)
+
+def StartWifiProvisioningRequestAddSsid(builder, ssid):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(ssid), 0)
+
+def StartWifiProvisioningRequestAddPassword(builder, password):
+    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(password), 0)
+
+def StartWifiProvisioningRequestEnd(builder):
+    return builder.EndObject()
+
+
+
+class StopWifiProvisioningRequest(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = StopWifiProvisioningRequest()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsStopWifiProvisioningRequest(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # StopWifiProvisioningRequest
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+def StopWifiProvisioningRequestStart(builder):
+    builder.StartObject(0)
+
+def StopWifiProvisioningRequestEnd(builder):
+    return builder.EndObject()
+
+
+
+class StartWifiScanRequest(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = StartWifiScanRequest()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsStartWifiScanRequest(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # StartWifiScanRequest
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+def StartWifiScanRequestStart(builder):
+    builder.StartObject(0)
+
+def StartWifiScanRequestEnd(builder):
+    return builder.EndObject()
+
+
+
+class StopWifiScanRequest(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = StopWifiScanRequest()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsStopWifiScanRequest(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # StopWifiScanRequest
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+def StopWifiScanRequestStart(builder):
+    builder.StartObject(0)
+
+def StopWifiScanRequestEnd(builder):
+    return builder.EndObject()
+
+
+
+class WifiNetwork(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = WifiNetwork()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsWifiNetwork(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # WifiNetwork
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # WifiNetwork
+    def Ssid(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # WifiNetwork
+    def Rssi(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int8Flags, o + self._tab.Pos)
+        return 0
+
+    # WifiNetwork
+    def AuthMode(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
+        return 0
+
+def WifiNetworkStart(builder):
+    builder.StartObject(3)
+
+def WifiNetworkAddSsid(builder, ssid):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(ssid), 0)
+
+def WifiNetworkAddRssi(builder, rssi):
+    builder.PrependInt8Slot(1, rssi, 0)
+
+def WifiNetworkAddAuthMode(builder, authMode):
+    builder.PrependUint8Slot(2, authMode, 0)
+
+def WifiNetworkEnd(builder):
+    return builder.EndObject()
+
+
+
+class WifiScanStatusResponse(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = WifiScanStatusResponse()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsWifiScanStatusResponse(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # WifiScanStatusResponse
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # WifiScanStatusResponse
+    def Status(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
+        return 0
+
+    # WifiScanStatusResponse
+    def Networks(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            x = self._tab.Vector(o)
+            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
+            x = self._tab.Indirect(x)
+            obj = WifiNetwork()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+    # WifiScanStatusResponse
+    def NetworksLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # WifiScanStatusResponse
+    def NetworksIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        return o == 0
+
+def WifiScanStatusResponseStart(builder):
+    builder.StartObject(2)
+
+def WifiScanStatusResponseAddStatus(builder, status):
+    builder.PrependUint8Slot(0, status, 0)
+
+def WifiScanStatusResponseAddNetworks(builder, networks):
+    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(networks), 0)
+
+def WifiScanStatusResponseStartNetworksVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
+
+def WifiScanStatusResponseCreateNetworksVector(builder, data):
+    return builder.CreateVectorOfTables(data)
+
+def WifiScanStatusResponseEnd(builder):
+    return builder.EndObject()
+
+
+
+class TrackerProvisioningState(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = TrackerProvisioningState()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsTrackerProvisioningState(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # TrackerProvisioningState
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # TrackerProvisioningState
+    def Port(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # TrackerProvisioningState
+    def MacAddress(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # TrackerProvisioningState
+    def Status(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
+        return 0
+
+def TrackerProvisioningStateStart(builder):
+    builder.StartObject(3)
+
+def TrackerProvisioningStateAddPort(builder, port):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(port), 0)
+
+def TrackerProvisioningStateAddMacAddress(builder, macAddress):
+    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(macAddress), 0)
+
+def TrackerProvisioningStateAddStatus(builder, status):
+    builder.PrependUint8Slot(2, status, 0)
+
+def TrackerProvisioningStateEnd(builder):
+    return builder.EndObject()
+
+
+
+class WifiProvisioningStatusResponse(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = WifiProvisioningStatusResponse()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsWifiProvisioningStatusResponse(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # WifiProvisioningStatusResponse
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # WifiProvisioningStatusResponse
+    def Trackers(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            x = self._tab.Vector(o)
+            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
+            x = self._tab.Indirect(x)
+            obj = TrackerProvisioningState()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+    # WifiProvisioningStatusResponse
+    def TrackersLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # WifiProvisioningStatusResponse
+    def TrackersIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        return o == 0
+
+def WifiProvisioningStatusResponseStart(builder):
+    builder.StartObject(1)
+
+def WifiProvisioningStatusResponseAddTrackers(builder, trackers):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(trackers), 0)
+
+def WifiProvisioningStatusResponseStartTrackersVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
+
+def WifiProvisioningStatusResponseCreateTrackersVector(builder, data):
+    return builder.CreateVectorOfTables(data)
+
+def WifiProvisioningStatusResponseEnd(builder):
+    return builder.EndObject()
+
+
+
+class ResetRequest(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = ResetRequest()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsResetRequest(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # ResetRequest
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # ResetRequest
+    def ResetType(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
+        return 0
+
+    # Which body parts to reset. Server handles it if empty (usually all)
+    # ResetRequest
+    def BodyParts(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            a = self._tab.Vector(o)
+            return self._tab.Get(flatbuffers.number_types.Uint8Flags, a + flatbuffers.number_types.UOffsetTFlags.py_type(j * 1))
+        return 0
+
+    # ResetRequest
+    def BodyPartsAsNumpy(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return self._tab.GetVectorAsNumpy(flatbuffers.number_types.Uint8Flags, o)
+        return 0
+
+    # ResetRequest
+    def BodyPartsLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # ResetRequest
+    def BodyPartsIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        return o == 0
+
+    # ResetRequest
+    def Delay(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
+        return None
+
+def ResetRequestStart(builder):
+    builder.StartObject(3)
+
+def ResetRequestAddResetType(builder, resetType):
+    builder.PrependUint8Slot(0, resetType, 0)
+
+def ResetRequestAddBodyParts(builder, bodyParts):
+    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(bodyParts), 0)
+
+def ResetRequestStartBodyPartsVector(builder, numElems):
+    return builder.StartVector(1, numElems, 1)
+
+def ResetRequestCreateBodyPartsVector(builder, data):
+    data = list(data)
+    builder.StartVector(1, len(data), 1)
+    for item in reversed(data):
+        builder.PrependUint8(item)
+    return builder.EndVector()
+
+def ResetRequestAddDelay(builder, delay):
+    builder.PrependFloat32Slot(2, delay, None)
+
+def ResetRequestEnd(builder):
+    return builder.EndObject()
+
+
+
+# A reset that runs after a delay (full, yaw and pose mounting)
+class CountdownDetail(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = CountdownDetail()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsCountdownDetail(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # CountdownDetail
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # Seconds passed since the start of the reset, equal to 'duration' when it is done
+    # CountdownDetail
+    def Progress(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+    # CountdownDetail
+    def Duration(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return 0
+
+def CountdownDetailStart(builder):
+    builder.StartObject(2)
+
+def CountdownDetailAddProgress(builder, progress):
+    builder.PrependInt32Slot(0, progress, 0)
+
+def CountdownDetailAddDuration(builder, duration):
+    builder.PrependInt32Slot(1, duration, 0)
+
+def CountdownDetailEnd(builder):
+    return builder.EndObject()
+
+
+
+# A step mounting session
+class StepMountingDetail(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = StepMountingDetail()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsStepMountingDetail(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # StepMountingDetail
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # StepMountingDetail
+    def Status(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
+        return 0
+
+def StepMountingDetailStart(builder):
+    builder.StartObject(1)
+
+def StepMountingDetailAddStatus(builder, status):
+    builder.PrependUint8Slot(0, status, 0)
+
+def StepMountingDetailEnd(builder):
+    return builder.EndObject()
+
+
+
+class ResetStatusResponse(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = ResetStatusResponse()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsResetStatusResponse(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # ResetStatusResponse
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # ResetStatusResponse
+    def ResetType(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
+        return 0
+
+    # ResetStatusResponse
+    def Lifecycle(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
+        return 0
+
+    # The body parts reset / being reset
+    # ResetStatusResponse
+    def BodyParts(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            a = self._tab.Vector(o)
+            return self._tab.Get(flatbuffers.number_types.Uint8Flags, a + flatbuffers.number_types.UOffsetTFlags.py_type(j * 1))
+        return 0
+
+    # ResetStatusResponse
+    def BodyPartsAsNumpy(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            return self._tab.GetVectorAsNumpy(flatbuffers.number_types.Uint8Flags, o)
+        return 0
+
+    # ResetStatusResponse
+    def BodyPartsLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # ResetStatusResponse
+    def BodyPartsIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        return o == 0
+
+    # ResetStatusResponse
+    def DetailType(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
+        return 0
+
+    # ResetStatusResponse
+    def Detail(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
+        if o != 0:
+            from flatbuffers.table import Table
+            obj = Table(bytearray(), 0)
+            self._tab.Union(obj, o)
+            return obj
+        return None
+
+def ResetStatusResponseStart(builder):
+    builder.StartObject(5)
+
+def ResetStatusResponseAddResetType(builder, resetType):
+    builder.PrependUint8Slot(0, resetType, 0)
+
+def ResetStatusResponseAddLifecycle(builder, lifecycle):
+    builder.PrependUint8Slot(1, lifecycle, 0)
+
+def ResetStatusResponseAddBodyParts(builder, bodyParts):
+    builder.PrependUOffsetTRelativeSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(bodyParts), 0)
+
+def ResetStatusResponseStartBodyPartsVector(builder, numElems):
+    return builder.StartVector(1, numElems, 1)
+
+def ResetStatusResponseCreateBodyPartsVector(builder, data):
+    data = list(data)
+    builder.StartVector(1, len(data), 1)
+    for item in reversed(data):
+        builder.PrependUint8(item)
+    return builder.EndVector()
+
+def ResetStatusResponseAddDetailType(builder, detailType):
+    builder.PrependUint8Slot(3, detailType, 0)
+
+def ResetStatusResponseAddDetail(builder, detail):
+    builder.PrependUOffsetTRelativeSlot(4, flatbuffers.number_types.UOffsetTFlags.py_type(detail), 0)
+
+def ResetStatusResponseEnd(builder):
+    return builder.EndObject()
+
+
+
+# Cancels the running reset, if any
+class CancelResetRequest(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = CancelResetRequest()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsCancelResetRequest(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # CancelResetRequest
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+def CancelResetRequestStart(builder):
+    builder.StartObject(0)
+
+def CancelResetRequestEnd(builder):
+    return builder.EndObject()
+
+
+
+# Clears mounting reset data, defaulting to the manually set mounting orientations
+class ClearMountingResetRequest(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = ClearMountingResetRequest()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsClearMountingResetRequest(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # ClearMountingResetRequest
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+def ClearMountingResetRequestStart(builder):
+    builder.StartObject(0)
+
+def ClearMountingResetRequestEnd(builder):
+    return builder.EndObject()
+
+
+
+class ResetsSettingsRequest(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = ResetsSettingsRequest()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsResetsSettingsRequest(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # ResetsSettingsRequest
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+def ResetsSettingsRequestStart(builder):
+    builder.StartObject(0)
+
+def ResetsSettingsRequestEnd(builder):
+    return builder.EndObject()
+
+
+
+class ResetsSettingsResponse(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = ResetsSettingsResponse()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsResetsSettingsResponse(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # ResetsSettingsResponse
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # Makes it so feet will be always be mounting reset even when passing no BodyPart
+    # ResetsSettingsResponse
+    def ResetMountingFeet(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
+
+    # ResetsSettingsResponse
+    def ArmsMountingResetMode(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
+        return 0
+
+    # In seconds, the time it takes to smooth to the corrected rotation when doing a yaw reset.
+    # ResetsSettingsResponse
+    def YawResetSmoothTime(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
+        return 0.0
+
+    # Save mounting reset between restarts
+    # ResetsSettingsResponse
+    def SaveMountingReset(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
+
+    # Reset VR headset's pitch and roll
+    # ResetsSettingsResponse
+    def ResetReliableReferenceAttitude(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
+
+    # How a MOUNTING reset calibrates the trackers. UNKNOWN until the user has picked one
+    # ResetsSettingsResponse
+    def MountingMethod(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
+        return 0
+
+def ResetsSettingsResponseStart(builder):
+    builder.StartObject(6)
+
+def ResetsSettingsResponseAddResetMountingFeet(builder, resetMountingFeet):
+    builder.PrependBoolSlot(0, resetMountingFeet, 0)
+
+def ResetsSettingsResponseAddArmsMountingResetMode(builder, armsMountingResetMode):
+    builder.PrependUint8Slot(1, armsMountingResetMode, 0)
+
+def ResetsSettingsResponseAddYawResetSmoothTime(builder, yawResetSmoothTime):
+    builder.PrependFloat32Slot(2, yawResetSmoothTime, 0.0)
+
+def ResetsSettingsResponseAddSaveMountingReset(builder, saveMountingReset):
+    builder.PrependBoolSlot(3, saveMountingReset, 0)
+
+def ResetsSettingsResponseAddResetReliableReferenceAttitude(builder, resetReliableReferenceAttitude):
+    builder.PrependBoolSlot(4, resetReliableReferenceAttitude, 0)
+
+def ResetsSettingsResponseAddMountingMethod(builder, mountingMethod):
+    builder.PrependUint8Slot(5, mountingMethod, 0)
+
+def ResetsSettingsResponseEnd(builder):
+    return builder.EndObject()
+
+
+
+class ChangeResetsSettingsRequest(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = ChangeResetsSettingsRequest()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsChangeResetsSettingsRequest(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # ChangeResetsSettingsRequest
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # Makes it so feet will be always be mounting reset even when passing no BodyPart
+    # ChangeResetsSettingsRequest
+    def ResetMountingFeet(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
+
+    # ChangeResetsSettingsRequest
+    def ArmsMountingResetMode(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
+        return 0
+
+    # In seconds, the time it takes to smooth to the corrected rotation when doing a yaw reset.
+    # ChangeResetsSettingsRequest
+    def YawResetSmoothTime(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
+        return 0.0
+
+    # Save mounting reset between restarts
+    # ChangeResetsSettingsRequest
+    def SaveMountingReset(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
+
+    # Reset VR headset's pitch and roll
+    # ChangeResetsSettingsRequest
+    def ResetReliableReferenceAttitude(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
+
+    # How a MOUNTING reset calibrates the trackers. UNKNOWN until the user has picked one
+    # ChangeResetsSettingsRequest
+    def MountingMethod(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
+        return 0
+
+def ChangeResetsSettingsRequestStart(builder):
+    builder.StartObject(6)
+
+def ChangeResetsSettingsRequestAddResetMountingFeet(builder, resetMountingFeet):
+    builder.PrependBoolSlot(0, resetMountingFeet, 0)
+
+def ChangeResetsSettingsRequestAddArmsMountingResetMode(builder, armsMountingResetMode):
+    builder.PrependUint8Slot(1, armsMountingResetMode, 0)
+
+def ChangeResetsSettingsRequestAddYawResetSmoothTime(builder, yawResetSmoothTime):
+    builder.PrependFloat32Slot(2, yawResetSmoothTime, 0.0)
+
+def ChangeResetsSettingsRequestAddSaveMountingReset(builder, saveMountingReset):
+    builder.PrependBoolSlot(3, saveMountingReset, 0)
+
+def ChangeResetsSettingsRequestAddResetReliableReferenceAttitude(builder, resetReliableReferenceAttitude):
+    builder.PrependBoolSlot(4, resetReliableReferenceAttitude, 0)
+
+def ChangeResetsSettingsRequestAddMountingMethod(builder, mountingMethod):
+    builder.PrependUint8Slot(5, mountingMethod, 0)
+
+def ChangeResetsSettingsRequestEnd(builder):
+    return builder.EndObject()
+
+
+
+class SerialDevice(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = SerialDevice()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsSerialDevice(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # SerialDevice
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # SerialDevice
+    def Port(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # SerialDevice
+    def Name(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # SerialDevice
+    def Type(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
+        return 0
+
+    # SerialDevice
+    def VendorId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Uint16Flags, o + self._tab.Pos)
+        return 0
+
+    # SerialDevice
+    def ProductId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Uint16Flags, o + self._tab.Pos)
+        return 0
+
+    # SerialDevice
+    def SerialNumber(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+def SerialDeviceStart(builder):
+    builder.StartObject(6)
+
+def SerialDeviceAddPort(builder, port):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(port), 0)
+
+def SerialDeviceAddName(builder, name):
+    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(name), 0)
+
+def SerialDeviceAddType(builder, type):
+    builder.PrependUint8Slot(2, type, 0)
+
+def SerialDeviceAddVendorId(builder, vendorId):
+    builder.PrependUint16Slot(3, vendorId, 0)
+
+def SerialDeviceAddProductId(builder, productId):
+    builder.PrependUint16Slot(4, productId, 0)
+
+def SerialDeviceAddSerialNumber(builder, serialNumber):
+    builder.PrependUOffsetTRelativeSlot(5, flatbuffers.number_types.UOffsetTFlags.py_type(serialNumber), 0)
+
+def SerialDeviceEnd(builder):
+    return builder.EndObject()
+
+
+
+class OpenSerialRequest(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = OpenSerialRequest()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsOpenSerialRequest(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # OpenSerialRequest
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # Location of the port to open, as listed in SerialDevicesResponse
+    # OpenSerialRequest
+    def Port(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+def OpenSerialRequestStart(builder):
+    builder.StartObject(1)
+
+def OpenSerialRequestAddPort(builder, port):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(port), 0)
+
+def OpenSerialRequestEnd(builder):
+    return builder.EndObject()
+
+
+
+class CloseSerialRequest(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = CloseSerialRequest()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsCloseSerialRequest(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # CloseSerialRequest
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+def CloseSerialRequestStart(builder):
+    builder.StartObject(0)
+
+def CloseSerialRequestEnd(builder):
+    return builder.EndObject()
+
+
+
+# Renews the client's hold on the ports it opened. A client that stops sending these loses them,
+# so a page that goes away without a CloseSerialRequest does not keep the ports locked
+class SerialKeepaliveRequest(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = SerialKeepaliveRequest()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsSerialKeepaliveRequest(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # SerialKeepaliveRequest
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+def SerialKeepaliveRequestStart(builder):
+    builder.StartObject(0)
+
+def SerialKeepaliveRequestEnd(builder):
+    return builder.EndObject()
+
+
+
+class SerialUpdateResponse(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = SerialUpdateResponse()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsSerialUpdateResponse(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # SerialUpdateResponse
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # SerialUpdateResponse
+    def Status(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
+        return 0
+
+    # The port this console is on, null while the port is not present
+    # SerialUpdateResponse
+    def Device(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            x = self._tab.Indirect(o + self._tab.Pos)
+            obj = SerialDevice()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+    # Newline terminated log lines, one or more per message
+    # SerialUpdateResponse
+    def Log(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+def SerialUpdateResponseStart(builder):
+    builder.StartObject(3)
+
+def SerialUpdateResponseAddStatus(builder, status):
+    builder.PrependUint8Slot(0, status, 0)
+
+def SerialUpdateResponseAddDevice(builder, device):
+    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(device), 0)
+
+def SerialUpdateResponseAddLog(builder, log):
+    builder.PrependUOffsetTRelativeSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(log), 0)
+
+def SerialUpdateResponseEnd(builder):
+    return builder.EndObject()
+
+
+
+# Reboots the tracker connected to the serial monitor
+class SerialTrackerRebootRequest(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = SerialTrackerRebootRequest()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsSerialTrackerRebootRequest(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # SerialTrackerRebootRequest
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+def SerialTrackerRebootRequestStart(builder):
+    builder.StartObject(0)
+
+def SerialTrackerRebootRequestEnd(builder):
+    return builder.EndObject()
+
+
+
+# Sends the GET INFO cmd to the current tracker on the serial monitor
+class SerialTrackerGetInfoRequest(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = SerialTrackerGetInfoRequest()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsSerialTrackerGetInfoRequest(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # SerialTrackerGetInfoRequest
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+def SerialTrackerGetInfoRequestStart(builder):
+    builder.StartObject(0)
+
+def SerialTrackerGetInfoRequestEnd(builder):
+    return builder.EndObject()
+
+
+
+# Sends the FRST cmd to the currently connected Tracker over the Serial Monitor
+class SerialTrackerFactoryResetRequest(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = SerialTrackerFactoryResetRequest()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsSerialTrackerFactoryResetRequest(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # SerialTrackerFactoryResetRequest
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+def SerialTrackerFactoryResetRequestStart(builder):
+    builder.StartObject(0)
+
+def SerialTrackerFactoryResetRequestEnd(builder):
+    return builder.EndObject()
+
+
+
+# Sends a custom cmd to the currently connected Tracker over the Serial Monitor
+class SerialTrackerCustomCommandRequest(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = SerialTrackerCustomCommandRequest()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsSerialTrackerCustomCommandRequest(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # SerialTrackerCustomCommandRequest
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # SerialTrackerCustomCommandRequest
+    def Command(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+def SerialTrackerCustomCommandRequestStart(builder):
+    builder.StartObject(1)
+
+def SerialTrackerCustomCommandRequestAddCommand(builder, command):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(command), 0)
+
+def SerialTrackerCustomCommandRequestEnd(builder):
+    return builder.EndObject()
+
+
+
+class SerialDevicesRequest(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = SerialDevicesRequest()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsSerialDevicesRequest(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # SerialDevicesRequest
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+def SerialDevicesRequestStart(builder):
+    builder.StartObject(0)
+
+def SerialDevicesRequestEnd(builder):
+    return builder.EndObject()
+
+
+
+class SerialDevicesResponse(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = SerialDevicesResponse()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsSerialDevicesResponse(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # SerialDevicesResponse
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # SerialDevicesResponse
+    def Devices(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            x = self._tab.Vector(o)
+            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
+            x = self._tab.Indirect(x)
+            obj = SerialDevice()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+    # SerialDevicesResponse
+    def DevicesLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # SerialDevicesResponse
+    def DevicesIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        return o == 0
+
+def SerialDevicesResponseStart(builder):
+    builder.StartObject(1)
+
+def SerialDevicesResponseAddDevices(builder, devices):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(devices), 0)
+
+def SerialDevicesResponseStartDevicesVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
+
+def SerialDevicesResponseCreateDevicesVector(builder, data):
+    return builder.CreateVectorOfTables(data)
+
+def SerialDevicesResponseEnd(builder):
+    return builder.EndObject()
+
+
+
+# Sends the GET WIFISCAN cmd to the current tracker on the serial monitor
+class SerialTrackerGetWifiScanRequest(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = SerialTrackerGetWifiScanRequest()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsSerialTrackerGetWifiScanRequest(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # SerialTrackerGetWifiScanRequest
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+def SerialTrackerGetWifiScanRequestStart(builder):
+    builder.StartObject(0)
+
+def SerialTrackerGetWifiScanRequestEnd(builder):
+    return builder.EndObject()
+
+
+
+class HIDSettingsRequest(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = HIDSettingsRequest()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsHIDSettingsRequest(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # HIDSettingsRequest
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+def HIDSettingsRequestStart(builder):
+    builder.StartObject(0)
+
+def HIDSettingsRequestEnd(builder):
+    return builder.EndObject()
+
+
+
+class HIDSettingsResponse(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = HIDSettingsResponse()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsHIDSettingsResponse(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # HIDSettingsResponse
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # HIDSettingsResponse
+    def TrackersOverHid(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
+
+def HIDSettingsResponseStart(builder):
+    builder.StartObject(1)
+
+def HIDSettingsResponseAddTrackersOverHid(builder, trackersOverHid):
+    builder.PrependBoolSlot(0, trackersOverHid, 0)
+
+def HIDSettingsResponseEnd(builder):
+    return builder.EndObject()
+
+
+
+class ChangeHIDSettingsRequest(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = ChangeHIDSettingsRequest()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsChangeHIDSettingsRequest(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # ChangeHIDSettingsRequest
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # ChangeHIDSettingsRequest
+    def TrackersOverHid(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
+
+def ChangeHIDSettingsRequestStart(builder):
+    builder.StartObject(1)
+
+def ChangeHIDSettingsRequestAddTrackersOverHid(builder, trackersOverHid):
+    builder.PrependBoolSlot(0, trackersOverHid, 0)
+
+def ChangeHIDSettingsRequestEnd(builder):
+    return builder.EndObject()
+
+
+
+class SkeletonPart(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = SkeletonPart()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsSkeletonPart(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # SkeletonPart
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # SkeletonPart
+    def Bone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
+        return 0
+
+    # SkeletonPart
+    def Value(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
+        return 0.0
+
+    # SkeletonPart
+    def MinValue(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
+        return 0.0
+
+    # SkeletonPart
+    def MaxValue(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
+        return 0.0
+
+def SkeletonPartStart(builder):
+    builder.StartObject(4)
+
+def SkeletonPartAddBone(builder, bone):
+    builder.PrependUint8Slot(0, bone, 0)
+
+def SkeletonPartAddValue(builder, value):
+    builder.PrependFloat32Slot(1, value, 0.0)
+
+def SkeletonPartAddMinValue(builder, minValue):
+    builder.PrependFloat32Slot(2, minValue, 0.0)
+
+def SkeletonPartAddMaxValue(builder, maxValue):
+    builder.PrependFloat32Slot(3, maxValue, 0.0)
+
+def SkeletonPartEnd(builder):
+    return builder.EndObject()
+
+
+
+class SkeletonProportionsRequest(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = SkeletonProportionsRequest()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsSkeletonProportionsRequest(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # SkeletonProportionsRequest
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+def SkeletonProportionsRequestStart(builder):
+    builder.StartObject(0)
+
+def SkeletonProportionsRequestEnd(builder):
+    return builder.EndObject()
+
+
+
+class SkeletonProportionsResponse(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = SkeletonProportionsResponse()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsSkeletonProportionsResponse(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # SkeletonProportionsResponse
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # SkeletonProportionsResponse
+    def SkeletonParts(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            x = self._tab.Vector(o)
+            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
+            x = self._tab.Indirect(x)
+            obj = SkeletonPart()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+    # SkeletonProportionsResponse
+    def SkeletonPartsLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # SkeletonProportionsResponse
+    def SkeletonPartsIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        return o == 0
+
+    # SkeletonProportionsResponse
+    def SkeletonHeight(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
+        return 0.0
+
+def SkeletonProportionsResponseStart(builder):
+    builder.StartObject(2)
+
+def SkeletonProportionsResponseAddSkeletonParts(builder, skeletonParts):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(skeletonParts), 0)
+
+def SkeletonProportionsResponseStartSkeletonPartsVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
+
+def SkeletonProportionsResponseCreateSkeletonPartsVector(builder, data):
+    return builder.CreateVectorOfTables(data)
+
+def SkeletonProportionsResponseAddSkeletonHeight(builder, skeletonHeight):
+    builder.PrependFloat32Slot(1, skeletonHeight, 0.0)
+
+def SkeletonProportionsResponseEnd(builder):
+    return builder.EndObject()
+
+
+
+class ChangeSkeletonProportionsRequest(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = ChangeSkeletonProportionsRequest()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsChangeSkeletonProportionsRequest(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # ChangeSkeletonProportionsRequest
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # ChangeSkeletonProportionsRequest
+    def Bone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
+        return 0
+
+    # ChangeSkeletonProportionsRequest
+    def Value(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
+        return 0.0
+
+def ChangeSkeletonProportionsRequestStart(builder):
+    builder.StartObject(2)
+
+def ChangeSkeletonProportionsRequestAddBone(builder, bone):
+    builder.PrependUint8Slot(0, bone, 0)
+
+def ChangeSkeletonProportionsRequestAddValue(builder, value):
+    builder.PrependFloat32Slot(1, value, 0.0)
+
+def ChangeSkeletonProportionsRequestEnd(builder):
+    return builder.EndObject()
+
+
+
+class SkeletonProportionsResetAllRequest(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = SkeletonProportionsResetAllRequest()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsSkeletonProportionsResetAllRequest(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # SkeletonProportionsResetAllRequest
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+def SkeletonProportionsResetAllRequestStart(builder):
+    builder.StartObject(0)
+
+def SkeletonProportionsResetAllRequestEnd(builder):
+    return builder.EndObject()
+
+
+
+# Makes a temporary change to legtweaks. This is not saved to disk, and can be
+# cleared with `LegTweaksTmpClear`
+class LegTweaksTmpChange(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = LegTweaksTmpChange()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsLegTweaksTmpChange(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # LegTweaksTmpChange
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # LegTweaksTmpChange
+    def FloorClip(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return None
+
+    # LegTweaksTmpChange
+    def SkatingCorrection(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return None
+
+    # LegTweaksTmpChange
+    def ToeSnap(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return None
+
+    # LegTweaksTmpChange
+    def FootPlant(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return None
+
+def LegTweaksTmpChangeStart(builder):
+    builder.StartObject(4)
+
+def LegTweaksTmpChangeAddFloorClip(builder, floorClip):
+    builder.PrependBoolSlot(0, floorClip, None)
+
+def LegTweaksTmpChangeAddSkatingCorrection(builder, skatingCorrection):
+    builder.PrependBoolSlot(1, skatingCorrection, None)
+
+def LegTweaksTmpChangeAddToeSnap(builder, toeSnap):
+    builder.PrependBoolSlot(2, toeSnap, None)
+
+def LegTweaksTmpChangeAddFootPlant(builder, footPlant):
+    builder.PrependBoolSlot(3, footPlant, None)
+
+def LegTweaksTmpChangeEnd(builder):
+    return builder.EndObject()
+
+
+
+# Clears the legtweaks temporary state back to what the config has.
+# Setting a field to `true` will reset that field.
+class LegTweaksTmpClear(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = LegTweaksTmpClear()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsLegTweaksTmpClear(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # LegTweaksTmpClear
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # LegTweaksTmpClear
+    def FloorClip(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
+
+    # LegTweaksTmpClear
+    def SkatingCorrection(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
+
+    # LegTweaksTmpClear
+    def ToeSnap(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
+
+    # LegTweaksTmpClear
+    def FootPlant(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
+
+def LegTweaksTmpClearStart(builder):
+    builder.StartObject(4)
+
+def LegTweaksTmpClearAddFloorClip(builder, floorClip):
+    builder.PrependBoolSlot(0, floorClip, 0)
+
+def LegTweaksTmpClearAddSkatingCorrection(builder, skatingCorrection):
+    builder.PrependBoolSlot(1, skatingCorrection, 0)
+
+def LegTweaksTmpClearAddToeSnap(builder, toeSnap):
+    builder.PrependBoolSlot(2, toeSnap, 0)
+
+def LegTweaksTmpClearAddFootPlant(builder, footPlant):
+    builder.PrependBoolSlot(3, footPlant, 0)
+
+def LegTweaksTmpClearEnd(builder):
+    return builder.EndObject()
+
+
+
+class SetPauseTrackingRequest(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = SetPauseTrackingRequest()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsSetPauseTrackingRequest(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # SetPauseTrackingRequest
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # Pauses skeleton tracking if true, resumes skeleton tracking if false.
+    # SetPauseTrackingRequest
+    def PauseTracking(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
+
+def SetPauseTrackingRequestStart(builder):
+    builder.StartObject(1)
+
+def SetPauseTrackingRequestAddPauseTracking(builder, pauseTracking):
+    builder.PrependBoolSlot(0, pauseTracking, 0)
+
+def SetPauseTrackingRequestEnd(builder):
+    return builder.EndObject()
+
+
+
 # Requests the current state of tracking pause
 class TrackingPauseStateRequest(object):
     __slots__ = ['_tab']
@@ -8715,166 +7769,1774 @@ def TrackingPauseStateResponseEnd(builder):
 
 
 
-# Sends the GET WIFISCAN cmd to the current tracker on the serial monitor
-class SerialTrackerGetWifiScanRequest(object):
+# Toggles for the skeletal model.
+class SkeletonToggles(object):
     __slots__ = ['_tab']
 
     @classmethod
     def GetRootAs(cls, buf, offset=0):
         n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = SerialTrackerGetWifiScanRequest()
+        x = SkeletonToggles()
         x.Init(buf, n + offset)
         return x
 
     @classmethod
-    def GetRootAsSerialTrackerGetWifiScanRequest(cls, buf, offset=0):
+    def GetRootAsSkeletonToggles(cls, buf, offset=0):
         """This method is deprecated. Please switch to GetRootAs."""
         return cls.GetRootAs(buf, offset)
-    # SerialTrackerGetWifiScanRequest
+    # SkeletonToggles
     def Init(self, buf, pos):
         self._tab = flatbuffers.table.Table(buf, pos)
 
-def SerialTrackerGetWifiScanRequestStart(builder):
+    # SkeletonToggles
+    def FloorClip(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return None
+
+    # SkeletonToggles
+    def SkatingCorrection(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return None
+
+    # SkeletonToggles
+    def ToeSnap(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return None
+
+    # SkeletonToggles
+    def FootPlant(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return None
+
+    # SkeletonToggles
+    def MocapMode(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return None
+
+    # SkeletonToggles
+    def UseTrackerPositions(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return None
+
+    # SkeletonToggles
+    def EnforceConstraints(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return None
+
+def SkeletonTogglesStart(builder):
+    builder.StartObject(7)
+
+def SkeletonTogglesAddFloorClip(builder, floorClip):
+    builder.PrependBoolSlot(0, floorClip, None)
+
+def SkeletonTogglesAddSkatingCorrection(builder, skatingCorrection):
+    builder.PrependBoolSlot(1, skatingCorrection, None)
+
+def SkeletonTogglesAddToeSnap(builder, toeSnap):
+    builder.PrependBoolSlot(2, toeSnap, None)
+
+def SkeletonTogglesAddFootPlant(builder, footPlant):
+    builder.PrependBoolSlot(3, footPlant, None)
+
+def SkeletonTogglesAddMocapMode(builder, mocapMode):
+    builder.PrependBoolSlot(4, mocapMode, None)
+
+def SkeletonTogglesAddUseTrackerPositions(builder, useTrackerPositions):
+    builder.PrependBoolSlot(5, useTrackerPositions, None)
+
+def SkeletonTogglesAddEnforceConstraints(builder, enforceConstraints):
+    builder.PrependBoolSlot(6, enforceConstraints, None)
+
+def SkeletonTogglesEnd(builder):
+    return builder.EndObject()
+
+
+
+# Ratios for the skeletal model. Accepted values for them range from 0 to 1
+class SkeletonRatios(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = SkeletonRatios()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsSkeletonRatios(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # SkeletonRatios
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # Compute missing spine bones as a ratio of the next available upper and lower bones.
+    # SkeletonRatios
+    def ImputeSpineFromUpperToLower(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
+        return None
+
+    # Computes the curvature between 2 adjacent missing spine bones. Higher = more curvature.
+    # SkeletonRatios
+    def ImputeSpineCurvature(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
+        return None
+
+    # How much to average the hip's yaw and roll with the upper legs'.
+    # SkeletonRatios
+    def InterpolateHipWithUpperLegs(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
+        return None
+
+    # How much to average the upper legs' roll with the lower legs'.
+    # SkeletonRatios
+    def InterpolateUpperLegsTwistWithLowerLegs(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
+        return None
+
+    # Strength of skating correction. Enabled via SkeletonToggles.skating_correction
+    # SkeletonRatios
+    def SkatingCorrectionStrength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
+        return None
+
+def SkeletonRatiosStart(builder):
+    builder.StartObject(5)
+
+def SkeletonRatiosAddImputeSpineFromUpperToLower(builder, imputeSpineFromUpperToLower):
+    builder.PrependFloat32Slot(0, imputeSpineFromUpperToLower, None)
+
+def SkeletonRatiosAddImputeSpineCurvature(builder, imputeSpineCurvature):
+    builder.PrependFloat32Slot(1, imputeSpineCurvature, None)
+
+def SkeletonRatiosAddInterpolateHipWithUpperLegs(builder, interpolateHipWithUpperLegs):
+    builder.PrependFloat32Slot(2, interpolateHipWithUpperLegs, None)
+
+def SkeletonRatiosAddInterpolateUpperLegsTwistWithLowerLegs(builder, interpolateUpperLegsTwistWithLowerLegs):
+    builder.PrependFloat32Slot(3, interpolateUpperLegsTwistWithLowerLegs, None)
+
+def SkeletonRatiosAddSkatingCorrectionStrength(builder, skatingCorrectionStrength):
+    builder.PrependFloat32Slot(4, skatingCorrectionStrength, None)
+
+def SkeletonRatiosEnd(builder):
+    return builder.EndObject()
+
+
+
+# Filtering (e.g smoothing) applied to the skeleton's movements
+class SkeletonFiltering(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = SkeletonFiltering()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsSkeletonFiltering(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # SkeletonFiltering
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # SkeletonFiltering
+    def Type(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
+        return 0
+
+    # A higher value results in more filtering (0 to 1).
+    # SkeletonFiltering
+    def Amount(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
+        return 0.0
+
+def SkeletonFilteringStart(builder):
+    builder.StartObject(2)
+
+def SkeletonFilteringAddType(builder, type):
+    builder.PrependUint8Slot(0, type, 0)
+
+def SkeletonFilteringAddAmount(builder, amount):
+    builder.PrependFloat32Slot(1, amount, 0.0)
+
+def SkeletonFilteringEnd(builder):
+    return builder.EndObject()
+
+
+
+class SkeletonSettingsRequest(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = SkeletonSettingsRequest()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsSkeletonSettingsRequest(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # SkeletonSettingsRequest
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+def SkeletonSettingsRequestStart(builder):
     builder.StartObject(0)
 
-def SerialTrackerGetWifiScanRequestEnd(builder):
+def SkeletonSettingsRequestEnd(builder):
     return builder.EndObject()
 
 
 
-# Server notifies connection of an unknown device.
-# If the notification is no longer sent, it means the device connected to another
-# server, got connected to this server or it was turned off.
-class UnknownDeviceHandshakeNotification(object):
+class SkeletonSettingsResponse(object):
     __slots__ = ['_tab']
 
     @classmethod
     def GetRootAs(cls, buf, offset=0):
         n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = UnknownDeviceHandshakeNotification()
+        x = SkeletonSettingsResponse()
         x.Init(buf, n + offset)
         return x
 
     @classmethod
-    def GetRootAsUnknownDeviceHandshakeNotification(cls, buf, offset=0):
+    def GetRootAsSkeletonSettingsResponse(cls, buf, offset=0):
         """This method is deprecated. Please switch to GetRootAs."""
         return cls.GetRootAs(buf, offset)
-    # UnknownDeviceHandshakeNotification
+    # SkeletonSettingsResponse
     def Init(self, buf, pos):
         self._tab = flatbuffers.table.Table(buf, pos)
 
-    # UnknownDeviceHandshakeNotification
-    def MacAddress(self):
+    # SkeletonSettingsResponse
+    def Toggles(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
         if o != 0:
-            return self._tab.String(o + self._tab.Pos)
+            x = self._tab.Indirect(o + self._tab.Pos)
+            obj = SkeletonToggles()
+            obj.Init(self._tab.Bytes, x)
+            return obj
         return None
 
-def UnknownDeviceHandshakeNotificationStart(builder):
-    builder.StartObject(1)
+    # SkeletonSettingsResponse
+    def Ratios(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            x = self._tab.Indirect(o + self._tab.Pos)
+            obj = SkeletonRatios()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
 
-def UnknownDeviceHandshakeNotificationAddMacAddress(builder, macAddress):
-    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(macAddress), 0)
+    # SkeletonSettingsResponse
+    def Filtering(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            x = self._tab.Indirect(o + self._tab.Pos)
+            obj = SkeletonFiltering()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
 
-def UnknownDeviceHandshakeNotificationEnd(builder):
+def SkeletonSettingsResponseStart(builder):
+    builder.StartObject(3)
+
+def SkeletonSettingsResponseAddToggles(builder, toggles):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(toggles), 0)
+
+def SkeletonSettingsResponseAddRatios(builder, ratios):
+    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(ratios), 0)
+
+def SkeletonSettingsResponseAddFiltering(builder, filtering):
+    builder.PrependUOffsetTRelativeSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(filtering), 0)
+
+def SkeletonSettingsResponseEnd(builder):
     return builder.EndObject()
 
 
 
-class AddUnknownDeviceRequest(object):
+class ChangeSkeletonSettingsRequest(object):
     __slots__ = ['_tab']
 
     @classmethod
     def GetRootAs(cls, buf, offset=0):
         n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = AddUnknownDeviceRequest()
+        x = ChangeSkeletonSettingsRequest()
         x.Init(buf, n + offset)
         return x
 
     @classmethod
-    def GetRootAsAddUnknownDeviceRequest(cls, buf, offset=0):
+    def GetRootAsChangeSkeletonSettingsRequest(cls, buf, offset=0):
         """This method is deprecated. Please switch to GetRootAs."""
         return cls.GetRootAs(buf, offset)
-    # AddUnknownDeviceRequest
+    # ChangeSkeletonSettingsRequest
     def Init(self, buf, pos):
         self._tab = flatbuffers.table.Table(buf, pos)
 
-    # AddUnknownDeviceRequest
-    def MacAddress(self):
+    # ChangeSkeletonSettingsRequest
+    def Toggles(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
         if o != 0:
-            return self._tab.String(o + self._tab.Pos)
+            x = self._tab.Indirect(o + self._tab.Pos)
+            obj = SkeletonToggles()
+            obj.Init(self._tab.Bytes, x)
+            return obj
         return None
 
-def AddUnknownDeviceRequestStart(builder):
-    builder.StartObject(1)
-
-def AddUnknownDeviceRequestAddMacAddress(builder, macAddress):
-    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(macAddress), 0)
-
-def AddUnknownDeviceRequestEnd(builder):
-    return builder.EndObject()
-
-
-
-class ForgetDeviceRequest(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = ForgetDeviceRequest()
-        x.Init(buf, n + offset)
-        return x
-
-    @classmethod
-    def GetRootAsForgetDeviceRequest(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # ForgetDeviceRequest
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-    # ForgetDeviceRequest
-    def MacAddress(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+    # ChangeSkeletonSettingsRequest
+    def Ratios(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
         if o != 0:
-            return self._tab.String(o + self._tab.Pos)
+            x = self._tab.Indirect(o + self._tab.Pos)
+            obj = SkeletonRatios()
+            obj.Init(self._tab.Bytes, x)
+            return obj
         return None
 
-def ForgetDeviceRequestStart(builder):
-    builder.StartObject(1)
+    # ChangeSkeletonSettingsRequest
+    def Filtering(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            x = self._tab.Indirect(o + self._tab.Pos)
+            obj = SkeletonFiltering()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
 
-def ForgetDeviceRequestAddMacAddress(builder, macAddress):
-    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(macAddress), 0)
+def ChangeSkeletonSettingsRequestStart(builder):
+    builder.StartObject(3)
 
-def ForgetDeviceRequestEnd(builder):
+def ChangeSkeletonSettingsRequestAddToggles(builder, toggles):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(toggles), 0)
+
+def ChangeSkeletonSettingsRequestAddRatios(builder, ratios):
+    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(ratios), 0)
+
+def ChangeSkeletonSettingsRequestAddFiltering(builder, filtering):
+    builder.PrependUOffsetTRelativeSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(filtering), 0)
+
+def ChangeSkeletonSettingsRequestEnd(builder):
     return builder.EndObject()
 
 
 
-class SettingsResetRequest(object):
+class UserHeightRequest(object):
     __slots__ = ['_tab']
 
     @classmethod
     def GetRootAs(cls, buf, offset=0):
         n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = SettingsResetRequest()
+        x = UserHeightRequest()
         x.Init(buf, n + offset)
         return x
 
     @classmethod
-    def GetRootAsSettingsResetRequest(cls, buf, offset=0):
+    def GetRootAsUserHeightRequest(cls, buf, offset=0):
         """This method is deprecated. Please switch to GetRootAs."""
         return cls.GetRootAs(buf, offset)
-    # SettingsResetRequest
+    # UserHeightRequest
     def Init(self, buf, pos):
         self._tab = flatbuffers.table.Table(buf, pos)
 
-def SettingsResetRequestStart(builder):
+def UserHeightRequestStart(builder):
     builder.StartObject(0)
 
-def SettingsResetRequestEnd(builder):
+def UserHeightRequestEnd(builder):
+    return builder.EndObject()
+
+
+
+class UserHeightResponse(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = UserHeightResponse()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsUserHeightResponse(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # UserHeightResponse
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # UserHeightResponse
+    def HeadHeight(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
+        return None
+
+    # UserHeightResponse
+    def FloorHeight(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
+        return None
+
+def UserHeightResponseStart(builder):
+    builder.StartObject(2)
+
+def UserHeightResponseAddHeadHeight(builder, headHeight):
+    builder.PrependFloat32Slot(0, headHeight, None)
+
+def UserHeightResponseAddFloorHeight(builder, floorHeight):
+    builder.PrependFloat32Slot(1, floorHeight, None)
+
+def UserHeightResponseEnd(builder):
+    return builder.EndObject()
+
+
+
+class ChangeUserHeightRequest(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = ChangeUserHeightRequest()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsChangeUserHeightRequest(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # ChangeUserHeightRequest
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # ChangeUserHeightRequest
+    def HeadHeight(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
+        return None
+
+    # ChangeUserHeightRequest
+    def FloorHeight(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
+        return None
+
+def ChangeUserHeightRequestStart(builder):
+    builder.StartObject(2)
+
+def ChangeUserHeightRequestAddHeadHeight(builder, headHeight):
+    builder.PrependFloat32Slot(0, headHeight, None)
+
+def ChangeUserHeightRequestAddFloorHeight(builder, floorHeight):
+    builder.PrependFloat32Slot(1, floorHeight, None)
+
+def ChangeUserHeightRequestEnd(builder):
+    return builder.EndObject()
+
+
+
+class DetectStayAlignedRelaxedPoseRequest(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = DetectStayAlignedRelaxedPoseRequest()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsDetectStayAlignedRelaxedPoseRequest(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # DetectStayAlignedRelaxedPoseRequest
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # DetectStayAlignedRelaxedPoseRequest
+    def Pose(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
+        return 0
+
+def DetectStayAlignedRelaxedPoseRequestStart(builder):
+    builder.StartObject(1)
+
+def DetectStayAlignedRelaxedPoseRequestAddPose(builder, pose):
+    builder.PrependUint8Slot(0, pose, 0)
+
+def DetectStayAlignedRelaxedPoseRequestEnd(builder):
+    return builder.EndObject()
+
+
+
+class ResetStayAlignedRelaxedPoseRequest(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = ResetStayAlignedRelaxedPoseRequest()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsResetStayAlignedRelaxedPoseRequest(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # ResetStayAlignedRelaxedPoseRequest
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # ResetStayAlignedRelaxedPoseRequest
+    def Pose(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
+        return 0
+
+def ResetStayAlignedRelaxedPoseRequestStart(builder):
+    builder.StartObject(1)
+
+def ResetStayAlignedRelaxedPoseRequestAddPose(builder, pose):
+    builder.PrependUint8Slot(0, pose, 0)
+
+def ResetStayAlignedRelaxedPoseRequestEnd(builder):
+    return builder.EndObject()
+
+
+
+class StayAlignedSettingsRequest(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = StayAlignedSettingsRequest()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsStayAlignedSettingsRequest(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # StayAlignedSettingsRequest
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+def StayAlignedSettingsRequestStart(builder):
+    builder.StartObject(0)
+
+def StayAlignedSettingsRequestEnd(builder):
+    return builder.EndObject()
+
+
+
+class StayAlignedSettingsResponse(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = StayAlignedSettingsResponse()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsStayAlignedSettingsResponse(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # StayAlignedSettingsResponse
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # StayAlignedSettingsResponse
+    def SetupComplete(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
+
+    # StayAlignedSettingsResponse
+    def Enabled(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
+
+    # StayAlignedSettingsResponse
+    def StandingEnabled(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
+
+    # StayAlignedSettingsResponse
+    def StandingUpperLegAngle(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
+        return 0.0
+
+    # StayAlignedSettingsResponse
+    def StandingLowerLegAngle(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
+        return 0.0
+
+    # StayAlignedSettingsResponse
+    def StandingFootAngle(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
+        return 0.0
+
+    # StayAlignedSettingsResponse
+    def SittingEnabled(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
+
+    # StayAlignedSettingsResponse
+    def SittingUpperLegAngle(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(18))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
+        return 0.0
+
+    # StayAlignedSettingsResponse
+    def SittingLowerLegAngle(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(20))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
+        return 0.0
+
+    # StayAlignedSettingsResponse
+    def SittingFootAngle(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(22))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
+        return 0.0
+
+    # StayAlignedSettingsResponse
+    def FlatEnabled(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(24))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
+
+    # StayAlignedSettingsResponse
+    def FlatUpperLegAngle(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(26))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
+        return 0.0
+
+    # StayAlignedSettingsResponse
+    def FlatLowerLegAngle(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(28))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
+        return 0.0
+
+    # StayAlignedSettingsResponse
+    def FlatFootAngle(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(30))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
+        return 0.0
+
+def StayAlignedSettingsResponseStart(builder):
+    builder.StartObject(14)
+
+def StayAlignedSettingsResponseAddSetupComplete(builder, setupComplete):
+    builder.PrependBoolSlot(0, setupComplete, 0)
+
+def StayAlignedSettingsResponseAddEnabled(builder, enabled):
+    builder.PrependBoolSlot(1, enabled, 0)
+
+def StayAlignedSettingsResponseAddStandingEnabled(builder, standingEnabled):
+    builder.PrependBoolSlot(2, standingEnabled, 0)
+
+def StayAlignedSettingsResponseAddStandingUpperLegAngle(builder, standingUpperLegAngle):
+    builder.PrependFloat32Slot(3, standingUpperLegAngle, 0.0)
+
+def StayAlignedSettingsResponseAddStandingLowerLegAngle(builder, standingLowerLegAngle):
+    builder.PrependFloat32Slot(4, standingLowerLegAngle, 0.0)
+
+def StayAlignedSettingsResponseAddStandingFootAngle(builder, standingFootAngle):
+    builder.PrependFloat32Slot(5, standingFootAngle, 0.0)
+
+def StayAlignedSettingsResponseAddSittingEnabled(builder, sittingEnabled):
+    builder.PrependBoolSlot(6, sittingEnabled, 0)
+
+def StayAlignedSettingsResponseAddSittingUpperLegAngle(builder, sittingUpperLegAngle):
+    builder.PrependFloat32Slot(7, sittingUpperLegAngle, 0.0)
+
+def StayAlignedSettingsResponseAddSittingLowerLegAngle(builder, sittingLowerLegAngle):
+    builder.PrependFloat32Slot(8, sittingLowerLegAngle, 0.0)
+
+def StayAlignedSettingsResponseAddSittingFootAngle(builder, sittingFootAngle):
+    builder.PrependFloat32Slot(9, sittingFootAngle, 0.0)
+
+def StayAlignedSettingsResponseAddFlatEnabled(builder, flatEnabled):
+    builder.PrependBoolSlot(10, flatEnabled, 0)
+
+def StayAlignedSettingsResponseAddFlatUpperLegAngle(builder, flatUpperLegAngle):
+    builder.PrependFloat32Slot(11, flatUpperLegAngle, 0.0)
+
+def StayAlignedSettingsResponseAddFlatLowerLegAngle(builder, flatLowerLegAngle):
+    builder.PrependFloat32Slot(12, flatLowerLegAngle, 0.0)
+
+def StayAlignedSettingsResponseAddFlatFootAngle(builder, flatFootAngle):
+    builder.PrependFloat32Slot(13, flatFootAngle, 0.0)
+
+def StayAlignedSettingsResponseEnd(builder):
+    return builder.EndObject()
+
+
+
+class ChangeStayAlignedSettingsRequest(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = ChangeStayAlignedSettingsRequest()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsChangeStayAlignedSettingsRequest(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # ChangeStayAlignedSettingsRequest
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # ChangeStayAlignedSettingsRequest
+    def Enabled(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
+
+    # ChangeStayAlignedSettingsRequest
+    def StandingEnabled(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
+
+    # ChangeStayAlignedSettingsRequest
+    def SittingEnabled(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
+
+    # ChangeStayAlignedSettingsRequest
+    def FlatEnabled(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
+
+def ChangeStayAlignedSettingsRequestStart(builder):
+    builder.StartObject(4)
+
+def ChangeStayAlignedSettingsRequestAddEnabled(builder, enabled):
+    builder.PrependBoolSlot(0, enabled, 0)
+
+def ChangeStayAlignedSettingsRequestAddStandingEnabled(builder, standingEnabled):
+    builder.PrependBoolSlot(1, standingEnabled, 0)
+
+def ChangeStayAlignedSettingsRequestAddSittingEnabled(builder, sittingEnabled):
+    builder.PrependBoolSlot(2, sittingEnabled, 0)
+
+def ChangeStayAlignedSettingsRequestAddFlatEnabled(builder, flatEnabled):
+    builder.PrependBoolSlot(3, flatEnabled, 0)
+
+def ChangeStayAlignedSettingsRequestEnd(builder):
+    return builder.EndObject()
+
+
+
+class ChangeStayAlignedEnabledRequest(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = ChangeStayAlignedEnabledRequest()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsChangeStayAlignedEnabledRequest(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # ChangeStayAlignedEnabledRequest
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # ChangeStayAlignedEnabledRequest
+    def Enabled(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
+
+def ChangeStayAlignedEnabledRequestStart(builder):
+    builder.StartObject(1)
+
+def ChangeStayAlignedEnabledRequestAddEnabled(builder, enabled):
+    builder.PrependBoolSlot(0, enabled, 0)
+
+def ChangeStayAlignedEnabledRequestEnd(builder):
+    return builder.EndObject()
+
+
+
+# Re-sending Start replaces the previous subscription. This is also how the GUI
+# changes which trackers it's monitoring, no separate config message.
+class StartTelemetryRequest(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = StartTelemetryRequest()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsStartTelemetryRequest(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # StartTelemetryRequest
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # StartTelemetryRequest
+    def DeviceIds(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            a = self._tab.Vector(o)
+            return self._tab.Get(flatbuffers.number_types.Uint16Flags, a + flatbuffers.number_types.UOffsetTFlags.py_type(j * 2))
+        return 0
+
+    # StartTelemetryRequest
+    def DeviceIdsAsNumpy(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.GetVectorAsNumpy(flatbuffers.number_types.Uint16Flags, o)
+        return 0
+
+    # StartTelemetryRequest
+    def DeviceIdsLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # StartTelemetryRequest
+    def DeviceIdsIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        return o == 0
+
+def StartTelemetryRequestStart(builder):
+    builder.StartObject(1)
+
+def StartTelemetryRequestAddDeviceIds(builder, deviceIds):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(deviceIds), 0)
+
+def StartTelemetryRequestStartDeviceIdsVector(builder, numElems):
+    return builder.StartVector(2, numElems, 2)
+
+def StartTelemetryRequestCreateDeviceIdsVector(builder, data):
+    data = list(data)
+    builder.StartVector(2, len(data), 2)
+    for item in reversed(data):
+        builder.PrependUint16(item)
+    return builder.EndVector()
+
+def StartTelemetryRequestEnd(builder):
+    return builder.EndObject()
+
+
+
+class StopTelemetryRequest(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = StopTelemetryRequest()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsStopTelemetryRequest(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # StopTelemetryRequest
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+def StopTelemetryRequestStart(builder):
+    builder.StartObject(0)
+
+def StopTelemetryRequestEnd(builder):
+    return builder.EndObject()
+
+
+
+class TelemetrySample(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = TelemetrySample()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsTelemetrySample(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # TelemetrySample
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # TelemetrySample
+    def DeviceId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Uint16Flags, o + self._tab.Pos)
+        return 0
+
+    # TelemetrySample
+    def Time(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Uint64Flags, o + self._tab.Pos)
+        return 0
+
+    # TelemetrySample
+    def Rssi(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int16Flags, o + self._tab.Pos)
+        return None
+
+    # TelemetrySample
+    def PacketsLost(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return None
+
+    # TelemetrySample
+    def PacketsReceived(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int32Flags, o + self._tab.Pos)
+        return None
+
+    # TelemetrySample
+    def RssiMin(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int16Flags, o + self._tab.Pos)
+        return None
+
+    # TelemetrySample
+    def RssiMax(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Int16Flags, o + self._tab.Pos)
+        return None
+
+    # TelemetrySample
+    def PacketLossPct(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(18))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
+        return None
+
+def TelemetrySampleStart(builder):
+    builder.StartObject(8)
+
+def TelemetrySampleAddDeviceId(builder, deviceId):
+    builder.PrependUint16Slot(0, deviceId, 0)
+
+def TelemetrySampleAddTime(builder, time):
+    builder.PrependUint64Slot(1, time, 0)
+
+def TelemetrySampleAddRssi(builder, rssi):
+    builder.PrependInt16Slot(2, rssi, None)
+
+def TelemetrySampleAddPacketsLost(builder, packetsLost):
+    builder.PrependInt32Slot(3, packetsLost, None)
+
+def TelemetrySampleAddPacketsReceived(builder, packetsReceived):
+    builder.PrependInt32Slot(4, packetsReceived, None)
+
+def TelemetrySampleAddRssiMin(builder, rssiMin):
+    builder.PrependInt16Slot(5, rssiMin, None)
+
+def TelemetrySampleAddRssiMax(builder, rssiMax):
+    builder.PrependInt16Slot(6, rssiMax, None)
+
+def TelemetrySampleAddPacketLossPct(builder, packetLossPct):
+    builder.PrependFloat32Slot(7, packetLossPct, None)
+
+def TelemetrySampleEnd(builder):
+    return builder.EndObject()
+
+
+
+class TelemetryUpdateResponse(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = TelemetryUpdateResponse()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsTelemetryUpdateResponse(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # TelemetryUpdateResponse
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # TelemetryUpdateResponse
+    def Samples(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            x = self._tab.Vector(o)
+            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
+            x = self._tab.Indirect(x)
+            obj = TelemetrySample()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+    # TelemetryUpdateResponse
+    def SamplesLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # TelemetryUpdateResponse
+    def SamplesIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        return o == 0
+
+def TelemetryUpdateResponseStart(builder):
+    builder.StartObject(1)
+
+def TelemetryUpdateResponseAddSamples(builder, samples):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(samples), 0)
+
+def TelemetryUpdateResponseStartSamplesVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
+
+def TelemetryUpdateResponseCreateSamplesVector(builder, data):
+    return builder.CreateVectorOfTables(data)
+
+def TelemetryUpdateResponseEnd(builder):
+    return builder.EndObject()
+
+
+
+class TelemetryGapEvent(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = TelemetryGapEvent()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsTelemetryGapEvent(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # TelemetryGapEvent
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # TelemetryGapEvent
+    def DeviceId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Uint16Flags, o + self._tab.Pos)
+        return 0
+
+    # TelemetryGapEvent
+    def Time(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Uint64Flags, o + self._tab.Pos)
+        return 0
+
+    # TelemetryGapEvent
+    def DurationMs(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Uint32Flags, o + self._tab.Pos)
+        return 0
+
+    # TelemetryGapEvent
+    def PacketsLost(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Uint32Flags, o + self._tab.Pos)
+        return 0
+
+def TelemetryGapEventStart(builder):
+    builder.StartObject(4)
+
+def TelemetryGapEventAddDeviceId(builder, deviceId):
+    builder.PrependUint16Slot(0, deviceId, 0)
+
+def TelemetryGapEventAddTime(builder, time):
+    builder.PrependUint64Slot(1, time, 0)
+
+def TelemetryGapEventAddDurationMs(builder, durationMs):
+    builder.PrependUint32Slot(2, durationMs, 0)
+
+def TelemetryGapEventAddPacketsLost(builder, packetsLost):
+    builder.PrependUint32Slot(3, packetsLost, 0)
+
+def TelemetryGapEventEnd(builder):
+    return builder.EndObject()
+
+
+
+class TelemetryGapResponse(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = TelemetryGapResponse()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsTelemetryGapResponse(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # TelemetryGapResponse
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # TelemetryGapResponse
+    def Events(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            x = self._tab.Vector(o)
+            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
+            x = self._tab.Indirect(x)
+            obj = TelemetryGapEvent()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+    # TelemetryGapResponse
+    def EventsLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # TelemetryGapResponse
+    def EventsIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        return o == 0
+
+def TelemetryGapResponseStart(builder):
+    builder.StartObject(1)
+
+def TelemetryGapResponseAddEvents(builder, events):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(events), 0)
+
+def TelemetryGapResponseStartEventsVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
+
+def TelemetryGapResponseCreateEventsVector(builder, data):
+    return builder.CreateVectorOfTables(data)
+
+def TelemetryGapResponseEnd(builder):
+    return builder.EndObject()
+
+
+
+class UpdateTrackerRequest(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = UpdateTrackerRequest()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsUpdateTrackerRequest(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # UpdateTrackerRequest
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # UpdateTrackerRequest
+    def TrackerId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Uint16Flags, o + self._tab.Pos)
+        return 0
+
+    # UpdateTrackerRequest
+    def BodyPosition(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
+        return 0
+
+    # UpdateTrackerRequest
+    def MountingOrientation(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            x = o + self._tab.Pos
+            obj = Quat()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+    # UpdateTrackerRequest
+    def DisplayName(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # UpdateTrackerRequest
+    def BoneOffset(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
+        if o != 0:
+            x = o + self._tab.Pos
+            obj = Vec3f()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+def UpdateTrackerRequestStart(builder):
+    builder.StartObject(5)
+
+def UpdateTrackerRequestAddTrackerId(builder, trackerId):
+    builder.PrependUint16Slot(0, trackerId, 0)
+
+def UpdateTrackerRequestAddBodyPosition(builder, bodyPosition):
+    builder.PrependUint8Slot(1, bodyPosition, 0)
+
+def UpdateTrackerRequestAddMountingOrientation(builder, mountingOrientation):
+    builder.PrependStructSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(mountingOrientation), 0)
+
+def UpdateTrackerRequestAddDisplayName(builder, displayName):
+    builder.PrependUOffsetTRelativeSlot(3, flatbuffers.number_types.UOffsetTFlags.py_type(displayName), 0)
+
+def UpdateTrackerRequestAddBoneOffset(builder, boneOffset):
+    builder.PrependStructSlot(4, flatbuffers.number_types.UOffsetTFlags.py_type(boneOffset), 0)
+
+def UpdateTrackerRequestEnd(builder):
+    return builder.EndObject()
+
+
+
+class ResetTrackerAssignments(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = ResetTrackerAssignments()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsResetTrackerAssignments(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # ResetTrackerAssignments
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+def ResetTrackerAssignmentsStart(builder):
+    builder.StartObject(0)
+
+def ResetTrackerAssignmentsEnd(builder):
+    return builder.EndObject()
+
+
+
+class TapDetectionSettingsRequest(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = TapDetectionSettingsRequest()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsTapDetectionSettingsRequest(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # TapDetectionSettingsRequest
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+def TapDetectionSettingsRequestStart(builder):
+    builder.StartObject(0)
+
+def TapDetectionSettingsRequestEnd(builder):
+    return builder.EndObject()
+
+
+
+class TapDetectionSettingsResponse(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = TapDetectionSettingsResponse()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsTapDetectionSettingsResponse(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # TapDetectionSettingsResponse
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # TapDetectionSettingsResponse
+    def FullResetDelay(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
+        return None
+
+    # TapDetectionSettingsResponse
+    def FullResetEnabled(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return None
+
+    # TapDetectionSettingsResponse
+    def FullResetTaps(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
+        return None
+
+    # TapDetectionSettingsResponse
+    def YawResetDelay(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
+        return None
+
+    # TapDetectionSettingsResponse
+    def YawResetEnabled(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return None
+
+    # TapDetectionSettingsResponse
+    def YawResetTaps(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
+        return None
+
+    # TapDetectionSettingsResponse
+    def MountingResetDelay(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
+        return None
+
+    # TapDetectionSettingsResponse
+    def MountingResetEnabled(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(18))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return None
+
+    # TapDetectionSettingsResponse
+    def MountingResetTaps(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(20))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
+        return None
+
+    # TapDetectionSettingsResponse
+    def NumberTrackersOverThreshold(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(22))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
+        return None
+
+    # TapDetectionSettingsResponse
+    def YawResetTracker(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(24))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
+        return None
+
+    # TapDetectionSettingsResponse
+    def FullResetTracker(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(26))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
+        return None
+
+    # TapDetectionSettingsResponse
+    def MountingResetTracker(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(28))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
+        return None
+
+def TapDetectionSettingsResponseStart(builder):
+    builder.StartObject(13)
+
+def TapDetectionSettingsResponseAddFullResetDelay(builder, fullResetDelay):
+    builder.PrependFloat32Slot(0, fullResetDelay, None)
+
+def TapDetectionSettingsResponseAddFullResetEnabled(builder, fullResetEnabled):
+    builder.PrependBoolSlot(1, fullResetEnabled, None)
+
+def TapDetectionSettingsResponseAddFullResetTaps(builder, fullResetTaps):
+    builder.PrependUint8Slot(2, fullResetTaps, None)
+
+def TapDetectionSettingsResponseAddYawResetDelay(builder, yawResetDelay):
+    builder.PrependFloat32Slot(3, yawResetDelay, None)
+
+def TapDetectionSettingsResponseAddYawResetEnabled(builder, yawResetEnabled):
+    builder.PrependBoolSlot(4, yawResetEnabled, None)
+
+def TapDetectionSettingsResponseAddYawResetTaps(builder, yawResetTaps):
+    builder.PrependUint8Slot(5, yawResetTaps, None)
+
+def TapDetectionSettingsResponseAddMountingResetDelay(builder, mountingResetDelay):
+    builder.PrependFloat32Slot(6, mountingResetDelay, None)
+
+def TapDetectionSettingsResponseAddMountingResetEnabled(builder, mountingResetEnabled):
+    builder.PrependBoolSlot(7, mountingResetEnabled, None)
+
+def TapDetectionSettingsResponseAddMountingResetTaps(builder, mountingResetTaps):
+    builder.PrependUint8Slot(8, mountingResetTaps, None)
+
+def TapDetectionSettingsResponseAddNumberTrackersOverThreshold(builder, numberTrackersOverThreshold):
+    builder.PrependUint8Slot(9, numberTrackersOverThreshold, None)
+
+def TapDetectionSettingsResponseAddYawResetTracker(builder, yawResetTracker):
+    builder.PrependUint8Slot(10, yawResetTracker, None)
+
+def TapDetectionSettingsResponseAddFullResetTracker(builder, fullResetTracker):
+    builder.PrependUint8Slot(11, fullResetTracker, None)
+
+def TapDetectionSettingsResponseAddMountingResetTracker(builder, mountingResetTracker):
+    builder.PrependUint8Slot(12, mountingResetTracker, None)
+
+def TapDetectionSettingsResponseEnd(builder):
+    return builder.EndObject()
+
+
+
+class ChangeTapDetectionSettingsRequest(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = ChangeTapDetectionSettingsRequest()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsChangeTapDetectionSettingsRequest(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # ChangeTapDetectionSettingsRequest
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # ChangeTapDetectionSettingsRequest
+    def FullResetDelay(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
+        return None
+
+    # ChangeTapDetectionSettingsRequest
+    def FullResetEnabled(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return None
+
+    # ChangeTapDetectionSettingsRequest
+    def FullResetTaps(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
+        return None
+
+    # ChangeTapDetectionSettingsRequest
+    def YawResetDelay(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
+        return None
+
+    # ChangeTapDetectionSettingsRequest
+    def YawResetEnabled(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return None
+
+    # ChangeTapDetectionSettingsRequest
+    def YawResetTaps(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
+        return None
+
+    # ChangeTapDetectionSettingsRequest
+    def MountingResetDelay(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
+        return None
+
+    # ChangeTapDetectionSettingsRequest
+    def MountingResetEnabled(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(18))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return None
+
+    # ChangeTapDetectionSettingsRequest
+    def MountingResetTaps(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(20))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
+        return None
+
+    # ChangeTapDetectionSettingsRequest
+    def NumberTrackersOverThreshold(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(22))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
+        return None
+
+    # ChangeTapDetectionSettingsRequest
+    def YawResetTracker(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(24))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
+        return None
+
+    # ChangeTapDetectionSettingsRequest
+    def FullResetTracker(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(26))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
+        return None
+
+    # ChangeTapDetectionSettingsRequest
+    def MountingResetTracker(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(28))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
+        return None
+
+def ChangeTapDetectionSettingsRequestStart(builder):
+    builder.StartObject(13)
+
+def ChangeTapDetectionSettingsRequestAddFullResetDelay(builder, fullResetDelay):
+    builder.PrependFloat32Slot(0, fullResetDelay, None)
+
+def ChangeTapDetectionSettingsRequestAddFullResetEnabled(builder, fullResetEnabled):
+    builder.PrependBoolSlot(1, fullResetEnabled, None)
+
+def ChangeTapDetectionSettingsRequestAddFullResetTaps(builder, fullResetTaps):
+    builder.PrependUint8Slot(2, fullResetTaps, None)
+
+def ChangeTapDetectionSettingsRequestAddYawResetDelay(builder, yawResetDelay):
+    builder.PrependFloat32Slot(3, yawResetDelay, None)
+
+def ChangeTapDetectionSettingsRequestAddYawResetEnabled(builder, yawResetEnabled):
+    builder.PrependBoolSlot(4, yawResetEnabled, None)
+
+def ChangeTapDetectionSettingsRequestAddYawResetTaps(builder, yawResetTaps):
+    builder.PrependUint8Slot(5, yawResetTaps, None)
+
+def ChangeTapDetectionSettingsRequestAddMountingResetDelay(builder, mountingResetDelay):
+    builder.PrependFloat32Slot(6, mountingResetDelay, None)
+
+def ChangeTapDetectionSettingsRequestAddMountingResetEnabled(builder, mountingResetEnabled):
+    builder.PrependBoolSlot(7, mountingResetEnabled, None)
+
+def ChangeTapDetectionSettingsRequestAddMountingResetTaps(builder, mountingResetTaps):
+    builder.PrependUint8Slot(8, mountingResetTaps, None)
+
+def ChangeTapDetectionSettingsRequestAddNumberTrackersOverThreshold(builder, numberTrackersOverThreshold):
+    builder.PrependUint8Slot(9, numberTrackersOverThreshold, None)
+
+def ChangeTapDetectionSettingsRequestAddYawResetTracker(builder, yawResetTracker):
+    builder.PrependUint8Slot(10, yawResetTracker, None)
+
+def ChangeTapDetectionSettingsRequestAddFullResetTracker(builder, fullResetTracker):
+    builder.PrependUint8Slot(11, fullResetTracker, None)
+
+def ChangeTapDetectionSettingsRequestAddMountingResetTracker(builder, mountingResetTracker):
+    builder.PrependUint8Slot(12, mountingResetTracker, None)
+
+def ChangeTapDetectionSettingsRequestEnd(builder):
+    return builder.EndObject()
+
+
+
+# Sets the TapDetection setup mode.
+class TapDetectionSetupModeRequest(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = TapDetectionSetupModeRequest()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsTapDetectionSetupModeRequest(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # TapDetectionSetupModeRequest
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # When true, TapDetection triggering a tracker will assign it instead of doing a reset.
+    # TapDetectionSetupModeRequest
+    def SetupMode(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return None
+
+def TapDetectionSetupModeRequestStart(builder):
+    builder.StartObject(1)
+
+def TapDetectionSetupModeRequestAddSetupMode(builder, setupMode):
+    builder.PrependBoolSlot(0, setupMode, None)
+
+def TapDetectionSetupModeRequestEnd(builder):
+    return builder.EndObject()
+
+
+
+# Indicates which tracker got triggered by TapDetection while setup mode is enabled
+class TapDetectionSetupNotification(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = TapDetectionSetupNotification()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsTapDetectionSetupNotification(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # TapDetectionSetupNotification
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # TapDetectionSetupNotification
+    def TrackerId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Uint16Flags, o + self._tab.Pos)
+        return 0
+
+def TapDetectionSetupNotificationStart(builder):
+    builder.StartObject(1)
+
+def TapDetectionSetupNotificationAddTrackerId(builder, trackerId):
+    builder.PrependUint16Slot(0, trackerId, 0)
+
+def TapDetectionSetupNotificationEnd(builder):
     return builder.EndObject()
 
 
@@ -8902,17 +9564,14 @@ class MagToggleRequest(object):
     def TrackerId(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
         if o != 0:
-            x = self._tab.Indirect(o + self._tab.Pos)
-            obj = TrackerId()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
+            return self._tab.Get(flatbuffers.number_types.Uint16Flags, o + self._tab.Pos)
+        return 0
 
 def MagToggleRequestStart(builder):
     builder.StartObject(1)
 
 def MagToggleRequestAddTrackerId(builder, trackerId):
-    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(trackerId), 0)
+    builder.PrependUint16Slot(0, trackerId, 0)
 
 def MagToggleRequestEnd(builder):
     return builder.EndObject()
@@ -8942,11 +9601,8 @@ class MagToggleResponse(object):
     def TrackerId(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
         if o != 0:
-            x = self._tab.Indirect(o + self._tab.Pos)
-            obj = TrackerId()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
+            return self._tab.Get(flatbuffers.number_types.Uint16Flags, o + self._tab.Pos)
+        return 0
 
     # MagToggleResponse
     def Enable(self):
@@ -8959,7 +9615,7 @@ def MagToggleResponseStart(builder):
     builder.StartObject(2)
 
 def MagToggleResponseAddTrackerId(builder, trackerId):
-    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(trackerId), 0)
+    builder.PrependUint16Slot(0, trackerId, 0)
 
 def MagToggleResponseAddEnable(builder, enable):
     builder.PrependBoolSlot(1, enable, 0)
@@ -8992,11 +9648,8 @@ class ChangeMagToggleRequest(object):
     def TrackerId(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
         if o != 0:
-            x = self._tab.Indirect(o + self._tab.Pos)
-            obj = TrackerId()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
+            return self._tab.Get(flatbuffers.number_types.Uint16Flags, o + self._tab.Pos)
+        return 0
 
     # ChangeMagToggleRequest
     def Enable(self):
@@ -9009,7 +9662,7 @@ def ChangeMagToggleRequestStart(builder):
     builder.StartObject(2)
 
 def ChangeMagToggleRequestAddTrackerId(builder, trackerId):
-    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(trackerId), 0)
+    builder.PrependUint16Slot(0, trackerId, 0)
 
 def ChangeMagToggleRequestAddEnable(builder, enable):
     builder.PrependBoolSlot(1, enable, 0)
@@ -9019,548 +9672,100 @@ def ChangeMagToggleRequestEnd(builder):
 
 
 
-class VRCConfigValidity(object):
+class TimeoutSettingsRequest(object):
     __slots__ = ['_tab']
 
     @classmethod
     def GetRootAs(cls, buf, offset=0):
         n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = VRCConfigValidity()
+        x = TimeoutSettingsRequest()
         x.Init(buf, n + offset)
         return x
 
     @classmethod
-    def GetRootAsVRCConfigValidity(cls, buf, offset=0):
+    def GetRootAsTimeoutSettingsRequest(cls, buf, offset=0):
         """This method is deprecated. Please switch to GetRootAs."""
         return cls.GetRootAs(buf, offset)
-    # VRCConfigValidity
+    # TimeoutSettingsRequest
     def Init(self, buf, pos):
         self._tab = flatbuffers.table.Table(buf, pos)
 
-    # VRCConfigValidity
-    def LegacyModeOk(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        if o != 0:
-            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
-        return False
-
-    # VRCConfigValidity
-    def ShoulderTrackingOk(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
-        if o != 0:
-            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
-        return False
-
-    # VRCConfigValidity
-    def UserHeightOk(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
-        if o != 0:
-            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
-        return False
-
-    # VRCConfigValidity
-    def CalibrationRangeOk(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
-        if o != 0:
-            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
-        return False
-
-    # VRCConfigValidity
-    def CalibrationVisualsOk(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
-        if o != 0:
-            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
-        return False
-
-    # VRCConfigValidity
-    def TrackerModelOk(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
-        if o != 0:
-            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
-        return False
-
-    # VRCConfigValidity
-    def SpineModeOk(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
-        if o != 0:
-            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
-        return False
-
-    # VRCConfigValidity
-    def AvatarMeasurementTypeOk(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(18))
-        if o != 0:
-            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
-        return False
-
-    # VRCConfigValidity
-    def ShoulderWidthCompensationOk(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(20))
-        if o != 0:
-            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
-        return False
-
-def VRCConfigValidityStart(builder):
-    builder.StartObject(9)
-
-def VRCConfigValidityAddLegacyModeOk(builder, legacyModeOk):
-    builder.PrependBoolSlot(0, legacyModeOk, 0)
-
-def VRCConfigValidityAddShoulderTrackingOk(builder, shoulderTrackingOk):
-    builder.PrependBoolSlot(1, shoulderTrackingOk, 0)
-
-def VRCConfigValidityAddUserHeightOk(builder, userHeightOk):
-    builder.PrependBoolSlot(2, userHeightOk, 0)
-
-def VRCConfigValidityAddCalibrationRangeOk(builder, calibrationRangeOk):
-    builder.PrependBoolSlot(3, calibrationRangeOk, 0)
-
-def VRCConfigValidityAddCalibrationVisualsOk(builder, calibrationVisualsOk):
-    builder.PrependBoolSlot(4, calibrationVisualsOk, 0)
-
-def VRCConfigValidityAddTrackerModelOk(builder, trackerModelOk):
-    builder.PrependBoolSlot(5, trackerModelOk, 0)
-
-def VRCConfigValidityAddSpineModeOk(builder, spineModeOk):
-    builder.PrependBoolSlot(6, spineModeOk, 0)
-
-def VRCConfigValidityAddAvatarMeasurementTypeOk(builder, avatarMeasurementTypeOk):
-    builder.PrependBoolSlot(7, avatarMeasurementTypeOk, 0)
-
-def VRCConfigValidityAddShoulderWidthCompensationOk(builder, shoulderWidthCompensationOk):
-    builder.PrependBoolSlot(8, shoulderWidthCompensationOk, 0)
-
-def VRCConfigValidityEnd(builder):
-    return builder.EndObject()
-
-
-
-class VRCConfigValues(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = VRCConfigValues()
-        x.Init(buf, n + offset)
-        return x
-
-    @classmethod
-    def GetRootAsVRCConfigValues(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # VRCConfigValues
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-    # VRCConfigValues
-    def LegacyMode(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        if o != 0:
-            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
-        return False
-
-    # VRCConfigValues
-    def ShoulderTrackingDisabled(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
-        if o != 0:
-            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
-        return False
-
-    # VRCConfigValues
-    def UserHeight(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
-        return 0.0
-
-    # VRCConfigValues
-    def CalibrationRange(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
-        return 0.0
-
-    # VRCConfigValues
-    def CalibrationVisuals(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
-        if o != 0:
-            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
-        return False
-
-    # VRCConfigValues
-    def TrackerModel(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
-        return 0
-
-    # VRCConfigValues
-    def SpineMode(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
-        return 0
-
-    # VRCConfigValues
-    def AvatarMeasurementType(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(18))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
-        return 0
-
-    # VRCConfigValues
-    def ShoulderWidthCompensation(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(20))
-        if o != 0:
-            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
-        return False
-
-def VRCConfigValuesStart(builder):
-    builder.StartObject(9)
-
-def VRCConfigValuesAddLegacyMode(builder, legacyMode):
-    builder.PrependBoolSlot(0, legacyMode, 0)
-
-def VRCConfigValuesAddShoulderTrackingDisabled(builder, shoulderTrackingDisabled):
-    builder.PrependBoolSlot(1, shoulderTrackingDisabled, 0)
-
-def VRCConfigValuesAddUserHeight(builder, userHeight):
-    builder.PrependFloat32Slot(2, userHeight, 0.0)
-
-def VRCConfigValuesAddCalibrationRange(builder, calibrationRange):
-    builder.PrependFloat32Slot(3, calibrationRange, 0.0)
-
-def VRCConfigValuesAddCalibrationVisuals(builder, calibrationVisuals):
-    builder.PrependBoolSlot(4, calibrationVisuals, 0)
-
-def VRCConfigValuesAddTrackerModel(builder, trackerModel):
-    builder.PrependUint8Slot(5, trackerModel, 0)
-
-def VRCConfigValuesAddSpineMode(builder, spineMode):
-    builder.PrependUint8Slot(6, spineMode, 0)
-
-def VRCConfigValuesAddAvatarMeasurementType(builder, avatarMeasurementType):
-    builder.PrependUint8Slot(7, avatarMeasurementType, 0)
-
-def VRCConfigValuesAddShoulderWidthCompensation(builder, shoulderWidthCompensation):
-    builder.PrependBoolSlot(8, shoulderWidthCompensation, 0)
-
-def VRCConfigValuesEnd(builder):
-    return builder.EndObject()
-
-
-
-class VRCConfigRecommendedValues(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = VRCConfigRecommendedValues()
-        x.Init(buf, n + offset)
-        return x
-
-    @classmethod
-    def GetRootAsVRCConfigRecommendedValues(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # VRCConfigRecommendedValues
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-    # VRCConfigRecommendedValues
-    def LegacyMode(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        if o != 0:
-            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
-        return False
-
-    # VRCConfigRecommendedValues
-    def ShoulderTrackingDisabled(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
-        if o != 0:
-            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
-        return False
-
-    # VRCConfigRecommendedValues
-    def UserHeight(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
-        return 0.0
-
-    # VRCConfigRecommendedValues
-    def CalibrationRange(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
-        return 0.0
-
-    # VRCConfigRecommendedValues
-    def CalibrationVisuals(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
-        if o != 0:
-            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
-        return False
-
-    # VRCConfigRecommendedValues
-    def TrackerModel(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
-        return 0
-
-    # VRCConfigRecommendedValues
-    def SpineMode(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
-        if o != 0:
-            a = self._tab.Vector(o)
-            return self._tab.Get(flatbuffers.number_types.Uint8Flags, a + flatbuffers.number_types.UOffsetTFlags.py_type(j * 1))
-        return 0
-
-    # VRCConfigRecommendedValues
-    def SpineModeAsNumpy(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
-        if o != 0:
-            return self._tab.GetVectorAsNumpy(flatbuffers.number_types.Uint8Flags, o)
-        return 0
-
-    # VRCConfigRecommendedValues
-    def SpineModeLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
-        if o != 0:
-            return self._tab.VectorLen(o)
-        return 0
-
-    # VRCConfigRecommendedValues
-    def SpineModeIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
-        return o == 0
-
-    # VRCConfigRecommendedValues
-    def AvatarMeasurementType(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(18))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
-        return 0
-
-    # VRCConfigRecommendedValues
-    def ShoulderWidthCompensation(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(20))
-        if o != 0:
-            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
-        return False
-
-def VRCConfigRecommendedValuesStart(builder):
-    builder.StartObject(9)
-
-def VRCConfigRecommendedValuesAddLegacyMode(builder, legacyMode):
-    builder.PrependBoolSlot(0, legacyMode, 0)
-
-def VRCConfigRecommendedValuesAddShoulderTrackingDisabled(builder, shoulderTrackingDisabled):
-    builder.PrependBoolSlot(1, shoulderTrackingDisabled, 0)
-
-def VRCConfigRecommendedValuesAddUserHeight(builder, userHeight):
-    builder.PrependFloat32Slot(2, userHeight, 0.0)
-
-def VRCConfigRecommendedValuesAddCalibrationRange(builder, calibrationRange):
-    builder.PrependFloat32Slot(3, calibrationRange, 0.0)
-
-def VRCConfigRecommendedValuesAddCalibrationVisuals(builder, calibrationVisuals):
-    builder.PrependBoolSlot(4, calibrationVisuals, 0)
-
-def VRCConfigRecommendedValuesAddTrackerModel(builder, trackerModel):
-    builder.PrependUint8Slot(5, trackerModel, 0)
-
-def VRCConfigRecommendedValuesAddSpineMode(builder, spineMode):
-    builder.PrependUOffsetTRelativeSlot(6, flatbuffers.number_types.UOffsetTFlags.py_type(spineMode), 0)
-
-def VRCConfigRecommendedValuesStartSpineModeVector(builder, numElems):
-    return builder.StartVector(1, numElems, 1)
-
-def VRCConfigRecommendedValuesCreateSpineModeVector(builder, data):
-    data = list(data)
-    builder.StartVector(1, len(data), 1)
-    for item in reversed(data):
-        builder.PrependUint8(item)
-    return builder.EndVector()
-
-def VRCConfigRecommendedValuesAddAvatarMeasurementType(builder, avatarMeasurementType):
-    builder.PrependUint8Slot(7, avatarMeasurementType, 0)
-
-def VRCConfigRecommendedValuesAddShoulderWidthCompensation(builder, shoulderWidthCompensation):
-    builder.PrependBoolSlot(8, shoulderWidthCompensation, 0)
-
-def VRCConfigRecommendedValuesEnd(builder):
-    return builder.EndObject()
-
-
-
-class VRCConfigStateRequest(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = VRCConfigStateRequest()
-        x.Init(buf, n + offset)
-        return x
-
-    @classmethod
-    def GetRootAsVRCConfigStateRequest(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # VRCConfigStateRequest
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-def VRCConfigStateRequestStart(builder):
+def TimeoutSettingsRequestStart(builder):
     builder.StartObject(0)
 
-def VRCConfigStateRequestEnd(builder):
+def TimeoutSettingsRequestEnd(builder):
     return builder.EndObject()
 
 
 
-# Sent every time the vrchat config state gets updated
-# used to display vrchat missconfig settings to the user
-class VRCConfigStateChangeResponse(object):
+class TimeoutSettingsResponse(object):
     __slots__ = ['_tab']
 
     @classmethod
     def GetRootAs(cls, buf, offset=0):
         n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = VRCConfigStateChangeResponse()
+        x = TimeoutSettingsResponse()
         x.Init(buf, n + offset)
         return x
 
     @classmethod
-    def GetRootAsVRCConfigStateChangeResponse(cls, buf, offset=0):
+    def GetRootAsTimeoutSettingsResponse(cls, buf, offset=0):
         """This method is deprecated. Please switch to GetRootAs."""
         return cls.GetRootAs(buf, offset)
-    # VRCConfigStateChangeResponse
+    # TimeoutSettingsResponse
     def Init(self, buf, pos):
         self._tab = flatbuffers.table.Table(buf, pos)
 
-    # VRCConfigStateChangeResponse
-    def IsSupported(self):
+    # TimeoutSettingsResponse
+    def Delay(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
         if o != 0:
-            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
-        return False
+            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
+        return 0.0
 
-    # VRCConfigStateChangeResponse
-    def Validity(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
-        if o != 0:
-            x = self._tab.Indirect(o + self._tab.Pos)
-            obj = VRCConfigValidity()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
-
-    # VRCConfigStateChangeResponse
-    def State(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
-        if o != 0:
-            x = self._tab.Indirect(o + self._tab.Pos)
-            obj = VRCConfigValues()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
-
-    # VRCConfigStateChangeResponse
-    def Recommended(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
-        if o != 0:
-            x = self._tab.Indirect(o + self._tab.Pos)
-            obj = VRCConfigRecommendedValues()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
-
-    # VRCConfigStateChangeResponse
-    def Muted(self, j):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
-        if o != 0:
-            a = self._tab.Vector(o)
-            return self._tab.String(a + flatbuffers.number_types.UOffsetTFlags.py_type(j * 4))
-        return ""
-
-    # VRCConfigStateChangeResponse
-    def MutedLength(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
-        if o != 0:
-            return self._tab.VectorLen(o)
-        return 0
-
-    # VRCConfigStateChangeResponse
-    def MutedIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
-        return o == 0
-
-def VRCConfigStateChangeResponseStart(builder):
-    builder.StartObject(5)
-
-def VRCConfigStateChangeResponseAddIsSupported(builder, isSupported):
-    builder.PrependBoolSlot(0, isSupported, 0)
-
-def VRCConfigStateChangeResponseAddValidity(builder, validity):
-    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(validity), 0)
-
-def VRCConfigStateChangeResponseAddState(builder, state):
-    builder.PrependUOffsetTRelativeSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(state), 0)
-
-def VRCConfigStateChangeResponseAddRecommended(builder, recommended):
-    builder.PrependUOffsetTRelativeSlot(3, flatbuffers.number_types.UOffsetTFlags.py_type(recommended), 0)
-
-def VRCConfigStateChangeResponseAddMuted(builder, muted):
-    builder.PrependUOffsetTRelativeSlot(4, flatbuffers.number_types.UOffsetTFlags.py_type(muted), 0)
-
-def VRCConfigStateChangeResponseStartMutedVector(builder, numElems):
-    return builder.StartVector(4, numElems, 4)
-
-def VRCConfigStateChangeResponseCreateMutedVector(builder, data):
-    return builder.CreateVectorOfTables(data)
-
-def VRCConfigStateChangeResponseEnd(builder):
-    return builder.EndObject()
-
-
-
-class VRCConfigSettingToggleMute(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = VRCConfigSettingToggleMute()
-        x.Init(buf, n + offset)
-        return x
-
-    @classmethod
-    def GetRootAsVRCConfigSettingToggleMute(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # VRCConfigSettingToggleMute
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-    # VRCConfigSettingToggleMute
-    def Key(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
-
-def VRCConfigSettingToggleMuteStart(builder):
+def TimeoutSettingsResponseStart(builder):
     builder.StartObject(1)
 
-def VRCConfigSettingToggleMuteAddKey(builder, key):
-    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(key), 0)
+def TimeoutSettingsResponseAddDelay(builder, delay):
+    builder.PrependFloat32Slot(0, delay, 0.0)
 
-def VRCConfigSettingToggleMuteEnd(builder):
+def TimeoutSettingsResponseEnd(builder):
+    return builder.EndObject()
+
+
+
+class ChangeTimeoutSettingsRequest(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = ChangeTimeoutSettingsRequest()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsChangeTimeoutSettingsRequest(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # ChangeTimeoutSettingsRequest
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # ChangeTimeoutSettingsRequest
+    def Delay(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
+        return 0.0
+
+def ChangeTimeoutSettingsRequestStart(builder):
+    builder.StartObject(1)
+
+def ChangeTimeoutSettingsRequestAddDelay(builder, delay):
+    builder.PrependFloat32Slot(0, delay, 0.0)
+
+def ChangeTimeoutSettingsRequestEnd(builder):
     return builder.EndObject()
 
 
@@ -9588,13 +9793,16 @@ class TrackingChecklistTrackerReset(object):
     def TrackersId(self, j):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
         if o != 0:
-            x = self._tab.Vector(o)
-            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
-            x = self._tab.Indirect(x)
-            obj = TrackerId()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
+            a = self._tab.Vector(o)
+            return self._tab.Get(flatbuffers.number_types.Uint16Flags, a + flatbuffers.number_types.UOffsetTFlags.py_type(j * 2))
+        return 0
+
+    # TrackingChecklistTrackerReset
+    def TrackersIdAsNumpy(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.GetVectorAsNumpy(flatbuffers.number_types.Uint16Flags, o)
+        return 0
 
     # TrackingChecklistTrackerReset
     def TrackersIdLength(self):
@@ -9615,10 +9823,14 @@ def TrackingChecklistTrackerResetAddTrackersId(builder, trackersId):
     builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(trackersId), 0)
 
 def TrackingChecklistTrackerResetStartTrackersIdVector(builder, numElems):
-    return builder.StartVector(4, numElems, 4)
+    return builder.StartVector(2, numElems, 2)
 
 def TrackingChecklistTrackerResetCreateTrackersIdVector(builder, data):
-    return builder.CreateVectorOfTables(data)
+    data = list(data)
+    builder.StartVector(2, len(data), 2)
+    for item in reversed(data):
+        builder.PrependUint16(item)
+    return builder.EndVector()
 
 def TrackingChecklistTrackerResetEnd(builder):
     return builder.EndObject()
@@ -9648,13 +9860,16 @@ class TrackingChecklistTrackerError(object):
     def TrackersId(self, j):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
         if o != 0:
-            x = self._tab.Vector(o)
-            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
-            x = self._tab.Indirect(x)
-            obj = TrackerId()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
+            a = self._tab.Vector(o)
+            return self._tab.Get(flatbuffers.number_types.Uint16Flags, a + flatbuffers.number_types.UOffsetTFlags.py_type(j * 2))
+        return 0
+
+    # TrackingChecklistTrackerError
+    def TrackersIdAsNumpy(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.GetVectorAsNumpy(flatbuffers.number_types.Uint16Flags, o)
+        return 0
 
     # TrackingChecklistTrackerError
     def TrackersIdLength(self):
@@ -9675,10 +9890,14 @@ def TrackingChecklistTrackerErrorAddTrackersId(builder, trackersId):
     builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(trackersId), 0)
 
 def TrackingChecklistTrackerErrorStartTrackersIdVector(builder, numElems):
-    return builder.StartVector(4, numElems, 4)
+    return builder.StartVector(2, numElems, 2)
 
 def TrackingChecklistTrackerErrorCreateTrackersIdVector(builder, data):
-    return builder.CreateVectorOfTables(data)
+    data = list(data)
+    builder.StartVector(2, len(data), 2)
+    for item in reversed(data):
+        builder.PrependUint16(item)
+    return builder.EndVector()
 
 def TrackingChecklistTrackerErrorEnd(builder):
     return builder.EndObject()
@@ -9707,13 +9926,16 @@ class TrackingChecklistNeedCalibration(object):
     def TrackersId(self, j):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
         if o != 0:
-            x = self._tab.Vector(o)
-            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
-            x = self._tab.Indirect(x)
-            obj = TrackerId()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
+            a = self._tab.Vector(o)
+            return self._tab.Get(flatbuffers.number_types.Uint16Flags, a + flatbuffers.number_types.UOffsetTFlags.py_type(j * 2))
+        return 0
+
+    # TrackingChecklistNeedCalibration
+    def TrackersIdAsNumpy(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.GetVectorAsNumpy(flatbuffers.number_types.Uint16Flags, o)
+        return 0
 
     # TrackingChecklistNeedCalibration
     def TrackersIdLength(self):
@@ -9734,10 +9956,14 @@ def TrackingChecklistNeedCalibrationAddTrackersId(builder, trackersId):
     builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(trackersId), 0)
 
 def TrackingChecklistNeedCalibrationStartTrackersIdVector(builder, numElems):
-    return builder.StartVector(4, numElems, 4)
+    return builder.StartVector(2, numElems, 2)
 
 def TrackingChecklistNeedCalibrationCreateTrackersIdVector(builder, data):
-    return builder.CreateVectorOfTables(data)
+    data = list(data)
+    builder.StartVector(2, len(data), 2)
+    for item in reversed(data):
+        builder.PrependUint16(item)
+    return builder.EndVector()
 
 def TrackingChecklistNeedCalibrationEnd(builder):
     return builder.EndObject()
@@ -9840,41 +10066,48 @@ def EnableSteamVRDriverRequestEnd(builder):
 
 
 
-class TrackingChecklistUnassignedHMD(object):
+class TrackingChecklistUnassignedReliableReference(object):
     __slots__ = ['_tab']
 
     @classmethod
     def GetRootAs(cls, buf, offset=0):
         n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = TrackingChecklistUnassignedHMD()
+        x = TrackingChecklistUnassignedReliableReference()
         x.Init(buf, n + offset)
         return x
 
     @classmethod
-    def GetRootAsTrackingChecklistUnassignedHMD(cls, buf, offset=0):
+    def GetRootAsTrackingChecklistUnassignedReliableReference(cls, buf, offset=0):
         """This method is deprecated. Please switch to GetRootAs."""
         return cls.GetRootAs(buf, offset)
-    # TrackingChecklistUnassignedHMD
+    # TrackingChecklistUnassignedReliableReference
     def Init(self, buf, pos):
         self._tab = flatbuffers.table.Table(buf, pos)
 
-    # TrackingChecklistUnassignedHMD
+    # TrackingChecklistUnassignedReliableReference
     def TrackerId(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
         if o != 0:
-            x = self._tab.Indirect(o + self._tab.Pos)
-            obj = TrackerId()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
+            return self._tab.Get(flatbuffers.number_types.Uint16Flags, o + self._tab.Pos)
+        return 0
 
-def TrackingChecklistUnassignedHMDStart(builder):
-    builder.StartObject(1)
+    # TrackingChecklistUnassignedReliableReference
+    def IntendedBodyPart(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
+        return 0
 
-def TrackingChecklistUnassignedHMDAddTrackerId(builder, trackerId):
-    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(trackerId), 0)
+def TrackingChecklistUnassignedReliableReferenceStart(builder):
+    builder.StartObject(2)
 
-def TrackingChecklistUnassignedHMDEnd(builder):
+def TrackingChecklistUnassignedReliableReferenceAddTrackerId(builder, trackerId):
+    builder.PrependUint16Slot(0, trackerId, 0)
+
+def TrackingChecklistUnassignedReliableReferenceAddIntendedBodyPart(builder, intendedBodyPart):
+    builder.PrependUint8Slot(1, intendedBodyPart, 0)
+
+def TrackingChecklistUnassignedReliableReferenceEnd(builder):
     return builder.EndObject()
 
 
@@ -10214,555 +10447,1405 @@ def IgnoreTrackingChecklistStepRequestEnd(builder):
 
 
 
-class EnableStayAlignedRequest(object):
+class VMCOSCSettingsRequest(object):
     __slots__ = ['_tab']
 
     @classmethod
     def GetRootAs(cls, buf, offset=0):
         n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = EnableStayAlignedRequest()
+        x = VMCOSCSettingsRequest()
         x.Init(buf, n + offset)
         return x
 
     @classmethod
-    def GetRootAsEnableStayAlignedRequest(cls, buf, offset=0):
+    def GetRootAsVMCOSCSettingsRequest(cls, buf, offset=0):
         """This method is deprecated. Please switch to GetRootAs."""
         return cls.GetRootAs(buf, offset)
-    # EnableStayAlignedRequest
+    # VMCOSCSettingsRequest
     def Init(self, buf, pos):
         self._tab = flatbuffers.table.Table(buf, pos)
 
-    # EnableStayAlignedRequest
-    def Enable(self):
+def VMCOSCSettingsRequestStart(builder):
+    builder.StartObject(0)
+
+def VMCOSCSettingsRequestEnd(builder):
+    return builder.EndObject()
+
+
+
+class VMCOSCSettingsResponse(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = VMCOSCSettingsResponse()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsVMCOSCSettingsResponse(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # VMCOSCSettingsResponse
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # VMCOSCSettingsResponse
+    def Enabled(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
         if o != 0:
             return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
         return False
 
-def EnableStayAlignedRequestStart(builder):
-    builder.StartObject(1)
-
-def EnableStayAlignedRequestAddEnable(builder, enable):
-    builder.PrependBoolSlot(0, enable, 0)
-
-def EnableStayAlignedRequestEnd(builder):
-    return builder.EndObject()
-
-
-
-class DetectStayAlignedRelaxedPoseRequest(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = DetectStayAlignedRelaxedPoseRequest()
-        x.Init(buf, n + offset)
-        return x
-
-    @classmethod
-    def GetRootAsDetectStayAlignedRelaxedPoseRequest(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # DetectStayAlignedRelaxedPoseRequest
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-    # DetectStayAlignedRelaxedPoseRequest
-    def Pose(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
-        return 0
-
-def DetectStayAlignedRelaxedPoseRequestStart(builder):
-    builder.StartObject(1)
-
-def DetectStayAlignedRelaxedPoseRequestAddPose(builder, pose):
-    builder.PrependUint8Slot(0, pose, 0)
-
-def DetectStayAlignedRelaxedPoseRequestEnd(builder):
-    return builder.EndObject()
-
-
-
-class ResetStayAlignedRelaxedPoseRequest(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = ResetStayAlignedRelaxedPoseRequest()
-        x.Init(buf, n + offset)
-        return x
-
-    @classmethod
-    def GetRootAsResetStayAlignedRelaxedPoseRequest(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # ResetStayAlignedRelaxedPoseRequest
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-    # ResetStayAlignedRelaxedPoseRequest
-    def Pose(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
-        return 0
-
-def ResetStayAlignedRelaxedPoseRequestStart(builder):
-    builder.StartObject(1)
-
-def ResetStayAlignedRelaxedPoseRequestAddPose(builder, pose):
-    builder.PrependUint8Slot(0, pose, 0)
-
-def ResetStayAlignedRelaxedPoseRequestEnd(builder):
-    return builder.EndObject()
-
-
-
-class StartUserHeightCalibration(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = StartUserHeightCalibration()
-        x.Init(buf, n + offset)
-        return x
-
-    @classmethod
-    def GetRootAsStartUserHeightCalibration(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # StartUserHeightCalibration
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-def StartUserHeightCalibrationStart(builder):
-    builder.StartObject(0)
-
-def StartUserHeightCalibrationEnd(builder):
-    return builder.EndObject()
-
-
-
-class CancelUserHeightCalibration(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = CancelUserHeightCalibration()
-        x.Init(buf, n + offset)
-        return x
-
-    @classmethod
-    def GetRootAsCancelUserHeightCalibration(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # CancelUserHeightCalibration
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-def CancelUserHeightCalibrationStart(builder):
-    builder.StartObject(0)
-
-def CancelUserHeightCalibrationEnd(builder):
-    return builder.EndObject()
-
-
-
-class UserHeightRecordingStatusResponse(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = UserHeightRecordingStatusResponse()
-        x.Init(buf, n + offset)
-        return x
-
-    @classmethod
-    def GetRootAsUserHeightRecordingStatusResponse(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # UserHeightRecordingStatusResponse
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-    # UserHeightRecordingStatusResponse
-    def HmdHeight(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
-        return 0.0
-
-    # UserHeightRecordingStatusResponse
-    def Status(self):
+    # VMCOSCSettingsResponse
+    def PortIn(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
-        if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
-        return 0
-
-def UserHeightRecordingStatusResponseStart(builder):
-    builder.StartObject(2)
-
-def UserHeightRecordingStatusResponseAddHmdHeight(builder, hmdHeight):
-    builder.PrependFloat32Slot(0, hmdHeight, 0.0)
-
-def UserHeightRecordingStatusResponseAddStatus(builder, status):
-    builder.PrependUint8Slot(1, status, 0)
-
-def UserHeightRecordingStatusResponseEnd(builder):
-    return builder.EndObject()
-
-
-
-# A `TopicId` identifies an application-specific category of data. Because it
-# is application-specific, it is up to the application within the specified
-# organization to define its semantics/meaning.
-#
-# For example, "bob" may have an "overlay" app with a "settings" topic for controlling
-# the overlay visibility and other settings, as well as a "video feed" topic for
-# allowing other applications to display video data in a wrist mounted window in VR.
-class TopicId(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = TopicId()
-        x.Init(buf, n + offset)
-        return x
-
-    @classmethod
-    def GetRootAsTopicId(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # TopicId
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-    # The organization/developer that defines the meaning of this feature. Avoids name
-    # clashes. Should be something unique - same idea as java package identifier.
-    # TopicId
-    def Organization(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
-
-    # The name of the application/device. Should be unique within the organization.
-    # TopicId
-    def AppName(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
-        if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
-
-    # The name of the topic. Should be unique within the application.
-    # TopicId
-    def Topic(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
-        if o != 0:
-            return self._tab.String(o + self._tab.Pos)
-        return None
-
-def TopicIdStart(builder):
-    builder.StartObject(3)
-
-def TopicIdAddOrganization(builder, organization):
-    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(organization), 0)
-
-def TopicIdAddAppName(builder, appName):
-    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(appName), 0)
-
-def TopicIdAddTopic(builder, topic):
-    builder.PrependUOffsetTRelativeSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(topic), 0)
-
-def TopicIdEnd(builder):
-    return builder.EndObject()
-
-
-
-# A handle for the topic, allows referencing a topic without sending a huge
-# `TopicId`.
-class TopicHandle(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = TopicHandle()
-        x.Init(buf, n + offset)
-        return x
-
-    @classmethod
-    def GetRootAsTopicHandle(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # TopicHandle
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-    # TopicHandle
-    def Id(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Uint16Flags, o + self._tab.Pos)
         return 0
 
-def TopicHandleStart(builder):
+    # VMCOSCSettingsResponse
+    def PortOut(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Uint16Flags, o + self._tab.Pos)
+        return 0
+
+    # VMCOSCSettingsResponse
+    def Address(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # VMCOSCSettingsResponse
+    def AnchorHip(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
+
+    # VMCOSCSettingsResponse
+    def MirrorTracking(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
+
+def VMCOSCSettingsResponseStart(builder):
+    builder.StartObject(6)
+
+def VMCOSCSettingsResponseAddEnabled(builder, enabled):
+    builder.PrependBoolSlot(0, enabled, 0)
+
+def VMCOSCSettingsResponseAddPortIn(builder, portIn):
+    builder.PrependUint16Slot(1, portIn, 0)
+
+def VMCOSCSettingsResponseAddPortOut(builder, portOut):
+    builder.PrependUint16Slot(2, portOut, 0)
+
+def VMCOSCSettingsResponseAddAddress(builder, address):
+    builder.PrependUOffsetTRelativeSlot(3, flatbuffers.number_types.UOffsetTFlags.py_type(address), 0)
+
+def VMCOSCSettingsResponseAddAnchorHip(builder, anchorHip):
+    builder.PrependBoolSlot(4, anchorHip, 0)
+
+def VMCOSCSettingsResponseAddMirrorTracking(builder, mirrorTracking):
+    builder.PrependBoolSlot(5, mirrorTracking, 0)
+
+def VMCOSCSettingsResponseEnd(builder):
+    return builder.EndObject()
+
+
+
+class ChangeVMCOSCSettingsRequest(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = ChangeVMCOSCSettingsRequest()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsChangeVMCOSCSettingsRequest(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # ChangeVMCOSCSettingsRequest
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # ChangeVMCOSCSettingsRequest
+    def Enabled(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
+
+    # ChangeVMCOSCSettingsRequest
+    def PortIn(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Uint16Flags, o + self._tab.Pos)
+        return 0
+
+    # ChangeVMCOSCSettingsRequest
+    def PortOut(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Uint16Flags, o + self._tab.Pos)
+        return 0
+
+    # ChangeVMCOSCSettingsRequest
+    def Address(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # ChangeVMCOSCSettingsRequest
+    def AnchorHip(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
+
+    # ChangeVMCOSCSettingsRequest
+    def MirrorTracking(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
+
+def ChangeVMCOSCSettingsRequestStart(builder):
+    builder.StartObject(6)
+
+def ChangeVMCOSCSettingsRequestAddEnabled(builder, enabled):
+    builder.PrependBoolSlot(0, enabled, 0)
+
+def ChangeVMCOSCSettingsRequestAddPortIn(builder, portIn):
+    builder.PrependUint16Slot(1, portIn, 0)
+
+def ChangeVMCOSCSettingsRequestAddPortOut(builder, portOut):
+    builder.PrependUint16Slot(2, portOut, 0)
+
+def ChangeVMCOSCSettingsRequestAddAddress(builder, address):
+    builder.PrependUOffsetTRelativeSlot(3, flatbuffers.number_types.UOffsetTFlags.py_type(address), 0)
+
+def ChangeVMCOSCSettingsRequestAddAnchorHip(builder, anchorHip):
+    builder.PrependBoolSlot(4, anchorHip, 0)
+
+def ChangeVMCOSCSettingsRequestAddMirrorTracking(builder, mirrorTracking):
+    builder.PrependBoolSlot(5, mirrorTracking, 0)
+
+def ChangeVMCOSCSettingsRequestEnd(builder):
+    return builder.EndObject()
+
+
+
+class VMCOSCStatusRequest(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = VMCOSCStatusRequest()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsVMCOSCStatusRequest(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # VMCOSCStatusRequest
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+def VMCOSCStatusRequestStart(builder):
+    builder.StartObject(0)
+
+def VMCOSCStatusRequestEnd(builder):
+    return builder.EndObject()
+
+
+
+class VMCOSCStatusChangeResponse(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = VMCOSCStatusChangeResponse()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsVMCOSCStatusChangeResponse(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # VMCOSCStatusChangeResponse
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # VMCOSCStatusChangeResponse
+    def InputState(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
+        return 0
+
+    # VMCOSCStatusChangeResponse
+    def InputPort(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Uint16Flags, o + self._tab.Pos)
+        return None
+
+    # VMCOSCStatusChangeResponse
+    def InputError(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # VMCOSCStatusChangeResponse
+    def LastReceivedInputMillis(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Uint64Flags, o + self._tab.Pos)
+        return None
+
+    # VMCOSCStatusChangeResponse
+    def OutputState(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
+        return 0
+
+    # VMCOSCStatusChangeResponse
+    def OutputError(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # VMCOSCStatusChangeResponse
+    def TargetAddress(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # VMCOSCStatusChangeResponse
+    def TargetPort(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(18))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Uint16Flags, o + self._tab.Pos)
+        return None
+
+    # VMCOSCStatusChangeResponse
+    def LastFrameSentMillis(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(20))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Uint64Flags, o + self._tab.Pos)
+        return None
+
+    # VMCOSCStatusChangeResponse
+    def VrmState(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(22))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
+        return 0
+
+    # VMCOSCStatusChangeResponse
+    def VrmError(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(24))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+def VMCOSCStatusChangeResponseStart(builder):
+    builder.StartObject(11)
+
+def VMCOSCStatusChangeResponseAddInputState(builder, inputState):
+    builder.PrependUint8Slot(0, inputState, 0)
+
+def VMCOSCStatusChangeResponseAddInputPort(builder, inputPort):
+    builder.PrependUint16Slot(1, inputPort, None)
+
+def VMCOSCStatusChangeResponseAddInputError(builder, inputError):
+    builder.PrependUOffsetTRelativeSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(inputError), 0)
+
+def VMCOSCStatusChangeResponseAddLastReceivedInputMillis(builder, lastReceivedInputMillis):
+    builder.PrependUint64Slot(3, lastReceivedInputMillis, None)
+
+def VMCOSCStatusChangeResponseAddOutputState(builder, outputState):
+    builder.PrependUint8Slot(4, outputState, 0)
+
+def VMCOSCStatusChangeResponseAddOutputError(builder, outputError):
+    builder.PrependUOffsetTRelativeSlot(5, flatbuffers.number_types.UOffsetTFlags.py_type(outputError), 0)
+
+def VMCOSCStatusChangeResponseAddTargetAddress(builder, targetAddress):
+    builder.PrependUOffsetTRelativeSlot(6, flatbuffers.number_types.UOffsetTFlags.py_type(targetAddress), 0)
+
+def VMCOSCStatusChangeResponseAddTargetPort(builder, targetPort):
+    builder.PrependUint16Slot(7, targetPort, None)
+
+def VMCOSCStatusChangeResponseAddLastFrameSentMillis(builder, lastFrameSentMillis):
+    builder.PrependUint64Slot(8, lastFrameSentMillis, None)
+
+def VMCOSCStatusChangeResponseAddVrmState(builder, vrmState):
+    builder.PrependUint8Slot(9, vrmState, 0)
+
+def VMCOSCStatusChangeResponseAddVrmError(builder, vrmError):
+    builder.PrependUOffsetTRelativeSlot(10, flatbuffers.number_types.UOffsetTFlags.py_type(vrmError), 0)
+
+def VMCOSCStatusChangeResponseEnd(builder):
+    return builder.EndObject()
+
+
+
+class VRMSettingsRequest(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = VRMSettingsRequest()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsVRMSettingsRequest(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # VRMSettingsRequest
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+def VRMSettingsRequestStart(builder):
+    builder.StartObject(0)
+
+def VRMSettingsRequestEnd(builder):
+    return builder.EndObject()
+
+
+
+class VRMSettingsResponse(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = VRMSettingsResponse()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsVRMSettingsResponse(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # VRMSettingsResponse
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # VRMSettingsResponse
+    def VrmJson(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+def VRMSettingsResponseStart(builder):
     builder.StartObject(1)
 
-def TopicHandleAddId(builder, id):
-    builder.PrependUint16Slot(0, id, 0)
+def VRMSettingsResponseAddVrmJson(builder, vrmJson):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(vrmJson), 0)
 
-def TopicHandleEnd(builder):
+def VRMSettingsResponseEnd(builder):
     return builder.EndObject()
 
 
 
-# Response for `TopicHandleRequest` or `SubscriptionRequest`.
-class TopicMapping(object):
+class ChangeVRMSettingsRequest(object):
     __slots__ = ['_tab']
 
     @classmethod
     def GetRootAs(cls, buf, offset=0):
         n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = TopicMapping()
+        x = ChangeVRMSettingsRequest()
         x.Init(buf, n + offset)
         return x
 
     @classmethod
-    def GetRootAsTopicMapping(cls, buf, offset=0):
+    def GetRootAsChangeVRMSettingsRequest(cls, buf, offset=0):
         """This method is deprecated. Please switch to GetRootAs."""
         return cls.GetRootAs(buf, offset)
-    # TopicMapping
+    # ChangeVRMSettingsRequest
     def Init(self, buf, pos):
         self._tab = flatbuffers.table.Table(buf, pos)
 
-    # TopicMapping
-    def Id(self):
+    # ChangeVRMSettingsRequest
+    def VrmJson(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
         if o != 0:
-            x = self._tab.Indirect(o + self._tab.Pos)
-            obj = TopicId()
-            obj.Init(self._tab.Bytes, x)
-            return obj
+            return self._tab.String(o + self._tab.Pos)
         return None
 
-    # TopicMapping
-    def Handle(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
-        if o != 0:
-            x = self._tab.Indirect(o + self._tab.Pos)
-            obj = TopicHandle()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
-
-def TopicMappingStart(builder):
-    builder.StartObject(2)
-
-def TopicMappingAddId(builder, id):
-    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(id), 0)
-
-def TopicMappingAddHandle(builder, handle):
-    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(handle), 0)
-
-def TopicMappingEnd(builder):
-    return builder.EndObject()
-
-
-
-# Request to get the `FeatureHandle` from a `FeatureId`. This is useful for reducing
-# bandwidth, since `FeatureId` can be large.
-class TopicHandleRequest(object):
-    __slots__ = ['_tab']
-
-    @classmethod
-    def GetRootAs(cls, buf, offset=0):
-        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = TopicHandleRequest()
-        x.Init(buf, n + offset)
-        return x
-
-    @classmethod
-    def GetRootAsTopicHandleRequest(cls, buf, offset=0):
-        """This method is deprecated. Please switch to GetRootAs."""
-        return cls.GetRootAs(buf, offset)
-    # TopicHandleRequest
-    def Init(self, buf, pos):
-        self._tab = flatbuffers.table.Table(buf, pos)
-
-    # TopicHandleRequest
-    def Id(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
-        if o != 0:
-            x = self._tab.Indirect(o + self._tab.Pos)
-            obj = TopicId()
-            obj.Init(self._tab.Bytes, x)
-            return obj
-        return None
-
-def TopicHandleRequestStart(builder):
+def ChangeVRMSettingsRequestStart(builder):
     builder.StartObject(1)
 
-def TopicHandleRequestAddId(builder, id):
-    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(id), 0)
+def ChangeVRMSettingsRequestAddVrmJson(builder, vrmJson):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(vrmJson), 0)
 
-def TopicHandleRequestEnd(builder):
+def ChangeVRMSettingsRequestEnd(builder):
     return builder.EndObject()
 
 
 
-# Requests a subscription to `topic`. Replies with a `TopicMapping`.
-class SubscriptionRequest(object):
+class VRCConfigValidity(object):
     __slots__ = ['_tab']
 
     @classmethod
     def GetRootAs(cls, buf, offset=0):
         n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = SubscriptionRequest()
+        x = VRCConfigValidity()
         x.Init(buf, n + offset)
         return x
 
     @classmethod
-    def GetRootAsSubscriptionRequest(cls, buf, offset=0):
+    def GetRootAsVRCConfigValidity(cls, buf, offset=0):
         """This method is deprecated. Please switch to GetRootAs."""
         return cls.GetRootAs(buf, offset)
-    # SubscriptionRequest
+    # VRCConfigValidity
     def Init(self, buf, pos):
         self._tab = flatbuffers.table.Table(buf, pos)
 
-    # SubscriptionRequest
-    def TopicType(self):
+    # VRCConfigValidity
+    def LegacyModeOk(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
         if o != 0:
-            return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
-        return 0
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
 
-    # SubscriptionRequest
-    def Topic(self):
+    # VRCConfigValidity
+    def ShoulderTrackingOk(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
         if o != 0:
-            from flatbuffers.table import Table
-            obj = Table(bytearray(), 0)
-            self._tab.Union(obj, o)
-            return obj
-        return None
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
 
-def SubscriptionRequestStart(builder):
-    builder.StartObject(2)
+    # VRCConfigValidity
+    def UserHeightOk(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
 
-def SubscriptionRequestAddTopicType(builder, topicType):
-    builder.PrependUint8Slot(0, topicType, 0)
+    # VRCConfigValidity
+    def CalibrationVisualsOk(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
 
-def SubscriptionRequestAddTopic(builder, topic):
-    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(topic), 0)
+    # VRCConfigValidity
+    def TrackerModelOk(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
 
-def SubscriptionRequestEnd(builder):
+    # VRCConfigValidity
+    def AvatarMeasurementTypeOk(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
+
+def VRCConfigValidityStart(builder):
+    builder.StartObject(6)
+
+def VRCConfigValidityAddLegacyModeOk(builder, legacyModeOk):
+    builder.PrependBoolSlot(0, legacyModeOk, 0)
+
+def VRCConfigValidityAddShoulderTrackingOk(builder, shoulderTrackingOk):
+    builder.PrependBoolSlot(1, shoulderTrackingOk, 0)
+
+def VRCConfigValidityAddUserHeightOk(builder, userHeightOk):
+    builder.PrependBoolSlot(2, userHeightOk, 0)
+
+def VRCConfigValidityAddCalibrationVisualsOk(builder, calibrationVisualsOk):
+    builder.PrependBoolSlot(3, calibrationVisualsOk, 0)
+
+def VRCConfigValidityAddTrackerModelOk(builder, trackerModelOk):
+    builder.PrependBoolSlot(4, trackerModelOk, 0)
+
+def VRCConfigValidityAddAvatarMeasurementTypeOk(builder, avatarMeasurementTypeOk):
+    builder.PrependBoolSlot(5, avatarMeasurementTypeOk, 0)
+
+def VRCConfigValidityEnd(builder):
     return builder.EndObject()
 
 
 
-class PubSubHeader(object):
+class VRCConfigValues(object):
     __slots__ = ['_tab']
 
     @classmethod
     def GetRootAs(cls, buf, offset=0):
         n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = PubSubHeader()
+        x = VRCConfigValues()
         x.Init(buf, n + offset)
         return x
 
     @classmethod
-    def GetRootAsPubSubHeader(cls, buf, offset=0):
+    def GetRootAsVRCConfigValues(cls, buf, offset=0):
         """This method is deprecated. Please switch to GetRootAs."""
         return cls.GetRootAs(buf, offset)
-    # PubSubHeader
+    # VRCConfigValues
     def Init(self, buf, pos):
         self._tab = flatbuffers.table.Table(buf, pos)
 
-    # PubSubHeader
-    def UType(self):
+    # VRCConfigValues
+    def LegacyMode(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
+
+    # VRCConfigValues
+    def ShoulderTrackingDisabled(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
+
+    # VRCConfigValues
+    def UserHeight(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
+        return 0.0
+
+    # VRCConfigValues
+    def CalibrationVisuals(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
+
+    # VRCConfigValues
+    def TrackerModel(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
         return 0
 
-    # PubSubHeader
-    def U(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+    # VRCConfigValues
+    def AvatarMeasurementType(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
         if o != 0:
-            from flatbuffers.table import Table
-            obj = Table(bytearray(), 0)
-            self._tab.Union(obj, o)
-            return obj
-        return None
+            return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
+        return 0
 
-def PubSubHeaderStart(builder):
-    builder.StartObject(2)
+def VRCConfigValuesStart(builder):
+    builder.StartObject(6)
 
-def PubSubHeaderAddUType(builder, uType):
-    builder.PrependUint8Slot(0, uType, 0)
+def VRCConfigValuesAddLegacyMode(builder, legacyMode):
+    builder.PrependBoolSlot(0, legacyMode, 0)
 
-def PubSubHeaderAddU(builder, u):
-    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(u), 0)
+def VRCConfigValuesAddShoulderTrackingDisabled(builder, shoulderTrackingDisabled):
+    builder.PrependBoolSlot(1, shoulderTrackingDisabled, 0)
 
-def PubSubHeaderEnd(builder):
+def VRCConfigValuesAddUserHeight(builder, userHeight):
+    builder.PrependFloat32Slot(2, userHeight, 0.0)
+
+def VRCConfigValuesAddCalibrationVisuals(builder, calibrationVisuals):
+    builder.PrependBoolSlot(3, calibrationVisuals, 0)
+
+def VRCConfigValuesAddTrackerModel(builder, trackerModel):
+    builder.PrependUint8Slot(4, trackerModel, 0)
+
+def VRCConfigValuesAddAvatarMeasurementType(builder, avatarMeasurementType):
+    builder.PrependUint8Slot(5, avatarMeasurementType, 0)
+
+def VRCConfigValuesEnd(builder):
     return builder.EndObject()
 
 
 
-# Data that is sent from publishers to subscribers
-class Message(object):
+class VRCConfigRecommendedValues(object):
     __slots__ = ['_tab']
 
     @classmethod
     def GetRootAs(cls, buf, offset=0):
         n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = Message()
+        x = VRCConfigRecommendedValues()
         x.Init(buf, n + offset)
         return x
 
     @classmethod
-    def GetRootAsMessage(cls, buf, offset=0):
+    def GetRootAsVRCConfigRecommendedValues(cls, buf, offset=0):
         """This method is deprecated. Please switch to GetRootAs."""
         return cls.GetRootAs(buf, offset)
-    # Message
+    # VRCConfigRecommendedValues
     def Init(self, buf, pos):
         self._tab = flatbuffers.table.Table(buf, pos)
 
-    # Message
-    def TopicType(self):
+    # VRCConfigRecommendedValues
+    def LegacyMode(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
+
+    # VRCConfigRecommendedValues
+    def ShoulderTrackingDisabled(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
+
+    # VRCConfigRecommendedValues
+    def UserHeight(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Float32Flags, o + self._tab.Pos)
+        return 0.0
+
+    # VRCConfigRecommendedValues
+    def CalibrationVisuals(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
+
+    # VRCConfigRecommendedValues
+    def TrackerModel(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
+        return 0
+
+    # VRCConfigRecommendedValues
+    def AvatarMeasurementType(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
+        return 0
+
+def VRCConfigRecommendedValuesStart(builder):
+    builder.StartObject(6)
+
+def VRCConfigRecommendedValuesAddLegacyMode(builder, legacyMode):
+    builder.PrependBoolSlot(0, legacyMode, 0)
+
+def VRCConfigRecommendedValuesAddShoulderTrackingDisabled(builder, shoulderTrackingDisabled):
+    builder.PrependBoolSlot(1, shoulderTrackingDisabled, 0)
+
+def VRCConfigRecommendedValuesAddUserHeight(builder, userHeight):
+    builder.PrependFloat32Slot(2, userHeight, 0.0)
+
+def VRCConfigRecommendedValuesAddCalibrationVisuals(builder, calibrationVisuals):
+    builder.PrependBoolSlot(3, calibrationVisuals, 0)
+
+def VRCConfigRecommendedValuesAddTrackerModel(builder, trackerModel):
+    builder.PrependUint8Slot(4, trackerModel, 0)
+
+def VRCConfigRecommendedValuesAddAvatarMeasurementType(builder, avatarMeasurementType):
+    builder.PrependUint8Slot(5, avatarMeasurementType, 0)
+
+def VRCConfigRecommendedValuesEnd(builder):
+    return builder.EndObject()
+
+
+
+class VRCConfigStateRequest(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = VRCConfigStateRequest()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsVRCConfigStateRequest(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # VRCConfigStateRequest
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+def VRCConfigStateRequestStart(builder):
+    builder.StartObject(0)
+
+def VRCConfigStateRequestEnd(builder):
+    return builder.EndObject()
+
+
+
+# Sent every time the vrchat config state gets updated
+# used to display vrchat missconfig settings to the user
+class VRCConfigStateChangeResponse(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = VRCConfigStateChangeResponse()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsVRCConfigStateChangeResponse(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # VRCConfigStateChangeResponse
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # VRCConfigStateChangeResponse
+    def IsSupported(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
+
+    # VRCConfigStateChangeResponse
+    def Validity(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            x = self._tab.Indirect(o + self._tab.Pos)
+            obj = VRCConfigValidity()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+    # VRCConfigStateChangeResponse
+    def State(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            x = self._tab.Indirect(o + self._tab.Pos)
+            obj = VRCConfigValues()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+    # VRCConfigStateChangeResponse
+    def Recommended(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        if o != 0:
+            x = self._tab.Indirect(o + self._tab.Pos)
+            obj = VRCConfigRecommendedValues()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+    # Just a list of keys from the VRCConfigValidity table.
+    # VRCConfigStateChangeResponse
+    def Muted(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
+        if o != 0:
+            a = self._tab.Vector(o)
+            return self._tab.String(a + flatbuffers.number_types.UOffsetTFlags.py_type(j * 4))
+        return ""
+
+    # VRCConfigStateChangeResponse
+    def MutedLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # VRCConfigStateChangeResponse
+    def MutedIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
+        return o == 0
+
+def VRCConfigStateChangeResponseStart(builder):
+    builder.StartObject(5)
+
+def VRCConfigStateChangeResponseAddIsSupported(builder, isSupported):
+    builder.PrependBoolSlot(0, isSupported, 0)
+
+def VRCConfigStateChangeResponseAddValidity(builder, validity):
+    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(validity), 0)
+
+def VRCConfigStateChangeResponseAddState(builder, state):
+    builder.PrependUOffsetTRelativeSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(state), 0)
+
+def VRCConfigStateChangeResponseAddRecommended(builder, recommended):
+    builder.PrependUOffsetTRelativeSlot(3, flatbuffers.number_types.UOffsetTFlags.py_type(recommended), 0)
+
+def VRCConfigStateChangeResponseAddMuted(builder, muted):
+    builder.PrependUOffsetTRelativeSlot(4, flatbuffers.number_types.UOffsetTFlags.py_type(muted), 0)
+
+def VRCConfigStateChangeResponseStartMutedVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
+
+def VRCConfigStateChangeResponseCreateMutedVector(builder, data):
+    return builder.CreateVectorOfTables(data)
+
+def VRCConfigStateChangeResponseEnd(builder):
+    return builder.EndObject()
+
+
+
+class VRCConfigSettingToggleMute(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = VRCConfigSettingToggleMute()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsVRCConfigSettingToggleMute(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # VRCConfigSettingToggleMute
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # Key from VRCConfigValidity
+    # VRCConfigSettingToggleMute
+    def Key(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+def VRCConfigSettingToggleMuteStart(builder):
+    builder.StartObject(1)
+
+def VRCConfigSettingToggleMuteAddKey(builder, key):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(key), 0)
+
+def VRCConfigSettingToggleMuteEnd(builder):
+    return builder.EndObject()
+
+
+
+class VRCOSCDiscoveredTarget(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = VRCOSCDiscoveredTarget()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsVRCOSCDiscoveredTarget(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # VRCOSCDiscoveredTarget
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # VRCOSCDiscoveredTarget
+    def Name(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # VRCOSCDiscoveredTarget
+    def Address(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # VRCOSCDiscoveredTarget
+    def PortOut(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Uint16Flags, o + self._tab.Pos)
+        return 0
+
+def VRCOSCDiscoveredTargetStart(builder):
+    builder.StartObject(3)
+
+def VRCOSCDiscoveredTargetAddName(builder, name):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(name), 0)
+
+def VRCOSCDiscoveredTargetAddAddress(builder, address):
+    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(address), 0)
+
+def VRCOSCDiscoveredTargetAddPortOut(builder, portOut):
+    builder.PrependUint16Slot(2, portOut, 0)
+
+def VRCOSCDiscoveredTargetEnd(builder):
+    return builder.EndObject()
+
+
+
+class VRCOSCStatusRequest(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = VRCOSCStatusRequest()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsVRCOSCStatusRequest(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # VRCOSCStatusRequest
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+def VRCOSCStatusRequestStart(builder):
+    builder.StartObject(0)
+
+def VRCOSCStatusRequestEnd(builder):
+    return builder.EndObject()
+
+
+
+class VRCOSCStatusChangeResponse(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = VRCOSCStatusChangeResponse()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsVRCOSCStatusChangeResponse(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # VRCOSCStatusChangeResponse
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # VRCOSCStatusChangeResponse
+    def InputState(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
         return 0
 
-    # Message
-    def Topic(self):
+    # VRCOSCStatusChangeResponse
+    def InputPort(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
         if o != 0:
-            from flatbuffers.table import Table
-            obj = Table(bytearray(), 0)
-            self._tab.Union(obj, o)
+            return self._tab.Get(flatbuffers.number_types.Uint16Flags, o + self._tab.Pos)
+        return None
+
+    # VRCOSCStatusChangeResponse
+    def InputError(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # VRCOSCStatusChangeResponse
+    def LastReceivedInputMillis(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Uint64Flags, o + self._tab.Pos)
+        return None
+
+    # VRCOSCStatusChangeResponse
+    def OutputState(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
+        return 0
+
+    # VRCOSCStatusChangeResponse
+    def OutputError(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(14))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # VRCOSCStatusChangeResponse
+    def TargetAddress(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(16))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # VRCOSCStatusChangeResponse
+    def TargetPort(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(18))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Uint16Flags, o + self._tab.Pos)
+        return None
+
+    # VRCOSCStatusChangeResponse
+    def TargetSource(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(20))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
+        return 0
+
+    # VRCOSCStatusChangeResponse
+    def LastFrameSentMillis(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(22))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Uint64Flags, o + self._tab.Pos)
+        return None
+
+    # VRCOSCStatusChangeResponse
+    def OscqueryState(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(24))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
+        return 0
+
+    # VRCOSCStatusChangeResponse
+    def OscqueryAdvertisedPort(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(26))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Uint16Flags, o + self._tab.Pos)
+        return None
+
+    # VRCOSCStatusChangeResponse
+    def OscqueryError(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(28))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # VRCOSCStatusChangeResponse
+    def DiscoveredTargets(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(30))
+        if o != 0:
+            x = self._tab.Vector(o)
+            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
+            x = self._tab.Indirect(x)
+            obj = VRCOSCDiscoveredTarget()
+            obj.Init(self._tab.Bytes, x)
             return obj
         return None
 
-    # Message
-    def PayloadType(self):
+    # VRCOSCStatusChangeResponse
+    def DiscoveredTargetsLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(30))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # VRCOSCStatusChangeResponse
+    def DiscoveredTargetsIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(30))
+        return o == 0
+
+    # VRCOSCStatusChangeResponse
+    def LastReceivedTrackingMillis(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(32))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Uint64Flags, o + self._tab.Pos)
+        return None
+
+    # VRCOSCStatusChangeResponse
+    def TrackingDataState(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(34))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
+        return 0
+
+def VRCOSCStatusChangeResponseStart(builder):
+    builder.StartObject(16)
+
+def VRCOSCStatusChangeResponseAddInputState(builder, inputState):
+    builder.PrependUint8Slot(0, inputState, 0)
+
+def VRCOSCStatusChangeResponseAddInputPort(builder, inputPort):
+    builder.PrependUint16Slot(1, inputPort, None)
+
+def VRCOSCStatusChangeResponseAddInputError(builder, inputError):
+    builder.PrependUOffsetTRelativeSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(inputError), 0)
+
+def VRCOSCStatusChangeResponseAddLastReceivedInputMillis(builder, lastReceivedInputMillis):
+    builder.PrependUint64Slot(3, lastReceivedInputMillis, None)
+
+def VRCOSCStatusChangeResponseAddOutputState(builder, outputState):
+    builder.PrependUint8Slot(4, outputState, 0)
+
+def VRCOSCStatusChangeResponseAddOutputError(builder, outputError):
+    builder.PrependUOffsetTRelativeSlot(5, flatbuffers.number_types.UOffsetTFlags.py_type(outputError), 0)
+
+def VRCOSCStatusChangeResponseAddTargetAddress(builder, targetAddress):
+    builder.PrependUOffsetTRelativeSlot(6, flatbuffers.number_types.UOffsetTFlags.py_type(targetAddress), 0)
+
+def VRCOSCStatusChangeResponseAddTargetPort(builder, targetPort):
+    builder.PrependUint16Slot(7, targetPort, None)
+
+def VRCOSCStatusChangeResponseAddTargetSource(builder, targetSource):
+    builder.PrependUint8Slot(8, targetSource, 0)
+
+def VRCOSCStatusChangeResponseAddLastFrameSentMillis(builder, lastFrameSentMillis):
+    builder.PrependUint64Slot(9, lastFrameSentMillis, None)
+
+def VRCOSCStatusChangeResponseAddOscqueryState(builder, oscqueryState):
+    builder.PrependUint8Slot(10, oscqueryState, 0)
+
+def VRCOSCStatusChangeResponseAddOscqueryAdvertisedPort(builder, oscqueryAdvertisedPort):
+    builder.PrependUint16Slot(11, oscqueryAdvertisedPort, None)
+
+def VRCOSCStatusChangeResponseAddOscqueryError(builder, oscqueryError):
+    builder.PrependUOffsetTRelativeSlot(12, flatbuffers.number_types.UOffsetTFlags.py_type(oscqueryError), 0)
+
+def VRCOSCStatusChangeResponseAddDiscoveredTargets(builder, discoveredTargets):
+    builder.PrependUOffsetTRelativeSlot(13, flatbuffers.number_types.UOffsetTFlags.py_type(discoveredTargets), 0)
+
+def VRCOSCStatusChangeResponseStartDiscoveredTargetsVector(builder, numElems):
+    return builder.StartVector(4, numElems, 4)
+
+def VRCOSCStatusChangeResponseCreateDiscoveredTargetsVector(builder, data):
+    return builder.CreateVectorOfTables(data)
+
+def VRCOSCStatusChangeResponseAddLastReceivedTrackingMillis(builder, lastReceivedTrackingMillis):
+    builder.PrependUint64Slot(14, lastReceivedTrackingMillis, None)
+
+def VRCOSCStatusChangeResponseAddTrackingDataState(builder, trackingDataState):
+    builder.PrependUint8Slot(15, trackingDataState, 0)
+
+def VRCOSCStatusChangeResponseEnd(builder):
+    return builder.EndObject()
+
+
+
+class VRCOSCSettingsRequest(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = VRCOSCSettingsRequest()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsVRCOSCSettingsRequest(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # VRCOSCSettingsRequest
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+def VRCOSCSettingsRequestStart(builder):
+    builder.StartObject(0)
+
+def VRCOSCSettingsRequestEnd(builder):
+    return builder.EndObject()
+
+
+
+class VRCOSCSettingsResponse(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = VRCOSCSettingsResponse()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsVRCOSCSettingsResponse(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # VRCOSCSettingsResponse
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # VRCOSCSettingsResponse
+    def Enabled(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
+
+    # VRCOSCSettingsResponse
+    def UseManualNetwork(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
+
+    # VRCOSCSettingsResponse
+    def PortIn(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Uint16Flags, o + self._tab.Pos)
+        return 0
+
+    # VRCOSCSettingsResponse
+    def PortOut(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Uint16Flags, o + self._tab.Pos)
+        return 0
+
+    # VRCOSCSettingsResponse
+    def Address(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+def VRCOSCSettingsResponseStart(builder):
+    builder.StartObject(5)
+
+def VRCOSCSettingsResponseAddEnabled(builder, enabled):
+    builder.PrependBoolSlot(0, enabled, 0)
+
+def VRCOSCSettingsResponseAddUseManualNetwork(builder, useManualNetwork):
+    builder.PrependBoolSlot(1, useManualNetwork, 0)
+
+def VRCOSCSettingsResponseAddPortIn(builder, portIn):
+    builder.PrependUint16Slot(2, portIn, 0)
+
+def VRCOSCSettingsResponseAddPortOut(builder, portOut):
+    builder.PrependUint16Slot(3, portOut, 0)
+
+def VRCOSCSettingsResponseAddAddress(builder, address):
+    builder.PrependUOffsetTRelativeSlot(4, flatbuffers.number_types.UOffsetTFlags.py_type(address), 0)
+
+def VRCOSCSettingsResponseEnd(builder):
+    return builder.EndObject()
+
+
+
+class ChangeVRCOSCSettingsRequest(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = ChangeVRCOSCSettingsRequest()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsChangeVRCOSCSettingsRequest(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # ChangeVRCOSCSettingsRequest
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # ChangeVRCOSCSettingsRequest
+    def Enabled(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
+
+    # ChangeVRCOSCSettingsRequest
+    def UseManualNetwork(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
+
+    # ChangeVRCOSCSettingsRequest
+    def PortIn(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Uint16Flags, o + self._tab.Pos)
+        return 0
+
+    # ChangeVRCOSCSettingsRequest
+    def PortOut(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Uint16Flags, o + self._tab.Pos)
+        return 0
+
+    # ChangeVRCOSCSettingsRequest
+    def Address(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+def ChangeVRCOSCSettingsRequestStart(builder):
+    builder.StartObject(5)
+
+def ChangeVRCOSCSettingsRequestAddEnabled(builder, enabled):
+    builder.PrependBoolSlot(0, enabled, 0)
+
+def ChangeVRCOSCSettingsRequestAddUseManualNetwork(builder, useManualNetwork):
+    builder.PrependBoolSlot(1, useManualNetwork, 0)
+
+def ChangeVRCOSCSettingsRequestAddPortIn(builder, portIn):
+    builder.PrependUint16Slot(2, portIn, 0)
+
+def ChangeVRCOSCSettingsRequestAddPortOut(builder, portOut):
+    builder.PrependUint16Slot(3, portOut, 0)
+
+def ChangeVRCOSCSettingsRequestAddAddress(builder, address):
+    builder.PrependUOffsetTRelativeSlot(4, flatbuffers.number_types.UOffsetTFlags.py_type(address), 0)
+
+def ChangeVRCOSCSettingsRequestEnd(builder):
+    return builder.EndObject()
+
+
+
+class RpcMessageHeader(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = RpcMessageHeader()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsRpcMessageHeader(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # RpcMessageHeader
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # Set by whoever originates this message, so a future reply can reference it.
+    # Absent for one-way notifications that expect no reply.
+    # RpcMessageHeader
+    def TxId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Uint32Flags, o + self._tab.Pos)
+        return 0
+
+    # Set only on a reply, the tx_id of the request this answers. Never set together with tx_id.
+    # RpcMessageHeader
+    def ReplyTo(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Uint32Flags, o + self._tab.Pos)
+        return 0
+
+    # RpcMessageHeader
+    def MessageType(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
         if o != 0:
             return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
         return 0
 
-    # Message
-    def Payload(self):
+    # RpcMessageHeader
+    def Message(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
         if o != 0:
             from flatbuffers.table import Table
@@ -10771,106 +11854,980 @@ class Message(object):
             return obj
         return None
 
-def MessageStart(builder):
+def RpcMessageHeaderStart(builder):
     builder.StartObject(4)
 
-def MessageAddTopicType(builder, topicType):
-    builder.PrependUint8Slot(0, topicType, 0)
+def RpcMessageHeaderAddTxId(builder, txId):
+    builder.PrependUint32Slot(0, txId, 0)
 
-def MessageAddTopic(builder, topic):
-    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(topic), 0)
+def RpcMessageHeaderAddReplyTo(builder, replyTo):
+    builder.PrependUint32Slot(1, replyTo, 0)
 
-def MessageAddPayloadType(builder, payloadType):
-    builder.PrependUint8Slot(2, payloadType, 0)
+def RpcMessageHeaderAddMessageType(builder, messageType):
+    builder.PrependUint8Slot(2, messageType, 0)
 
-def MessageAddPayload(builder, payload):
-    builder.PrependUOffsetTRelativeSlot(3, flatbuffers.number_types.UOffsetTFlags.py_type(payload), 0)
+def RpcMessageHeaderAddMessage(builder, message):
+    builder.PrependUOffsetTRelativeSlot(3, flatbuffers.number_types.UOffsetTFlags.py_type(message), 0)
 
-def MessageEnd(builder):
+def RpcMessageHeaderEnd(builder):
     return builder.EndObject()
 
 
 
-class KeyValues(object):
+class HeartbeatRequest(object):
     __slots__ = ['_tab']
 
     @classmethod
     def GetRootAs(cls, buf, offset=0):
         n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
-        x = KeyValues()
+        x = HeartbeatRequest()
         x.Init(buf, n + offset)
         return x
 
     @classmethod
-    def GetRootAsKeyValues(cls, buf, offset=0):
+    def GetRootAsHeartbeatRequest(cls, buf, offset=0):
         """This method is deprecated. Please switch to GetRootAs."""
         return cls.GetRootAs(buf, offset)
-    # KeyValues
+    # HeartbeatRequest
     def Init(self, buf, pos):
         self._tab = flatbuffers.table.Table(buf, pos)
 
-    # KeyValues
-    def Keys(self, j):
+def HeartbeatRequestStart(builder):
+    builder.StartObject(0)
+
+def HeartbeatRequestEnd(builder):
+    return builder.EndObject()
+
+
+
+class HeartbeatResponse(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = HeartbeatResponse()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsHeartbeatResponse(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # HeartbeatResponse
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+def HeartbeatResponseStart(builder):
+    builder.StartObject(0)
+
+def HeartbeatResponseEnd(builder):
+    return builder.EndObject()
+
+
+
+# Resets the server settings
+class SettingsResetRequest(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = SettingsResetRequest()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsSettingsResetRequest(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # SettingsResetRequest
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+def SettingsResetRequestStart(builder):
+    builder.StartObject(0)
+
+def SettingsResetRequestEnd(builder):
+    return builder.EndObject()
+
+
+
+class InstalledInfoRequest(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = InstalledInfoRequest()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsInstalledInfoRequest(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # InstalledInfoRequest
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+def InstalledInfoRequestStart(builder):
+    builder.StartObject(0)
+
+def InstalledInfoRequestEnd(builder):
+    return builder.EndObject()
+
+
+
+class InstalledInfoResponse(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = InstalledInfoResponse()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsInstalledInfoResponse(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # InstalledInfoResponse
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # InstalledInfoResponse
+    def IsUdevInstalled(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
+
+def InstalledInfoResponseStart(builder):
+    builder.StartObject(1)
+
+def InstalledInfoResponseAddIsUdevInstalled(builder, isUdevInstalled):
+    builder.PrependBoolSlot(0, isUdevInstalled, 0)
+
+def InstalledInfoResponseEnd(builder):
+    return builder.EndObject()
+
+
+
+# Allows to ask generic infos about the server,
+# like the local ip address, the version of the server, the java version,
+# the current working dir and other information we might want to show in the gui
+# for information/debug purposes
+class ServerInfosRequest(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = ServerInfosRequest()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsServerInfosRequest(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # ServerInfosRequest
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+def ServerInfosRequestStart(builder):
+    builder.StartObject(0)
+
+def ServerInfosRequestEnd(builder):
+    return builder.EndObject()
+
+
+
+# Holds the Server information, this is a basic table holding various information about the currently running server
+# like its local ip address (useful for standalone users so they can specify the ip of the server more easily) and any more
+# infos we might want to add in the future. (like java version, working dir, server version ....)
+# This only holds the local ip for now. But there will be other information added as we chose to display them on the gui for instance
+class ServerInfosResponse(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = ServerInfosResponse()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsServerInfosResponse(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # ServerInfosResponse
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # ServerInfosResponse
+    def LocalIp(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+def ServerInfosResponseStart(builder):
+    builder.StartObject(1)
+
+def ServerInfosResponseAddLocalIp(builder, localIp):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(localIp), 0)
+
+def ServerInfosResponseEnd(builder):
+    return builder.EndObject()
+
+
+
+# Used for the server to save a file and have it prompt in the user side
+class SaveFileNotification(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = SaveFileNotification()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsSaveFileNotification(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # SaveFileNotification
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # Binary data of the file
+    # SaveFileNotification
+    def Data(self, j):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
         if o != 0:
             a = self._tab.Vector(o)
-            return self._tab.String(a + flatbuffers.number_types.UOffsetTFlags.py_type(j * 4))
-        return ""
+            return self._tab.Get(flatbuffers.number_types.Uint8Flags, a + flatbuffers.number_types.UOffsetTFlags.py_type(j * 1))
+        return 0
 
-    # KeyValues
-    def KeysLength(self):
+    # SaveFileNotification
+    def DataAsNumpy(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.GetVectorAsNumpy(flatbuffers.number_types.Uint8Flags, o)
+        return 0
+
+    # SaveFileNotification
+    def DataLength(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
-    # KeyValues
-    def KeysIsNone(self):
+    # SaveFileNotification
+    def DataIsNone(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
         return o == 0
 
-    # KeyValues
-    def Values(self, j):
+    # MIME type of file if one exists, use `extension` otherwise
+    # SaveFileNotification
+    def MimeType(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
         if o != 0:
-            a = self._tab.Vector(o)
-            return self._tab.String(a + flatbuffers.number_types.UOffsetTFlags.py_type(j * 4))
-        return ""
+            return self._tab.String(o + self._tab.Pos)
+        return None
 
-    # KeyValues
-    def ValuesLength(self):
+    # Use MIME type preferably if one exists
+    # SaveFileNotification
+    def Extension(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # Directory recommended to save the file on
+    # SaveFileNotification
+    def ExpectedDir(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
+        return None
+
+    # Recommended filename
+    # SaveFileNotification
+    def ExpectedFilename(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+def SaveFileNotificationStart(builder):
+    builder.StartObject(5)
+
+def SaveFileNotificationAddData(builder, data):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(data), 0)
+
+def SaveFileNotificationStartDataVector(builder, numElems):
+    return builder.StartVector(1, numElems, 1)
+
+def SaveFileNotificationCreateDataVector(builder, data):
+    data = list(data)
+    builder.StartVector(1, len(data), 1)
+    for item in reversed(data):
+        builder.PrependUint8(item)
+    return builder.EndVector()
+
+def SaveFileNotificationAddMimeType(builder, mimeType):
+    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(mimeType), 0)
+
+def SaveFileNotificationAddExtension(builder, extension):
+    builder.PrependUOffsetTRelativeSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(extension), 0)
+
+def SaveFileNotificationAddExpectedDir(builder, expectedDir):
+    builder.PrependUint8Slot(3, expectedDir, None)
+
+def SaveFileNotificationAddExpectedFilename(builder, expectedFilename):
+    builder.PrependUOffsetTRelativeSlot(4, flatbuffers.number_types.UOffsetTFlags.py_type(expectedFilename), 0)
+
+def SaveFileNotificationEnd(builder):
+    return builder.EndObject()
+
+
+
+# Signals that you may send a HandshakeRequest to initiate driver communication.
+class HandshakeAvailable(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = HandshakeAvailable()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsHandshakeAvailable(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # HandshakeAvailable
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+def HandshakeAvailableStart(builder):
+    builder.StartObject(0)
+
+def HandshakeAvailableEnd(builder):
+    return builder.EndObject()
+
+
+
+# Request to initiate driver communication with the server.
+class HandshakeRequest(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = HandshakeRequest()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsHandshakeRequest(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # HandshakeRequest
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # A short string identifying your driver. This may be used in a UI to display connected drivers, and as a
+    # configuration key for per-driver settings.
+    # HandshakeRequest
+    def DriverName(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # Controls which fields are serialised in SkeletonUpdate messages. If this is null, SkeletonUpdate messages will
+    # not be sent.
+    # HandshakeRequest
+    def BoneMask(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
         if o != 0:
-            return self._tab.VectorLen(o)
-        return 0
+            x = self._tab.Indirect(o + self._tab.Pos)
+            obj = BoneMask()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
 
-    # KeyValues
-    def ValuesIsNone(self):
-        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
-        return o == 0
-
-def KeyValuesStart(builder):
+def HandshakeRequestStart(builder):
     builder.StartObject(2)
 
-def KeyValuesAddKeys(builder, keys):
-    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(keys), 0)
+def HandshakeRequestAddDriverName(builder, driverName):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(driverName), 0)
 
-def KeyValuesStartKeysVector(builder, numElems):
+def HandshakeRequestAddBoneMask(builder, boneMask):
+    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(boneMask), 0)
+
+def HandshakeRequestEnd(builder):
+    return builder.EndObject()
+
+
+
+# Response to a HandshakeRequest. You may receive this message after the initial handshake if the server wishes to
+# stop communication with your driver for whatever reason, e.g. the user has disabled the driver in settings.
+class HandshakeResponse(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = HandshakeResponse()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsHandshakeResponse(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # HandshakeResponse
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # HandshakeResponse
+    def Status(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
+        return 0
+
+def HandshakeResponseStart(builder):
+    builder.StartObject(1)
+
+def HandshakeResponseAddStatus(builder, status):
+    builder.PrependUint8Slot(0, status, 0)
+
+def HandshakeResponseEnd(builder):
+    return builder.EndObject()
+
+
+
+# Request to add a tracker. You must have successfully completed a handshake for this to succeed.
+# The server will reply with an AddTrackerResponse.
+class AddTrackerRequest(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = AddTrackerRequest()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsAddTrackerRequest(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # AddTrackerRequest
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # A unique identifier, such as a serial number, for the tracker. This field is mandatory.
+    # AddTrackerRequest
+    def HardwareIdentifier(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # A human-friendly name to display as the name of the tracker.
+    # AddTrackerRequest
+    def DisplayName(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # A human-friendly string for the manufacturer of the tracker.
+    # AddTrackerRequest
+    def Manufacturer(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            return self._tab.String(o + self._tab.Pos)
+        return None
+
+    # The body part the tracker should be assigned to by default.
+    # AddTrackerRequest
+    def BodyPart(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
+        return 0
+
+def AddTrackerRequestStart(builder):
+    builder.StartObject(4)
+
+def AddTrackerRequestAddHardwareIdentifier(builder, hardwareIdentifier):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(hardwareIdentifier), 0)
+
+def AddTrackerRequestAddDisplayName(builder, displayName):
+    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(displayName), 0)
+
+def AddTrackerRequestAddManufacturer(builder, manufacturer):
+    builder.PrependUOffsetTRelativeSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(manufacturer), 0)
+
+def AddTrackerRequestAddBodyPart(builder, bodyPart):
+    builder.PrependUint8Slot(3, bodyPart, 0)
+
+def AddTrackerRequestEnd(builder):
+    return builder.EndObject()
+
+
+
+class AddTrackerResponse(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = AddTrackerResponse()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsAddTrackerResponse(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # AddTrackerResponse
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # The result of the request.
+    # AddTrackerResponse
+    def Status(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
+        return 0
+
+    # The ID of the new tracker.
+    # AddTrackerResponse
+    def TrackerId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Uint16Flags, o + self._tab.Pos)
+        return 0
+
+def AddTrackerResponseStart(builder):
+    builder.StartObject(2)
+
+def AddTrackerResponseAddStatus(builder, status):
+    builder.PrependUint8Slot(0, status, 0)
+
+def AddTrackerResponseAddTrackerId(builder, trackerId):
+    builder.PrependUint16Slot(1, trackerId, 0)
+
+def AddTrackerResponseEnd(builder):
+    return builder.EndObject()
+
+
+
+# Update the status of a created tracker. Will be ignored if you have not successfully completed a handshake.
+class UpdateTrackerStatus(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = UpdateTrackerStatus()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsUpdateTrackerStatus(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # UpdateTrackerStatus
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # The ID of the tracker this is targeting. You should only target trackers you have created.
+    # UpdateTrackerStatus
+    def TrackerId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Uint16Flags, o + self._tab.Pos)
+        return 0
+
+    # The new status for the tracker.
+    # UpdateTrackerStatus
+    def Status(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
+        return 0
+
+def UpdateTrackerStatusStart(builder):
+    builder.StartObject(2)
+
+def UpdateTrackerStatusAddTrackerId(builder, trackerId):
+    builder.PrependUint16Slot(0, trackerId, 0)
+
+def UpdateTrackerStatusAddStatus(builder, status):
+    builder.PrependUint8Slot(1, status, 0)
+
+def UpdateTrackerStatusEnd(builder):
+    return builder.EndObject()
+
+
+
+# Update the battery information of a created tracker. If this is never sent, it is assumed the tracker does not
+# report battery information.
+# Will be ignored if you have not successfully completed a handshake.
+class UpdateTrackerBattery(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = UpdateTrackerBattery()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsUpdateTrackerBattery(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # UpdateTrackerBattery
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # The ID of the tracker this is targeting. You should only target trackers you have created.
+    # UpdateTrackerBattery
+    def TrackerId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Uint16Flags, o + self._tab.Pos)
+        return 0
+
+    # The new battery level of the tracker. (0..=100)
+    # UpdateTrackerBattery
+    def BatteryLevel(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
+        return 0
+
+    # If the tracker is currently charging.
+    # UpdateTrackerBattery
+    def Charging(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
+
+def UpdateTrackerBatteryStart(builder):
+    builder.StartObject(3)
+
+def UpdateTrackerBatteryAddTrackerId(builder, trackerId):
+    builder.PrependUint16Slot(0, trackerId, 0)
+
+def UpdateTrackerBatteryAddBatteryLevel(builder, batteryLevel):
+    builder.PrependUint8Slot(1, batteryLevel, 0)
+
+def UpdateTrackerBatteryAddCharging(builder, charging):
+    builder.PrependBoolSlot(2, charging, 0)
+
+def UpdateTrackerBatteryEnd(builder):
+    return builder.EndObject()
+
+
+
+# Update the rotation, position, angular velocity, and/or linear velocity of a created tracker.
+# Will be ignored if you have not successfully completed a handshake.
+class UpdateTrackerPosition(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = UpdateTrackerPosition()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsUpdateTrackerPosition(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # UpdateTrackerPosition
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # The ID of the tracker this is targeting. You should only target trackers you have created.
+    # UpdateTrackerPosition
+    def TrackerId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Uint16Flags, o + self._tab.Pos)
+        return 0
+
+    # UpdateTrackerPosition
+    def Rotation(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            x = o + self._tab.Pos
+            obj = Quat()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+    # UpdateTrackerPosition
+    def Position(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            x = o + self._tab.Pos
+            obj = Vec3f()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+    # UpdateTrackerPosition
+    def AngularVelocity(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        if o != 0:
+            x = o + self._tab.Pos
+            obj = Vec3f()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+    # UpdateTrackerPosition
+    def LinearVelocity(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(12))
+        if o != 0:
+            x = o + self._tab.Pos
+            obj = Vec3f()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+def UpdateTrackerPositionStart(builder):
+    builder.StartObject(5)
+
+def UpdateTrackerPositionAddTrackerId(builder, trackerId):
+    builder.PrependUint16Slot(0, trackerId, 0)
+
+def UpdateTrackerPositionAddRotation(builder, rotation):
+    builder.PrependStructSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(rotation), 0)
+
+def UpdateTrackerPositionAddPosition(builder, position):
+    builder.PrependStructSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(position), 0)
+
+def UpdateTrackerPositionAddAngularVelocity(builder, angularVelocity):
+    builder.PrependStructSlot(3, flatbuffers.number_types.UOffsetTFlags.py_type(angularVelocity), 0)
+
+def UpdateTrackerPositionAddLinearVelocity(builder, linearVelocity):
+    builder.PrependStructSlot(4, flatbuffers.number_types.UOffsetTFlags.py_type(linearVelocity), 0)
+
+def UpdateTrackerPositionEnd(builder):
+    return builder.EndObject()
+
+
+
+# The full skeleton is always provided in case a driver must always expose the full body skeleton, possibly alongside
+# individual trackers. If you need to expose individual trackers controlled by the enabled trackers, you must perform
+# the filtering yourself.
+class SkeletonUpdate(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = SkeletonUpdate()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsSkeletonUpdate(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # SkeletonUpdate
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # SkeletonUpdate
+    def Bones(self, j):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            x = self._tab.Vector(o)
+            x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
+            x = self._tab.Indirect(x)
+            obj = Bone()
+            obj.Init(self._tab.Bytes, x)
+            return obj
+        return None
+
+    # SkeletonUpdate
+    def BonesLength(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.VectorLen(o)
+        return 0
+
+    # SkeletonUpdate
+    def BonesIsNone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        return o == 0
+
+def SkeletonUpdateStart(builder):
+    builder.StartObject(1)
+
+def SkeletonUpdateAddBones(builder, bones):
+    builder.PrependUOffsetTRelativeSlot(0, flatbuffers.number_types.UOffsetTFlags.py_type(bones), 0)
+
+def SkeletonUpdateStartBonesVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
-def KeyValuesCreateKeysVector(builder, data):
+def SkeletonUpdateCreateBonesVector(builder, data):
     return builder.CreateVectorOfTables(data)
 
-def KeyValuesAddValues(builder, values):
-    builder.PrependUOffsetTRelativeSlot(1, flatbuffers.number_types.UOffsetTFlags.py_type(values), 0)
+def SkeletonUpdateEnd(builder):
+    return builder.EndObject()
 
-def KeyValuesStartValuesVector(builder, numElems):
-    return builder.StartVector(4, numElems, 4)
 
-def KeyValuesCreateValuesVector(builder, data):
-    return builder.CreateVectorOfTables(data)
 
-def KeyValuesEnd(builder):
+# The battery information for the tracker associated with this bone has changed. This event will not be sent if the
+# associated tracker does not transmit battery information.
+class BoneBatteryUpdate(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = BoneBatteryUpdate()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsBoneBatteryUpdate(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # BoneBatteryUpdate
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # BoneBatteryUpdate
+    def Bone(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
+        return 0
+
+    # The current battery level. (0..=100)
+    # BoneBatteryUpdate
+    def BatteryLevel(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
+        return 0
+
+    # If the tracker is charging.
+    # BoneBatteryUpdate
+    def Charging(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            return bool(self._tab.Get(flatbuffers.number_types.BoolFlags, o + self._tab.Pos))
+        return False
+
+def BoneBatteryUpdateStart(builder):
+    builder.StartObject(3)
+
+def BoneBatteryUpdateAddBone(builder, bone):
+    builder.PrependUint8Slot(0, bone, 0)
+
+def BoneBatteryUpdateAddBatteryLevel(builder, batteryLevel):
+    builder.PrependUint8Slot(1, batteryLevel, 0)
+
+def BoneBatteryUpdateAddCharging(builder, charging):
+    builder.PrependBoolSlot(2, charging, 0)
+
+def BoneBatteryUpdateEnd(builder):
+    return builder.EndObject()
+
+
+
+class DriverMessageHeader(object):
+    __slots__ = ['_tab']
+
+    @classmethod
+    def GetRootAs(cls, buf, offset=0):
+        n = flatbuffers.encode.Get(flatbuffers.packer.uoffset, buf, offset)
+        x = DriverMessageHeader()
+        x.Init(buf, n + offset)
+        return x
+
+    @classmethod
+    def GetRootAsDriverMessageHeader(cls, buf, offset=0):
+        """This method is deprecated. Please switch to GetRootAs."""
+        return cls.GetRootAs(buf, offset)
+    # DriverMessageHeader
+    def Init(self, buf, pos):
+        self._tab = flatbuffers.table.Table(buf, pos)
+
+    # Set by whoever originates this message, so a future reply can reference it.
+    # Absent for one-way notifications that expect no reply.
+    # DriverMessageHeader
+    def TxId(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(4))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Uint32Flags, o + self._tab.Pos)
+        return 0
+
+    # Set only on a reply, the tx_id of the request this answers. Never set together with tx_id.
+    # DriverMessageHeader
+    def ReplyTo(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(6))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Uint32Flags, o + self._tab.Pos)
+        return 0
+
+    # DriverMessageHeader
+    def MessageType(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
+        if o != 0:
+            return self._tab.Get(flatbuffers.number_types.Uint8Flags, o + self._tab.Pos)
+        return 0
+
+    # DriverMessageHeader
+    def Message(self):
+        o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(10))
+        if o != 0:
+            from flatbuffers.table import Table
+            obj = Table(bytearray(), 0)
+            self._tab.Union(obj, o)
+            return obj
+        return None
+
+def DriverMessageHeaderStart(builder):
+    builder.StartObject(4)
+
+def DriverMessageHeaderAddTxId(builder, txId):
+    builder.PrependUint32Slot(0, txId, 0)
+
+def DriverMessageHeaderAddReplyTo(builder, replyTo):
+    builder.PrependUint32Slot(1, replyTo, 0)
+
+def DriverMessageHeaderAddMessageType(builder, messageType):
+    builder.PrependUint8Slot(2, messageType, 0)
+
+def DriverMessageHeaderAddMessage(builder, message):
+    builder.PrependUOffsetTRelativeSlot(3, flatbuffers.number_types.UOffsetTFlags.py_type(message), 0)
+
+def DriverMessageHeaderEnd(builder):
     return builder.EndObject()
 
 
@@ -10944,26 +12901,26 @@ class MessageBundle(object):
         return o == 0
 
     # MessageBundle
-    def PubSubMsgs(self, j):
+    def DriverMsgs(self, j):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
         if o != 0:
             x = self._tab.Vector(o)
             x += flatbuffers.number_types.UOffsetTFlags.py_type(j) * 4
             x = self._tab.Indirect(x)
-            obj = PubSubHeader()
+            obj = DriverMessageHeader()
             obj.Init(self._tab.Bytes, x)
             return obj
         return None
 
     # MessageBundle
-    def PubSubMsgsLength(self):
+    def DriverMsgsLength(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
         if o != 0:
             return self._tab.VectorLen(o)
         return 0
 
     # MessageBundle
-    def PubSubMsgsIsNone(self):
+    def DriverMsgsIsNone(self):
         o = flatbuffers.number_types.UOffsetTFlags.py_type(self._tab.Offset(8))
         return o == 0
 
@@ -10988,13 +12945,13 @@ def MessageBundleStartRpcMsgsVector(builder, numElems):
 def MessageBundleCreateRpcMsgsVector(builder, data):
     return builder.CreateVectorOfTables(data)
 
-def MessageBundleAddPubSubMsgs(builder, pubSubMsgs):
-    builder.PrependUOffsetTRelativeSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(pubSubMsgs), 0)
+def MessageBundleAddDriverMsgs(builder, driverMsgs):
+    builder.PrependUOffsetTRelativeSlot(2, flatbuffers.number_types.UOffsetTFlags.py_type(driverMsgs), 0)
 
-def MessageBundleStartPubSubMsgsVector(builder, numElems):
+def MessageBundleStartDriverMsgsVector(builder, numElems):
     return builder.StartVector(4, numElems, 4)
 
-def MessageBundleCreatePubSubMsgsVector(builder, data):
+def MessageBundleCreateDriverMsgsVector(builder, data):
     return builder.CreateVectorOfTables(data)
 
 def MessageBundleEnd(builder):
