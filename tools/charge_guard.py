@@ -168,6 +168,11 @@ class Guard:
         if not self.probed:
             return
 
+        if now - self.last_report >= self.args.report_every:
+            self.last_report = now
+            marks = "  ".join(f"{'*' if ip in self.plugged else ''}{ip}:{v:.2f}V" for ip, v in sorted(volts.items()))
+            log(f"[{'charging' if self.powered else 'cut'}] {marks}   (* = on the cable)")
+
         watched = volts if self.args.ip else {ip: v for ip, v in volts.items() if ip in self.plugged}
         if not watched:
             if not self.powered:
@@ -178,17 +183,15 @@ class Guard:
         values = list(watched.values())
         detail = ", ".join(f"{ip} {v:.2f}V" for ip, v in sorted(watched.items()))
 
-        if self.powered and (max(values) if self.args.mode == "any" else min(values)) >= self.args.stop_v:
+        level = max(values) if self.args.mode == "any" else min(values)
+
+        if self.powered and level >= self.args.stop_v:
             log(f"reached {self.args.stop_v:.2f} V ({self.args.mode}): {detail}")
             self.switch(False)
-        elif not self.powered and (min(values) if self.args.mode == "any" else max(values)) <= self.args.resume_v:
+        elif not self.powered and level <= self.args.resume_v:
             log(f"dropped to {self.args.resume_v:.2f} V ({self.args.mode}): {detail}")
             self.switch(True)
 
-        if now - self.last_report >= self.args.report_every:
-            self.last_report = now
-            marks = "  ".join(f"{'*' if ip in self.plugged else ''}{ip}:{v:.2f}V" for ip, v in sorted(volts.items()))
-            log(f"[{'charging' if self.powered else 'cut'}] {marks}   (* = on the cable)")
 
 
 def main():
@@ -199,7 +202,8 @@ def main():
     ap.add_argument("--stop-v", type=float, default=3.95, help="cut power at this voltage (~80%% on SlimeVR's curve)")
     ap.add_argument("--resume-v", type=float, default=3.80, help="restore power below this voltage (~60%%)")
     ap.add_argument("--mode", choices=["any", "all"], default="any",
-                    help="'any': cut as soon as one tracker reaches the level; 'all': wait for every one")
+                    help="which tracker decides: 'any' follows the fullest one, 'all' the emptiest. "
+                         "The same one decides when to resume, so power never oscillates")
     ap.add_argument("--poll-every", type=float, default=30, help="seconds between battery readings")
     ap.add_argument("--probe-every", type=float, default=1800, help="seconds between probes")
     ap.add_argument("--probe-seconds", type=float, default=20, help="how long power stays off while probing")
